@@ -1,0 +1,18 @@
+.textInput {
+    /* Variables */
+    --max-width: 600px;
+    --min-width: 300px;
+    
+    /* Style */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: var(--min-width);
+    width: max(var(--min-width), 100%);
+    max-width: var(--max-width);
+}
+
+.textInput__input {
+    --border-radius: var(--radius-round);
+    border-radius: var(--border-radius);
+}

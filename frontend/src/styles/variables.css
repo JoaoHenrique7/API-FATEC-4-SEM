@@ -1,0 +1,51 @@
+:root {
+    --primary-180: #A3D7B5;
+    --primary-360: #7DD29B;
+    --primary-540-def: #31BE62;
+    --primary-720: #278448;
+    --primary-900: #2E6440;
+
+    --seconday-180: #F0F0F2;
+    --seconday-360: #EAEAEE;
+    --seconday-540-def: #DEDEE3;
+    --seconday-720: #D0D0D9;
+    --seconday-900: #C0C0CC;
+
+    --accent-180: #7A9CBE;
+    --accent-360: #5C8AB8;
+    --accent-540-def: #3A70A6;
+    --accent-720: #2F5C8A;
+    --accent-900: #24476A;
+
+    --white: #FFFFFF;
+    --black: #000000;
+
+    --neutral-100: #F5F5F5;
+    --neutral-200: #DCDCDC;
+    --neutral-300: #C3C3C3;
+    --neutral-400: #ABABAB;
+    --neutral-500: #979797;
+    --neutral-600: #8B8B8B;
+    --neutral-700: #606060;
+    --neutral-800: #484848;
+    --neutral-900: #2F2F2F;
+    --neutral-1000: #161616;
+
+    --state-success: #7EFA8A;
+    --state-warning: #F0FA7E;
+    --state-danger: #FE5D6D;
+
+    --spacing-0: 0;
+    --spacing-1: .25rem;
+    --spacing-2: .5rem;
+    --spacing-3: .75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.5rem;
+    --spacing-6: 2rem;
+
+    --radius-0: 0;
+    --radius-1: .25rem;
+    --radius-2: .5rem;
+    --radius-3: 1rem;
+    --radius-round: 9999px;
+}
