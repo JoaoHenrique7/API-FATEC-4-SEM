@@ -1,10 +1,25 @@
+import RegExpValidation from "./validations.enum";
+
 /**
  * Validates the given email address.
  *
  * @param {string} email - The email address to validate.
  * @return {boolean} Returns true if the email address is valid, false otherwise.
  */
-export default function emailValidation(email: string) {
-	const regex = /^[A-za-z0-9][A-Za-z0-9._+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/g;
-	return regex.test(email);
+export function emailValidation(email: string): boolean {
+	return RegExpValidation.Email.test(email);
+}
+
+/**
+ * Validates a password based on the following criteria:
+ * - Minimum 8 characters,
+ * - at least 1 uppercase letter,
+ * - 1 lowercase letter,
+ * - 1 number and one special character
+ *
+ * @param {string} password - The password to be validated.
+ * @return {boolean} Returns true if the password is valid, otherwise false.
+ */
+export function passwordValidation(password: string): boolean {
+	return RegExpValidation.Password.test(password);
 }

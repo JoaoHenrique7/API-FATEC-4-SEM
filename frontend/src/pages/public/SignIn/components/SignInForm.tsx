@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./SignInForm.module.css";
 import TextInput from "../../../../components/TextInput/TextInput";
+import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
+import RegExpValidation from "../../../../@utils/validations/validations.enum";
 
 type SignInFormProps = React.HTMLProps<HTMLFormElement>;
 
@@ -11,7 +13,12 @@ function SignInForm(props: SignInFormProps) {
 				label="Email"
 				hint="Preencha com seu email"
 				placeholder="Insira seu email..."
-				validation={/^[0-9]{5}$/g}
+				validation={RegExpValidation.Email}
+			/>
+			<PasswordInput
+				label="Senha"
+				placeholder="Insira sua senha..."
+				hint="Preencha com sua senha"
 			/>
 		</form>
 	);
