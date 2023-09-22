@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./PasswordInput.module.css";
 import { passwordValidation } from "../../@utils/validations/validations.util";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 type PasswordInputProps = {
 	label: string;
@@ -13,10 +14,8 @@ function PasswordInput(props: PasswordInputProps): JSX.Element {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 	const { label, hint, onChange, ...inputProps } = props;
 
-	const validateMask = (regex: RegExp, value: string): boolean => regex.test(value);
-
 	const onChangeWrapper = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const isValueValid = passwordValidation(e.currentTarget.value);
+		const isValueValid: boolean = passwordValidation(e.currentTarget.value);
 		setIsValid(isValueValid ? "valid" : "invalid");
 		if (onChange) onChange(e);
 	};
@@ -26,18 +25,25 @@ function PasswordInput(props: PasswordInputProps): JSX.Element {
 	return (
 		<label className={styles["passwordInput"]}>
 			<span className={styles["passwordInput__label"]}>{label}</span>
-			<input
-				className={`${styles["passwordInput__input"]} ${
-					isValid !== "default"
-						? isValid === "valid"
-							? styles["--valid"]
-							: styles["--invalid"]
-						: ""
-				}`}
-				onChange={onChangeWrapper}
-				type={isVisible ? "text" : "password"}
-				{...inputProps}
-			/>
+			<div className={styles["passwordInput__wrapper"]}>
+				<input
+					className={`${styles["passwordInput__input"]} ${
+						isValid !== "default"
+							? isValid === "valid"
+								? styles["--valid"]
+								: styles["--invalid"]
+							: ""
+					}`}
+					onChange={onChangeWrapper}
+					type={isVisible ? "text" : "password"}
+					{...inputProps}
+				/>
+				{isVisible ? (
+					<BsEyeSlash className={styles["passwordInput__icon"]} onClick={setVisibility} />
+				) : (
+					<BsEye className={styles["passwordInput__icon"]} onClick={setVisibility} />
+				)}
+			</div>
 			<small className={styles["passwordInput__hint"]}>{hint}</small>
 		</label>
 	);
