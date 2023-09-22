@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./TextInput.module.css";
 
-type TextInputProps = {
+type PasswordInputProps = {
 	label: string;
 	hint: string;
 	validation?: RegExp;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } & Omit<React.HTMLProps<HTMLInputElement>, "type" | "onChange">;
 
-function TextInput(props: TextInputProps): JSX.Element {
+function TextInput(props: PasswordInputProps): JSX.Element {
 	const [isValid, setIsValid] = useState<"default" | "valid" | "invalid">("default");
 	const { label, hint, validation, onChange, ...inputProps } = props;
 

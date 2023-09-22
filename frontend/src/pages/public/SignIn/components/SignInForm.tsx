@@ -6,8 +6,13 @@ type SignInFormProps = React.HTMLProps<HTMLFormElement>;
 
 function SignInForm(props: SignInFormProps) {
 	return (
-		<form {...props}>
-			<TextInput label="Email" hint="Preencha com seu email" hasError={false} />
+		<form className={styles["signInForm"]} {...props}>
+			<TextInput
+				label="Email"
+				hint="Preencha com seu email"
+				placeholder="Insira seu email..."
+				validation={/^[0-9]{5}$/g}
+			/>
 		</form>
 	);
 }

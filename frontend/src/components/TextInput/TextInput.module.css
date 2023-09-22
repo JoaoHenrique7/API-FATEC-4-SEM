@@ -13,6 +13,48 @@
 }
 
 .textInput__input {
-    --border-radius: var(--radius-round);
+    /* Variables */
+    --border-radius: var(--radius-1);
+    --block-spacing: var(--spacing-2);
+    --inline-spacing: var(--spacing-3);
+    --input-background: var(--white);
+    --input-border: var(--neutral-300);
+
+    /* Style */
+    padding: var(--block-spacing) var(--inline-spacing);
     border-radius: var(--border-radius);
+    border: 2px solid var(--input-border);
+    outline: none;
+    transition: all .2s linear;
+}
+
+.textInput__input.--valid {
+    /* Variables */
+    --input-border: var(--state-success);
+}
+
+.textInput__input.--invalid {
+    /* Variables */
+    --input-border: var(--state-danger);
+}
+
+.textInput__label {
+    /* Variables */
+    --input-label: var(--neutral-900);
+
+    /* Style */
+    color: var(--input-label);
+}
+
+.textInput__hint {
+    /* Variables */
+    --input-hint: var(--neutral-600);
+
+    /* Style */
+    color: var(--input-hint);
+}
+
+.textInput__input.--invalid + .textInput__hint {
+    /* Variables */
+    --input-hint: var(--state-danger);
 }
