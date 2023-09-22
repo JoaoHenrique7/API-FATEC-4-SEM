@@ -1,0 +1,29 @@
+.CreateUserForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    padding: 1.5rem;
+}
+
+.line {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.rightSection {
+    flex: 1;
+    padding: 20px;
+    /* Estilos para a seção direita */
+  }
+
+.leftSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    /* Estilos para a seção esquerda */
+  }
