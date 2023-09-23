@@ -1,50 +1,75 @@
 import IRecoveryPass from "../../model/interfaces/IRecoveryPass";
+import UserResponse from "../../model/interfaces/IUserResponse";
 import DataServiceAPI from "../DataServiceAPI";
 
 
 export default class UserService {
+	public static async recoveryPass(email: string): Promise<boolean> {
+		const credentials: IRecoveryPass = {
+			email: email,
+		};
 
-public static async recoveryPass(email: string): Promise<boolean> {
+		try {
+			const response = await DataServiceAPI.post(
+				"http://localhost:3000/auth/recovery",
+				credentials,
+			);
 
-    const credentials: IRecoveryPass = {
-      email: email,
-    };
+			if (response.ok) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			console.error(error);
+			return false;
+		}
+	}
 
-    try {
-      const response = await DataServiceAPI.post('http://localhost:3000/auth/recovery', credentials);
+	public static async updatePassword(email: string, newPassword: string): Promise<boolean> {
+		const requestBody = {
+			email: email,
+			newPassword: newPassword,
+		};
 
-      if (response.ok) {
-        return true;
-      } else {
-        return false;
-      }
+		try {
+			const response = await DataServiceAPI.post(
+				"http://localhost:3000/auth/updatePassword",
+				requestBody,
+			);
 
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  }
+			if (response.ok) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			console.error(error);
+			return false;
+		}
+	}
 
-  public static async updatePassword(email: string, newPassword: string): Promise<boolean> {
+	public static async getAllUsers(): Promise<UserResponse> {
+		try {
+			const response = await DataServiceAPI.get("http://localhost:3000/getAll");
 
-    const requestBody = {
-      email: email,
-      newPassword: newPassword
-    };
+			const responseJson = await response.json();
 
-    try {
-      const response = await DataServiceAPI.post('http://localhost:3000/auth/updatePassword', requestBody);
+			const userResponse = {
+				data: responseJson.Data,
+				message: responseJson.message,
+				ok: responseJson.Ok,
+			};
 
-      if (response.ok) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
-  }
-
+			return userResponse;
+		} catch (error) {
+			const response: UserResponse = {
+				data: [],
+				message: `${error}`,
+				ok: false,
+			};
+			return response;
+		}
+	}
 }
 
