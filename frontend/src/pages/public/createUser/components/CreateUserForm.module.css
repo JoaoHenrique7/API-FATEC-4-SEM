@@ -1,0 +1,32 @@
+.CreateUserForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    padding: var(--spacing-5);
+    justify-content: space-between;
+}
+
+.line {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.inputPlace{
+  padding-right: var(--spacing-3);
+}  
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 5%;
+  grid-row-gap: 0px;
+  }
+  
+  .left { grid-area: 1 / 1 / 2 / 2; }
+  .right { grid-area: 1 / 2 / 2 / 3; }
+.title{
+  padding-top: var(--spacing-4);
+}
