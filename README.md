@@ -1,4 +1,4 @@
-<p align="center"> <img src="" alt="Equipe bytech"/></p>
+<p align="center"> <img src="/readme/Logo 1.png" alt="Equipe bytech"/></p>
 <br>
 <p align="center">
   <samp>
