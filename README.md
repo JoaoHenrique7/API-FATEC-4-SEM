@@ -22,13 +22,13 @@
 <br>
 <h1 align="center"><samp>PROPOSTA</samp></h1>
 
-O presente projeto tem por proposta permitir que os parceiros (Coopertativas, profissionais individuais e empresas que fazem coleta regular de óleo), estabelecimentos (Restaurantes, estabelecimentos comerciais em geral, condomínios e etc) e administrador (Greenneat) possam acessar a plataforma e por meio de uma moeda própria do sistema realizar transações comerciais. Parceiros podão comparar óleo virgem ou usado de estabelecimentos e depois revender esse produto para Greenneat. Com os crédios, tanto os parceiros quanto os estabelecimentos poderão comprar os saneantes oferecidos no site da Greenneat.
-Os parceiros, em suas páginas, terão acesso ao seus históricos de transações (Créditos movimentados, quantidade de óleo coletado e revendido e saneantes adquiridos) e saldo de créditos. Por sua vez, os estabelecimentos só terão acesso ao seus históricos de compra de saneantes, transações e saldo de crédito. Já o administrador, poderá controlar, editar e vizualizar todos os registros incluindo os cadastros feitos na plataforma. Além disso o administrador terá acesso a um dashboard com informações relevantes como: numero de parceiros e estabelecimentos por região, estabelecimentos com maiores volumes de óleo descartado corretamente, regiões com melhor performace de descarte e usuários que melhor utilizaram os créditos e participaram efetivamente da economia circular.
- i
+<p align = "justify"> O presente projeto tem por proposta permitir que os parceiros (Coopertativas, profissionais individuais e empresas que fazem coleta regular de óleo), estabelecimentos (Restaurantes, estabelecimentos comerciais em geral, condomínios e etc) e administrador (Greenneat) possam acessar a plataforma e por meio de uma moeda própria do sistema realizar transações comerciais. Parceiros podão comparar óleo virgem ou usado de estabelecimentos e depois revender esse produto para Greenneat. Com os crédios, tanto os parceiros quanto os estabelecimentos poderão comprar os saneantes oferecidos no site da Greenneat.
+Os parceiros, em suas páginas, terão acesso ao seus históricos de transações (Créditos movimentados, quantidade de óleo coletado e revendido e saneantes adquiridos) e saldo de créditos. Por sua vez, os estabelecimentos só terão acesso ao seus históricos de compra de saneantes, transações e saldo de crédito. Já o administrador, poderá controlar, editar e vizualizar todos os registros incluindo os cadastros feitos na plataforma. Além disso o administrador terá acesso a um dashboard com informações relevantes como: numero de parceiros e estabelecimentos por região, estabelecimentos com maiores volumes de óleo descartado corretamente, regiões com melhor performace de descarte e usuários que melhor utilizaram os créditos e participaram efetivamente da economia circular.</p>
+
 ### 📖 Requisitos funcionais
-+ - [ ] Acessar o sistema por meio de login;
-+ - [ ] Cadastro de novos usuários;
-+ - [ ] Funcionalidade "esqueci minha senha".
++ - [x] Acessar o sistema por meio de login;
++ - [x] Cadastro de novos usuários;
++ - [x] Funcionalidade "esqueci minha senha".
 + - [ ] Administrador editar e visualizar usuários já cadastrados em forma de lista;
 + - [ ] Administrador visualizar as transações;
 + - [ ] Parceiros e Estabelecimentos efetuar transações de compra e venda;
