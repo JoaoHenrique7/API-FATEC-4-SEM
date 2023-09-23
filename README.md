@@ -103,6 +103,13 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
     <img src="/readme/" width="65%" />
   </p>
   <p align="justify">Demonstração na Tela de Login caso o usuario erre seu E-mail ou Senha.</p>
+
+  <br>
+  <h4 align="center">Tela de cadastro do Usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração da tela de cadastro de usuários.</p>
 </details>
  
 
