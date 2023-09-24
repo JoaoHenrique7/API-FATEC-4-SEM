@@ -1,4 +1,4 @@
-import User from "../../../model/User";
+import Usuario from "../../../database/models/Usuario.model";
 import IUserRepository from "../../../repositories/IUserRepository";
 import IRecoveryPassDTO from "./IRecoveryPassDTO";
 
@@ -8,7 +8,7 @@ export default class RecoveryPassUC {
         private userRepository:IUserRepository,
     ) {}
 
-    async execute(props: IRecoveryPassDTO) : Promise<User> {
+    async execute(props: IRecoveryPassDTO) : Promise<Usuario> {
         const user = await this.userRepository.findByEmail(props.email);
 
         if (!user) throw new Error('Credenciais Inválidas')
