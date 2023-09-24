@@ -1,3 +1,4 @@
+import User from "../../model/classes/User";
 import IRecoveryPass from "../../model/interfaces/IRecoveryPass";
 import UserResponse from "../../model/interfaces/IUserResponse";
 import DataServiceAPI from "../DataServiceAPI";
@@ -70,6 +71,71 @@ export default class UserService {
 			};
 			return response;
 		}
+		
 	}
+
+	public static async createAdmin(user: User): Promise<boolean> {
+		try {
+		  const response = await DataServiceAPI.post('http://localhost:3000/user/createAdmin', user);
+	
+		  if (response.ok) {
+			return true;
+		  } else {
+			return false;
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
+
+	public static async createPartner(user: User): Promise<boolean> {
+		try {
+		  const response = await DataServiceAPI.post('http://localhost:3000/user/createPartner', user);
+	
+		  if (response.ok) {
+			return true;
+		  } else {
+			return false;
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
+
+	  public static async createCompany(user: User): Promise<boolean> {
+		try {
+		  const response = await DataServiceAPI.post('http://localhost:3000/user/createCompany', user);
+	
+		  if (response.ok) {
+			return true;
+		  } else {
+			return false;
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
+	  
+	public static async createIndividual(user: User): Promise<boolean> {
+		try {
+		  const response = await DataServiceAPI.post('http://localhost:3000/user/createIndividual', user);
+	
+		  if (response.ok) {
+			return true;
+		  } else {
+			return false;
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
 }
 

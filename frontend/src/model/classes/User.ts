@@ -1,28 +1,40 @@
 export default class User {
 	public id: number;
 	public userName: string;
-	public fullName: string;
 	public cpf: string;
 	public email: string;
 	public password: string;
 	public active: boolean;
+	public address: string;
+	public neighbordhood: string;
+	public number: string;
+	public complement: string;
+	public city: string;
 
 	constructor(
 		userName: string,
-		fullName: string,
 		cpf: string,
 		email: string,
 		password: string,
 		active: boolean,
+		address: string,
+		neighbordhood: string,
+		number: string,
+		complement: string,
+		city: string,
 		id?: number,
 	) {
 		id ? (this.id = id) : (this.id = -1);
 		this.userName = userName;
-		this.fullName = fullName;
 		this.cpf = cpf;
 		this.email = email;
 		this.password = password;
 		this.active = active;
+		this.address = address;
+		this.neighbordhood= neighbordhood;
+		this.number= number;
+		this.complement= complement;
+		this.city= city;
 	}
 
 	public getUserName(): string {
@@ -31,10 +43,6 @@ export default class User {
 
 	public getId(): number {
 		return this.id;
-	}
-
-	public getFullName(): string {
-		return this.fullName;
 	}
 
 	public getCpf(): string {
@@ -51,5 +59,20 @@ export default class User {
 
 	public isActive(): boolean {
 		return this.active;
+	}
+	public getAddress(): string {
+		return this.address;
+	}
+	public getNeighbordhood(): string {
+		return this.neighbordhood;
+	}
+	public getNumber(): string {
+		return this.number;
+	}
+	public getComplement(): string {
+		return this.complement;
+	}
+	public getCity(): string {
+		return this.city;
 	}
 }

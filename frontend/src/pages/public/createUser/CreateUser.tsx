@@ -2,32 +2,39 @@ import React, { Component } from "react";
 import styles from "./CreateUser.module.css";
 import CreateUserForm from "./components/CreateUserForm";
 import SaltyAlert from "../../../@utils/libs/SaltyAlert";
+import User from "../../../model/classes/User";
+import UserService from "../../../services/UserService/UserService";
 interface CreateUserPageProp {}
 
 interface CreateUserPageState {}
 class CreateUser extends Component<CreateUserPageProp, CreateUserPageState> {
 	handleCreateUser = async (
-		nomeCompleto: string,
+		userName: string,
 		cpfCnpj: string,
-		tipoDoUsuario: string,
+		userType: string,
 		email: string,
-		senha: string,
-		confirmarSenha: string,
-		endereco: string,
-		bairro: string,
-		numero: string,
-		complemento: string,
-		cidade: string,
+		password: string,
+		address: string,
+		neighbordhood: string,
+		number: string,
+		complement: string,
+		city: string,
 	) => {
 		const ADMIN = "0";
-		const USUARIO = "1";
-		// let usuario: User = new User(nomeDoUsuario, nomeCompleto, cpf, email, senha, true);
+		const PARTNER = "1";
+		const COMPANY = "2";
+		const INDIVIDUAL = "3";
+		let usuario: User = new User(userName, cpfCnpj,email, password, true, address, neighbordhood, number, complement, city);
 		let validacao = false;
 
-		if (tipoDoUsuario === ADMIN) {
-			// validacao = await UserService.createAdmin(usuario);
-		} else if (tipoDoUsuario === USUARIO) {
-			// validacao = await UserService.createUser(usuario);
+		if (userType === ADMIN) {
+			validacao = await UserService.createAdmin(usuario);
+		} else if (userType === PARTNER) {
+			validacao = await UserService.createPartner(usuario);
+		} else if (userType === COMPANY) {
+			validacao = await UserService.createPartner(usuario);
+		} else if (userType === INDIVIDUAL) {
+			validacao = await UserService.createIndividual(usuario);
 		} else {
 			new SaltyAlert().modal({
 				icon: "Error",
