@@ -20,9 +20,7 @@ export default class UserRepository implements IUserRepository {
      * @return {Promise<Usuario>} A promise that resolves to the created user.
      */
     create(user: Usuario): Promise<Usuario> {
-        return Usuario.create({ ...user }, {
-            include: [ TipoUsuario, Endereco ]
-        });
+        return user.save();
 	}
 	
 	/**
@@ -32,6 +30,6 @@ export default class UserRepository implements IUserRepository {
 	 * @return {Promise<Usuario | null>} A promise that resolves to the found user or null if not found.
 	 */
 	findByEmail(email: string): Promise<Usuario | null> {
-		return Usuario.findOne({ where: { email } });
+		return Usuario.findOne({ where: { emailUsuario: email } });
 	}
 }

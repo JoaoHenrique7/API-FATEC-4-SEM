@@ -26,7 +26,7 @@ export default class LoginController {
 
         return res.status(200).json({
             Ok: success,
-            Message: success ? "Logged-in." : "Failed to login.",
+            Message: success.success ? "Logged-in." : "Failed to login.",
             Data: []
         });
     }

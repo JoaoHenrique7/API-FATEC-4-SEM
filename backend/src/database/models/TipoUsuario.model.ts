@@ -6,7 +6,7 @@ export default class TipoUsuario extends Model {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false })
 	id!: number;
 
-	@Column({ type: DataType.STRING(255), allowNull: false })
+	@Column({ type: DataType.ENUM("Administrador", "Parceiro", "Estabelecimento"), allowNull: false })
 	tipoUsuario!: string;
 
 	@ForeignKey(() => Usuario)
