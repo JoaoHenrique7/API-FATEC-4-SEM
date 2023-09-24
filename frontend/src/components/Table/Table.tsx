@@ -1,3 +1,4 @@
+import React from "react";
 import { Component } from "react";
 import styles from "./Table.module.css";
 
@@ -54,7 +55,7 @@ class Table<T extends { [key: string]: unknown }> extends Component<Properties<T
 					</tr>
 				</thead>
 				<tbody>
-					{data.map((datum, key: number) => {
+					{/* {data.map((datum, key: number) => {
 						return (
 							<tr key={key}>
 								{columns.map((column: keyof T, key: number) => {
@@ -73,7 +74,7 @@ class Table<T extends { [key: string]: unknown }> extends Component<Properties<T
 								})}
 							</tr>
 						);
-					})}
+					})} */}
 				</tbody>
 			</table>
 		);

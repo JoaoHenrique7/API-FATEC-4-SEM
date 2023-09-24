@@ -4,10 +4,10 @@ import CreateUserForm from "./components/CreateUserForm";
 import SaltyAlert from "../../../@utils/libs/SaltyAlert";
 import User from "../../../model/classes/User";
 import UserService from "../../../services/UserService/UserService";
-interface CreateUserPageProp {}
+// interface CreateUserPageProp {}
 
-interface CreateUserPageState {}
-class CreateUser extends Component<CreateUserPageProp, CreateUserPageState> {
+// interface CreateUserPageState {}
+class CreateUser extends Component {
 	handleCreateUser = async (
 		userName: string,
 		cpfCnpj: string,

@@ -1,19 +1,22 @@
 .layout {
     position: relative;
     min-height: 100dvh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
 
-svg[class*="auth__layout_background__"],
-svg[class*="auth__layout_background__"] {
+.layout svg[class*="auth__layout_background__"],
+.layout svg[class*="auth__layout_background__"] {
     position: absolute;
 }
 
-svg[class$="__green"] {
+.layout svg[class$="__green"] {
     bottom: 0;
     left: 0;
 }
 
-svg[class$="__gray"] {
+.layout svg[class$="__gray"] {
     top: 0;
     right: 0;
 }
