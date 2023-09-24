@@ -5,35 +5,103 @@ import IUserRepository from "../IUserRepository";
 
 export default class UserRepository implements IUserRepository {
   // create user
-  saveUser(user: User): Promise<User> {
+  savePartner(user: User): Promise<User> {
         return User.create({
         userName: user.userName,
-        fullName: user.fullName,
-        cpf: user.cpf,
+        cpfCnpj: user.cpfCnpj,
         email: user.email,
         password: user.password,
         active: user.active,
         profile: {
-                name: 'Usuário',
-                type: 0
-      }
+                tipoUsuario: 'Parceiro',
+        },
+        adress: {
+                numberAdress: adress.numberAdress,
+                complementAdress: adress.complementAdress,
+                street:{
+                        nameStreet:street.nameStreet,
+                        neighborhood:{
+                                  nameNeighborhood: neighborhood.nameNeighborhood,
+                                  city:{
+                                        nameCity: city.nameCity
+                                  }
+                        }
+                }
+        }
         }, { include: {
-            model: Profile
+            model: Profile,
+
         } });
   }
 
+  saveCompany(user: User): Promise<User> {
+    return User.create({
+    userName: user.userName,
+    cpfCnpj: user.cpfCnpj,
+    email: user.email,
+    password: user.password,
+    active: user.active,
+    profile: {
+            tipoUsuario: 'Empresa',
+    },
+    adress: {
+            numberAdress: adress.numberAdress,
+            complementAdress: adress.complementAdress,
+            street:{
+                    nameStreet:street.nameStreet,
+                    neighborhood:{
+                              nameNeighborhood: neighborhood.nameNeighborhood,
+                              city:{
+                                    nameCity: city.nameCity
+                              }
+                    }
+            }
+    }
+    }, { include: {
+        model: Profile,
+
+    } });
+}
+
+
+saveIndividual(user: User): Promise<User> {
+  return User.create({
+  userName: user.userName,
+  cpfCnpj: user.cpfCnpj,
+  email: user.email,
+  password: user.password,
+  active: user.active,
+  profile: {
+          tipoUsuario: 'Profissional_Individual',
+  },
+  adress: {
+          numberAdress: adress.numberAdress,
+          complementAdress: adress.complementAdress,
+          street:{
+                  nameStreet:street.nameStreet,
+                  neighborhood:{
+                            nameNeighborhood: neighborhood.nameNeighborhood,
+                            city:{
+                                  nameCity: city.nameCity
+                            }
+                  }
+          }
+  }
+  }, { include: {
+      model: Profile,
+
+  } });
+}
   // create admin
   saveAdmin(user: User): Promise<User> {
         return User.create({
         userName: user.userName,
-        fullName: user.fullName,
-        cpf: user.cpf,
+        cpf: user.cpfCnpj,
         email: user.email,
         password: user.password,
         active: user.active,
         profile: {
                 name: 'Administrador',
-                type: 1
             }
         }, {
             include: {
@@ -55,18 +123,13 @@ export default class UserRepository implements IUserRepository {
   }
 
   // find by Cpf and Cnpj
-  findByCpf(cpf: string): Promise<User | null> {
-    return User.findOne({ where: { cpf: cpf } });
+  findByCpfCnpj(cpfCnpj: string): Promise<User | null> {
+    return User.findOne({ where: { cpfCnpj: cpfCnpj } });
   }
 
   // find by userName
   findByUserName(userName: string): Promise<User | null> {
     return User.findOne({ where: { userName: userName } });
-  }
-
-  // find by fullName
-  findByFullName(fullName: string): Promise<User | null> {
-    return User.findOne({ where: { fullName: fullName } });
   }
 
   // find all

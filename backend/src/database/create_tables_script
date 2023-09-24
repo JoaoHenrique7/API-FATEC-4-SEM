@@ -1,0 +1,6 @@
+npx sequelize-cli model:generate --name TipoUsuario --attributes id:integer,tipoUsuario:string
+npx sequelize-cli model:generate --name Cidade --attributes id:integer,nomeCidade:string
+npx sequelize-cli model:generate --name Bairro --attributes id:integer,nomeBairro:string
+npx sequelize-cli model:generate --name Logradouro --attributes id:integer,nomeLogradouro:string
+npx sequelize-cli model:generate --name Endereco --attributes id:integer,nomeEndereco:string
+npx sequelize-cli model:generate --name Usuario --attributes id:integer,nomeUsuario:string,emailUsurio:string,senhaUsuario:string,documentoUsuario:string
