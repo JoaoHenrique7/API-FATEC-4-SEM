@@ -1,7 +1,4 @@
-import Bairro from "../../database/models/Bairro.model";
-import Cidade from "../../database/models/Cidade.model";
 import Endereco from "../../database/models/Endereco.model";
-import Logradouro from "../../database/models/Logradouro.model";
 import TipoUsuario from "../../database/models/TipoUsuario.model";
 import Usuario from "../../database/models/Usuario.model";
 import IUserRepository from "../IUserRepository";
@@ -13,7 +10,7 @@ export default class UserRepository implements IUserRepository {
      * @return {Promise<Usuario[]>} A promise that resolves to an array of Usuario objects.
      */
     all(): Promise<Usuario[]> {
-        return Usuario.findAll({ include: [ TipoUsuario, Endereco, Logradouro, Bairro, Cidade ] });
+        return Usuario.findAll({ include: [ TipoUsuario, Endereco ] });
     }
 
     /**
@@ -24,7 +21,7 @@ export default class UserRepository implements IUserRepository {
      */
     create(user: Usuario): Promise<Usuario> {
         return Usuario.create({ ...user }, {
-            include: [ TipoUsuario, Endereco, Logradouro, Bairro, Cidade ]
+            include: [ TipoUsuario, Endereco ]
         });
 	}
 	
