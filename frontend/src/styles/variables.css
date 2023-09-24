@@ -1,4 +1,7 @@
 :root {
+    /* 
+        Colors
+    */
     --primary-180: #A3D7B5;
     --primary-360: #7DD29B;
     --primary-540-def: #31BE62;
@@ -35,6 +38,9 @@
     --state-warning: #F0FA7E;
     --state-danger: #FE5D6D;
 
+    /* 
+        Spacing
+    */
     --spacing-0: 0;
     --spacing-1: .25rem;
     --spacing-2: .5rem;
@@ -43,9 +49,88 @@
     --spacing-5: 1.5rem;
     --spacing-6: 2rem;
 
+    /* 
+        Border Radius
+    */
     --radius-0: 0;
     --radius-1: .25rem;
     --radius-2: .5rem;
     --radius-3: 1rem;
     --radius-round: 9999px;
+    
+    /* 
+        Border sizes
+    */
+    --border-size-1: 1px;
+    --border-size-2: 2px;
+    --border-size-3: 3px;
+    --border-size-4: 4px;
+    --border-size-5: 10px;
+    --border-size-6: 25px;
+
+    /* 
+        Font weight
+    */
+    --font-weight-1: 100;
+    --font-weight-2: 200;
+    --font-weight-3: 300;
+    --font-weight-4: 400;
+    --font-weight-5: 500;
+    --font-weight-6: 600;
+    --font-weight-7: 700;
+    --font-weight-8: 800;
+    --font-weight-9: 900;
+
+    /* 
+        Letter spacing
+    */
+    --font-letterspacing-0: -.05rem;
+    --font-letterspacing-1: .025rem;
+    --font-letterspacing-2: .05rem;
+    --font-letterspacing-3: .075rem;
+    --font-letterspacing-4: .15rem;
+    --font-letterspacing-5: .5rem;
+    --font-letterspacing-6: .75rem;
+    --font-letterspacing-7: 1rem;
+
+    /* 
+        Line height
+    */
+    --font-lineheight-0: .95;
+    --font-lineheight-1: 1.1;
+    --font-lineheight-2: 1.25;
+    --font-lineheight-3: 1.375;
+    --font-lineheight-4: 1.5;
+    --font-lineheight-5: 1.75;
+    --font-lineheight-6: 2;
+
+    /* 
+        Fixed font sizes
+    */
+    --font-size-0: .75rem;
+    --font-size-1: 1rem;
+    --font-size-2: 1.1rem;
+    --font-size-3: 1.25rem;
+    --font-size-4: 1.5rem;
+    --font-size-5: 2rem;
+    --font-size-6: 2.5rem;
+    --font-size-7: 3rem;
+    --font-size-8: 3.5rem;
+
+    /* 
+        Fluid font sizes
+    */
+    --font-size-fluid-small: clamp(var(--font-size-0), 1.5vw, var(--font-size-2));
+    --font-size-fluid-paragraph: clamp(var(--font-size-2), 2vw, var(--font-size-3));
+    --font-size-fluid-heading: clamp(var(--font-size-4), 3vw, var(--font-size-6));
+    --font-size-fluid-display: clamp(var(--font-size-5), 4vw, var(--font-size-8));
+
+    /* 
+        Opacity
+    */
+    --alpha-10: .1;
+    --alpha-25: .25;
+    --alpha-50: .5;
+    --alpha-75: .75;
+    --alpha-100: 1;
 }

@@ -13,7 +13,7 @@ function PublicRoutes(): JSX.Element {
 			<Route path="/" element={<h1>Home</h1>} />
 			<Route element={<AuthLayout />}>
 				<Route path="/sign-in" element={<SignIn />} />
-				<Route path="/recovery" element={<RecoveryPass />} />
+				{/* <Route path="/recovery" element={<RecoveryPass />} /> */}
 				<Route path="/listUser" element={<ListUserTable />} />
 			</Route>
 			<Route element={<CreateUserLayout />}>

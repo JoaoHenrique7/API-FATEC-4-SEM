@@ -19,6 +19,7 @@
     --inline-spacing: var(--spacing-3);
     --input-background: var(--white);
     --input-border: var(--neutral-300);
+    --input-font-size: var(--font-size-fluid-paragraph);
 
     /* Style */
     padding: var(--block-spacing) var(--inline-spacing);
@@ -26,6 +27,7 @@
     border: 2px solid var(--input-border);
     outline: none;
     transition: all .2s linear;
+    font-size: var(--input-font-size);
 }
 
 .textInput__input.--valid {
@@ -41,17 +43,21 @@
 .textInput__label {
     /* Variables */
     --input-label: var(--neutral-900);
+    --input-label-size: var(--font-size-fluid-small);
 
     /* Style */
     color: var(--input-label);
+    font-size: var(--input-label-size);
 }
 
 .textInput__hint {
     /* Variables */
     --input-hint: var(--neutral-600);
+    --input-hint-size: var(--font-size-fluid-small);
 
     /* Style */
     color: var(--input-hint);
+    font-size: var(--input-hint-size);
 }
 
 .textInput__input.--invalid + .textInput__hint {

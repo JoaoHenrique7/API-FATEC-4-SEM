@@ -3,14 +3,15 @@ import styles from "./SignInForm.module.css";
 import TextInput from "../../../../components/TextInput/TextInput";
 import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
 import RegExpValidation from "../../../../@utils/validations/validations.enum";
-import RecoveryLink from "../../../../components/BasicLink/BasicLink";
 
 type SignInFormProps = React.HTMLProps<HTMLFormElement>;
 
 function SignInForm(props: SignInFormProps) {
 	return (
-		<div>
-			<form className={styles["signInForm"]} {...props}>
+		<div className={styles["signInForm"]}>
+			<h1 className={styles["signInForm__title"]}>Login</h1>
+			<h3 className={styles["signInForm__subtitle"]}>Lorem ipsum dolor sit amet.</h3>
+			<form className={styles["signInForm__form"]} {...props}>
 				<TextInput
 					label="Email"
 					hint="Preencha com seu email"
@@ -23,7 +24,6 @@ function SignInForm(props: SignInFormProps) {
 					hint="Preencha com sua senha"
 				/>
 			</form>
-			<RecoveryLink newPath="recovery" text="Esqueci minha senha" className="recoveryLink" />
 		</div>
 	);
 }

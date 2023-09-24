@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import styles from "./CreateUser.module.css";
 import CreateUserForm from "./components/CreateUserForm";
 import SaltyAlert from "../../../@utils/libs/SaltyAlert";
-interface CreateUserPageProp {}
+// interface CreateUserPageProp {}
 
-interface CreateUserPageState {}
-class CreateUser extends Component<CreateUserPageProp, CreateUserPageState> {
+// interface CreateUserPageState {}
+class CreateUser extends Component {
 	handleCreateUser = async (
 		nomeCompleto: string,
 		cpfCnpj: string,
@@ -22,7 +22,7 @@ class CreateUser extends Component<CreateUserPageProp, CreateUserPageState> {
 		const ADMIN = "0";
 		const USUARIO = "1";
 		// let usuario: User = new User(nomeDoUsuario, nomeCompleto, cpf, email, senha, true);
-		let validacao = false;
+		const validacao = false;
 
 		if (tipoDoUsuario === ADMIN) {
 			// validacao = await UserService.createAdmin(usuario);
