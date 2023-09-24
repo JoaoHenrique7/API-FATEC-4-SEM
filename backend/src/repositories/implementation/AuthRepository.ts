@@ -4,6 +4,6 @@ import IAuthRepository from "../IAuthRepository";
 
 export default class AuthRepository implements IAuthRepository {
 	async login(credentials: ILoginDTO): Promise<Usuario | null> {
-		return Usuario.findOne({ where: { email: credentials.email, senhaUsuario: credentials.password } });
+		return Usuario.findOne({ where: { emailUsuario: credentials.email, senhaUsuario: credentials.password } });
 	};
 }

@@ -31,10 +31,11 @@ export default class CreatePartnerController {
                 Message: "Created.",
                 Data: [ createdUsuario ]
             });
-        } catch (err: any) {
+        } catch (err) {
+            console.log(err)
             return res.status(400).json({
                 Ok: false,
-                Message: err,
+                Message: String(err),
                 Data: []
             });
         }
