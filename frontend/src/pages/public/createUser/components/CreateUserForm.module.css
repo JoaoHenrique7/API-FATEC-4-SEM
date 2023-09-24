@@ -20,13 +20,41 @@
 .content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
   grid-column-gap: 5%;
   grid-row-gap: 0px;
+  padding-left: var(--spacing-6);
   }
   
-  .left { grid-area: 1 / 1 / 2 / 2; }
-  .right { grid-area: 1 / 2 / 2 / 3; }
-.title{
-  padding-top: var(--spacing-4);
+.left { padding-top: var(--spacing-6);
+  grid-area: 1 / 1 / 2 / 2; }
+.right { 
+  grid-area: 1 / 2 / 2 / 3; 
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 20px 2px gray ;
+  height: 100vh;
+  padding-top:var(--spacing-6) ;
+  padding-left: var(--spacing-6);
+}
+
+.tipoDoUsuario{
+  padding-top: 2rem;
+}
+
+.checkbox{
+  padding-top: var(--spacing-6);}
+
+.typeText{
+  padding-right: 1.2rem;
+  padding-left: 1.2rem;
+}
+.button {
+  width: 350px;
+  padding: 8px 10px;
+  margin-top: 1.2rem;
+  background-color: var(--primary-360);
+  color: white;
+  font-weight: 700;
+  border-radius: 4px;
 }

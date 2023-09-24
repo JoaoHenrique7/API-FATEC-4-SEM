@@ -9,12 +9,16 @@ svg[class*="createUser__layout_background__"] {
 }
 
 svg[class$="__green"] {
-    bottom:0;
-    left: 0;
+    bottom: -3.0rem;
+    left: -4.0rem;
+    z-index: -1;
+    scale: 70%;
 }
 
 svg[class$="__gray"] {
-    right:0;
-    top: 0;
-    
+    left:-4.0rem;
+    top: -4.0rem;
+    transform: scaleX(-1);
+    scale: 70%;
+    z-index: -1;
 }
