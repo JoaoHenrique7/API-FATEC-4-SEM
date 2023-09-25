@@ -161,7 +161,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 							/>
 							<Button label="Enviar" onClick={this.confireCode} />
 							<RecoveryLink
-								newPath="login"
+								newPath="sign-in"
 								text="Retornar ao login"
 								className="returnLoginLink"
 							/>
@@ -180,7 +180,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 							<PasswordInput label="Confirme sua senha" hint="Confirme sua senha" />
 							<Button label="Enviar" onClick={this.changePassword} />
 							<RecoveryLink
-								newPath="login"
+								newPath="sign-in"
 								text="Retornar ao login"
 								className="returnLoginLink"
 							/>
@@ -205,7 +205,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 							/>
 							<Button label="Enviar" onClick={this.verifyEmail} />
 							<RecoveryLink
-								newPath="login"
+								newPath="sign-in"
 								text="Retornar ao login"
 								className="returnLoginLink"
 							/>

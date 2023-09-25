@@ -3,7 +3,6 @@ import IRecoveryPass from "../../model/interfaces/IRecoveryPass";
 import UserResponse from "../../model/interfaces/IUserResponse";
 import DataServiceAPI from "../DataServiceAPI";
 
-
 export default class UserService {
 	public static async recoveryPass(email: string): Promise<boolean> {
 		const credentials: IRecoveryPass = {
@@ -12,7 +11,7 @@ export default class UserService {
 
 		try {
 			const response = await DataServiceAPI.post(
-				"http://localhost:3000/auth/recovery",
+				"http://localhost:3001/auth/recovery",
 				credentials,
 			);
 
@@ -35,7 +34,7 @@ export default class UserService {
 
 		try {
 			const response = await DataServiceAPI.post(
-				"http://localhost:3000/auth/updatePassword",
+				"http://localhost:3001/updatePassword",
 				requestBody,
 			);
 
@@ -71,25 +70,23 @@ export default class UserService {
 			};
 			return response;
 		}
-		
 	}
 
 	public static async create(user: User): Promise<boolean> {
 		try {
-			
-		  const response = await DataServiceAPI.postCreate('http://localhost:3001/user/create', user);
-			
-		  if (response.ok) {
-			return true;
-		  } else {
-			return false;
-		  }
-	
+			const response = await DataServiceAPI.postCreate(
+				"http://localhost:3001/user/create",
+				user,
+			);
+
+			if (response.ok) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (error) {
-		  console.error(error);
-		  return false;
+			console.error(error);
+			return false;
 		}
-	  }
-
+	}
 }
-
