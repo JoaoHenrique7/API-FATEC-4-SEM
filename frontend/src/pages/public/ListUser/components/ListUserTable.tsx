@@ -1,31 +1,104 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./ListUserTable.module.css";
 import Table from "../../../../components/Table/Table";
+import User from "../../../../model/classes/User";
+import UserService from "../../../../services/UserService/UserService";
+import { FaPlus } from "react-icons/fa";
 
 
-type CreateUserFormProps = React.HTMLProps<HTMLFormElement>;
+interface Endereco {
+	id: number;
+	zip_code: string;
+	numero: number;
+	rua: string;
+	bairro: string;
+	cidade: string;
+	estado: string;
+	complemento: string;
+	idUsuario: number;
+	createdAt: string;
+	updatedAt: string;
+}
 
-function ListUserTable(props: CreateUserFormProps) {
-	return (
-		<div className={styles["listUserTable"]}>
-			<h1 className={styles["title"]}>Usuários Cadastrados</h1>
-			<Table
-				data={[
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-					{ Nome: "teste1", Email: "teste2", Tipo: "batata", Documento: "teste" },
-				]}
-				isLoading={false}
-			/>
-		</div>
-	);
+interface TipoUsuario {
+	id: number;
+	tipoUsuario: string;
+	idUsuario: number;
+	createdAt: string;
+	updatedAt: string;
+}
+
+interface Usuario {
+	id: number;
+	nomeUsuario: string;
+	emailUsuario: string;
+	senhaUsuario: string;
+	documentoUsuario: string;
+	createdAt: string;
+	updatedAt: string;
+	tipoUsuario: TipoUsuario;
+	endereco: Endereco;
+}
+
+interface State {
+	table: { data: any[]; isLoading: boolean };
+}
+
+class ListUserTable extends Component<{}, State> {
+	constructor(props: {}) {
+		super(props);
+		this.state = {
+			table: {
+				data: [],
+				isLoading: true,
+			},
+		};
+	}
+
+	redirectPage() {
+		window.location.href = "/createUser";
+	}
+
+	async getAllUsers(): Promise<void> {
+		const resultadoRequest: Usuario[] = (await UserService.getAllUsers()).data;
+		let list: { Nome: string; Email: string; Documento: string }[] = [];
+		resultadoRequest.forEach((element) => {
+			let user = {
+				Nome: element.nomeUsuario,
+				Email: element.emailUsuario,
+				Documento: element.documentoUsuario,
+				Tipo:element.tipoUsuario.tipoUsuario
+			};
+			list.push(user);
+		});
+		this.setState({ table: { data: list, isLoading: false } });
+	}
+
+	componentDidMount(): void {
+		this.getAllUsers();
+	}
+
+	render() {
+		const { table } = this.state;
+
+		return (
+			<div className={styles["listUserTable"]}>
+				<h1 className={styles["title"]}>Usuários Cadastrados</h1>
+				<Table
+					data={table.data}
+					omit={[
+						"id",
+						"senhaUsuario",
+						"createdAt",
+						"tipoUsuario",
+						"updatedAt",
+						"endereco",
+					]}
+					isLoading={table.isLoading}
+				/>
+			</div>
+		);
+	}
 }
 
 export default ListUserTable;

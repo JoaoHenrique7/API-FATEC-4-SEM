@@ -2,49 +2,45 @@ import React, { Component } from "react";
 import styles from "./CreateUser.module.css";
 import CreateUserForm from "./components/CreateUserForm";
 import SaltyAlert from "../../../@utils/libs/SaltyAlert";
+import User from "../../../model/classes/User";
+import UserService from "../../../services/UserService/UserService";
 // interface CreateUserPageProp {}
 
 // interface CreateUserPageState {}
 class CreateUser extends Component {
 	handleCreateUser = async (
-		nomeCompleto: string,
+		userName: string,
 		cpfCnpj: string,
-		tipoDoUsuario: string,
+		userType: string,
 		email: string,
-		senha: string,
-		confirmarSenha: string,
-		endereco: string,
-		bairro: string,
-		numero: string,
-		complemento: string,
-		cidade: string,
+		password: string,
+		address: string,
+		neighbordhood: string,
+		number: string,
+		complement: string,
+		city: string,
+		cep: string,
+		state: string,
 	) => {
-		const ADMIN = "0";
-		const USUARIO = "1";
-		// let usuario: User = new User(nomeDoUsuario, nomeCompleto, cpf, email, senha, true);
-		const validacao = false;
-
-		if (tipoDoUsuario === ADMIN) {
-			// validacao = await UserService.createAdmin(usuario);
-		} else if (tipoDoUsuario === USUARIO) {
-			// validacao = await UserService.createUser(usuario);
-		} else {
-			new SaltyAlert().modal({
-				icon: "Error",
-				title: "Erro",
-				text: "Tipo de usuário desconhecido!",
-				closeOnClickOutside: true,
-				timerInMiliseconds: 7000,
-			});
-			return;
-		}
+		let usuario: User = new User(
+			userName,
+			email,
+			password,
+			cpfCnpj,
+			userType,
+			cep,
+			number,
+			address,
+			neighbordhood,
+			city,
+			state,
+			complement,
+		);
+		console.log(usuario)
+		const validacao = await UserService.create(usuario);
 
 		if (validacao) {
-			new SaltyAlert().toast({
-				icon: "Success",
-				text: "Usuário adicionado com sucesso!",
-				timerInMiliseconds: 5000,
-			});
+			window.location.href = "/sign-in";
 		} else {
 			new SaltyAlert().toast({
 				icon: "Error",

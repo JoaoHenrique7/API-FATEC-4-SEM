@@ -3,13 +3,13 @@ import User from "../classes/User";
 export default interface UserResponse {
 	ok: boolean;
 	message: string;
-	data: Array<User>;
+	data: any;
 	token?: string;
 }
 
 export interface CountResponse {
 	ok: boolean;
 	message: string;
-	data: unknown;
+	data: any;
 	token?: string;
 }

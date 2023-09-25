@@ -1,3 +1,4 @@
+import User from "../../model/classes/User";
 import IRecoveryPass from "../../model/interfaces/IRecoveryPass";
 import UserResponse from "../../model/interfaces/IUserResponse";
 import DataServiceAPI from "../DataServiceAPI";
@@ -51,7 +52,7 @@ export default class UserService {
 
 	public static async getAllUsers(): Promise<UserResponse> {
 		try {
-			const response = await DataServiceAPI.get("http://localhost:3000/getAll");
+			const response = await DataServiceAPI.get("http://localhost:3001/user/get-all");
 
 			const responseJson = await response.json();
 
@@ -70,6 +71,25 @@ export default class UserService {
 			};
 			return response;
 		}
+		
 	}
+
+	public static async create(user: User): Promise<boolean> {
+		try {
+			
+		  const response = await DataServiceAPI.postCreate('http://localhost:3001/user/create', user);
+			
+		  if (response.ok) {
+			return true;
+		  } else {
+			return false;
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		  return false;
+		}
+	  }
+
 }
 

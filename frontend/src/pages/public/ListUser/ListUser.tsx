@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./ListUser.module.css";
 import ListUserTable from "./components/ListUserTable";
 
-function CreateUser() {
+function ListUser() {
 	return <ListUserTable />;
 }
 
-export default CreateUser;
+export default ListUser;

@@ -5,150 +5,158 @@ import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
 import SaltyAlert from "../../../../@utils/libs/SaltyAlert";
 
 interface CreateUserFormState {
-	nomeCompleto: string;
+	userName: string;
 	cpfCnpj: string;
-	tipoDoUsuario: string;
+	userType: string;
 	email: string;
-	senha: string;
-	confirmarSenha: string;
-	bairro: string;
-	endereco: string;
-	numero: string;
-	complemento: string;
-	cidade: string;
+	password: string;
+	confirmPassword: string;
+	neighbordhood: string;
+	address: string;
+	number: string;
+	complement: string;
+	city: string;
+	cep: string;
+	state: string;
 }
 
 interface CreateUserFormProps {
 	onSubmit: (
-		nomeCompleto: string,
+		userName: string,
 		cpfCnpj: string,
-		tipoDoUsuario: string,
+		userType: string,
 		email: string,
-		senha: string,
-		confirmarSenha: string,
-		endereco: string,
-		bairro: string,
-		numero: string,
-		complemento: string,
-		cidade: string,
+		password: string,
+		confirmPassword: string,
+		address: string,
+		neighbordhood: string,
+		number: string,
+		complement: string,
+		city: string,
+		cep: string,
+		state: string,
 	) => void;
 }
 class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState> {
 	constructor(props: CreateUserFormProps) {
 		super(props);
 		this.state = {
-			nomeCompleto: "",
+			userName: "",
 			cpfCnpj: "",
-			tipoDoUsuario: "0",
+			userType: "0",
 			email: "",
-			senha: "",
-			confirmarSenha: "",
-			endereco: "",
-			bairro: "",
-			numero: "",
-			complemento: "",
-			cidade: "",
+			password: "",
+			confirmPassword: "",
+			address: "",
+			neighbordhood: "",
+			number: "",
+			complement: "",
+			city: "",
+			cep: "",
+			state: "",
 		};
 	}
 
-	handleNomeCompletoChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ nomeCompleto: event.target.value });
+	handleuserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ userName: event.target.value });
 	};
-
-	handleCpfCnpjChange = (event: ChangeEvent<HTMLInputElement>, isCpf?: boolean) => {
-		let cpf = event.target.value;
-		cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-		this.setState({ cpfCnpj: cpf });
+	handleCpfCnpjChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ cpfCnpj: event.target.value });
 	};
-
-	handleEnderecoChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ endereco: event.target.value });
+	handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ address: event.target.value });
 	};
-
-	handleTipoDoUsuarioChange = (event: ChangeEvent<HTMLSelectElement>) => {
-		this.setState({ tipoDoUsuario: event.target.value });
+	handleuserTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+		this.setState({ userType: event.target.value });
 	};
-
 	handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ email: event.target.value });
 	};
-
-	handleSenhaChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ senha: event.target.value });
+	handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ password: event.target.value });
 	};
-
-	handleConfirmarSenhaChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ confirmarSenha: event.target.value });
+	handleConfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ confirmPassword: event.target.value });
 	};
-	handleBairroChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ bairro: event.target.value });
+	handleNeighbordhoodChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ neighbordhood: event.target.value });
 	};
-	handleNumeroChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ numero: event.target.value });
+	handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ number: event.target.value });
 	};
-
-	handleComplementoChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ complemento: event.target.value });
+	handleComplementChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ complement: event.target.value });
 	};
-
-	handleCidadeChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ complemento: event.target.value });
+	handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ city: event.target.value });
+	};
+	handleCEPChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ cep: event.target.value });
+	};
+	handleStateChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ state: event.target.value });
 	};
 
 	handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const {
-			nomeCompleto,
+			userName,
 			cpfCnpj,
-			endereco,
-			tipoDoUsuario,
+			address,
+			userType,
 			email,
-			senha,
-			confirmarSenha,
-			bairro,
-			numero,
-			complemento,
-			cidade,
+			password,
+			confirmPassword,
+			neighbordhood,
+			number,
+			complement,
+			city,
+			cep,
+			state
 		} = this.state;
 
-		if (senha !== confirmarSenha) {
+		if (password !== confirmPassword) {
 			new SaltyAlert().modal({
 				icon: "Error",
 				title: "Erro",
-				text: "Senhas não são iguais!",
+				text: "passwords não são iguais!",
 				closeOnClickOutside: true,
 				timerInMiliseconds: 5000,
 			});
 		} else {
 			this.props.onSubmit(
-				nomeCompleto,
+				userName,
 				cpfCnpj,
-				tipoDoUsuario,
+				userType,
 				email,
-				senha,
-				confirmarSenha,
-				endereco,
-				bairro,
-				numero,
-				complemento,
-				cidade,
+				password,
+				confirmPassword,
+				address,
+				neighbordhood,
+				number,
+				complement,
+				city,
+				cep,
+				state
 			);
 		}
 	};
 
 	render() {
 		const {
-			nomeCompleto,
+			userName,
 			cpfCnpj,
-			endereco,
-			tipoDoUsuario,
+			address,
+			userType,
 			email,
-			senha,
-			confirmarSenha,
-			bairro,
-			numero,
-			complemento,
-			cidade,
+			password,
+			confirmPassword,
+			neighbordhood,
+			number,
+			complement,
+			city,
+			cep,
+			state
 		} = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}>
@@ -161,8 +169,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 									<TextInput
 										label="Nome"
 										hint=""
-										value={nomeCompleto}
-										onChange={this.handleNomeCompletoChange}
+										value={userName}
+										onChange={this.handleuserNameChange}
 										placeholder="Coloque o nome..."
 										validation={/^[0-9]{5}$/g}
 									/>
@@ -179,19 +187,38 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 							<div className={styles["line"]}>
 								<div className={styles["inputPlace"]}>
 									<TextInput
+										label="CEP"
+										hint=""
+										value={cep}
+										onChange={this.handleCEPChange}
+										placeholder="Coloque seu CEP..."
+										validation={/^[0-9]{5}$/g}
+									/>
+								</div>
+								<TextInput
+									label="Estado"
+									hint=""
+									value={state}
+									onChange={this.handleStateChange}
+									placeholder="Insira seu Bairro..."
+								/>
+							</div>
+							<div className={styles["line"]}>
+								<div className={styles["inputPlace"]}>
+									<TextInput
 										label="Endereço"
 										hint=""
-										value={endereco}
-										onChange={this.handleEnderecoChange}
-										placeholder="Coloque o Endereço..."
+										value={address}
+										onChange={this.handleAddressChange}
+										placeholder="Coloque sua Rua..."
 										validation={/^[0-9]{5}$/g}
 									/>
 								</div>
 								<TextInput
 									label="Bairro"
 									hint=""
-									value={bairro}
-									onChange={this.handleBairroChange}
+									value={neighbordhood}
+									onChange={this.handleNeighbordhoodChange}
 									placeholder="Insira seu Bairro..."
 								/>
 							</div>
@@ -200,8 +227,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 									<TextInput
 										label="Numero"
 										hint=""
-										value={numero}
-										onChange={this.handleNumeroChange}
+										value={number}
+										onChange={this.handleNumberChange}
 										placeholder="Coloque o numero do endereço..."
 										validation={/^[0-9]{5}$/g}
 									/>
@@ -209,9 +236,9 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 								<TextInput
 									label="Complemento"
 									hint=""
-									value={complemento}
-									onChange={this.handleComplementoChange}
-									placeholder="Insira o complemento..."
+									value={complement}
+									onChange={this.handleComplementChange}
+									placeholder="Insira o complemento (caso tenha)..."
 								/>
 							</div>
 							<div className={styles["line"]}>
@@ -219,8 +246,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 									<TextInput
 										label="Cidade"
 										hint=""
-										value={cidade}
-										onChange={this.handleCidadeChange}
+										value={city}
+										onChange={this.handleCityChange}
 										placeholder="Coloque sua cidade..."
 									/>
 								</div>
@@ -237,16 +264,16 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 									<PasswordInput
 										label="Crie sua senha"
 										hint=""
-										value={senha}
-										onChange={this.handleSenhaChange}
+										value={password}
+										onChange={this.handlePasswordChange}
 										placeholder="Crie sua senha..."
 									/>
 								</div>
 								<PasswordInput
 									label="Confirme sua senha"
 									hint=""
-									value={confirmarSenha}
-									onChange={this.handleConfirmarSenhaChange}
+									value={confirmPassword}
+									onChange={this.handleConfirmPasswordChange}
 									placeholder="Confirme sua senha..."
 								/>
 							</div>
@@ -254,20 +281,22 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 					</div>
 					<div className={styles["right"]}>
 						<h1 className={styles["title"]}>Qual o tipo do usuario?</h1>
-						<div className={styles["tipoDoUsuario"]}>
-							<label>Tipo de usuário</label><br></br><br></br>
+						<div className={styles["userType"]}>
+							<label>Tipo de usuário</label>
+							<br></br>
+							<br></br>
 							<select
 								className={styles["comboBox"]}
 								name="userType"
 								required
 								id="userType"
-								value={tipoDoUsuario}
-								onChange={this.handleTipoDoUsuarioChange}
+								value={userType}
+								onChange={this.handleuserTypeChange}
 							>
-								<option value="0">Empresa</option>
-								<option value="1">Cooperativa</option>
-								<option value="2">Administrador</option>
-								<option value="2">Individuo</option>
+								<option value="Administrador">Administrador</option>
+								<option value="Cooperativa">Cooperativa</option>
+								<option value="Empresa">Empresa</option>
+								<option value="Individuo">Individuo</option>
 							</select>
 						</div>
 						<button className={styles["button"]}>Salvar</button>
