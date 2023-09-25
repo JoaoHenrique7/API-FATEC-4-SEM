@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ForwardedRef, useState } from "react";
 import styles from "./PasswordInput.module.css";
 import { passwordValidation } from "../../@utils/validations/validations.util";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -6,18 +6,22 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 type PasswordInputProps = {
 	label: string;
 	hint: string;
+	shouldValidate?: boolean;
+	forwardedRef?: ForwardedRef<HTMLInputElement>;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-} & Omit<React.HTMLProps<HTMLInputElement>, "type" | "onChange">;
+} & Omit<React.HTMLProps<HTMLInputElement>, "type" | "onChange" | "ref">;
 
 function PasswordInput(props: PasswordInputProps): JSX.Element {
 	const [isValid, setIsValid] = useState<"default" | "valid" | "invalid">("default");
 	const [isVisible, setIsVisible] = useState<boolean>(false);
-	const { label, hint, onChange, ...inputProps } = props;
+	const { label, hint, onChange, forwardedRef, shouldValidate = true, ...inputProps } = props;
 
 	const onChangeWrapper = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		const isValueValid: boolean = passwordValidation(e.currentTarget.value);
-		setIsValid(isValueValid ? "valid" : "invalid");
-		if (onChange) onChange(e);
+		if (shouldValidate) {
+			const isValueValid: boolean = passwordValidation(e.currentTarget.value);
+			setIsValid(isValueValid ? "valid" : "invalid");
+			if (onChange) onChange(e);
+		}
 	};
 
 	const setVisibility = () => setIsVisible((prev) => !prev);
@@ -27,6 +31,7 @@ function PasswordInput(props: PasswordInputProps): JSX.Element {
 			<span className={styles["passwordInput__label"]}>{label}</span>
 			<div className={styles["passwordInput__wrapper"]}>
 				<input
+					ref={forwardedRef}
 					className={`${styles["passwordInput__input"]} ${
 						isValid !== "default"
 							? isValid === "valid"

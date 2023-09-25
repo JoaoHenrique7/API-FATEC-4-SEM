@@ -1,36 +1,21 @@
 import React from "react";
-import { Component } from "react";
-import Styles from "./Button.module.css";
-import { IconType } from "react-icons";
-import { FaSignOutAlt } from "react-icons/fa";
+import styles from "./Button.module.css";
+import { AiOutlineLoading } from "react-icons/ai";
 
-interface ButtonProps {
-	onClick?: () => void;
-	type: "button" | "submit" | "reset";
-	className: string;
-	placeholder?: string;
-	icon?: string;
-}
+type ButtonProps = {
+	label: string;
+	loading?: boolean;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-class Button extends Component<ButtonProps> {
-	static mapIcons(): { [key: string]: IconType } {
-		return {
-			logout: FaSignOutAlt,
-		};
-	}
+function Button(props: ButtonProps): JSX.Element {
+	const { label, loading, ...buttonProps } = props;
 
-	render() {
-		const { onClick, type, className, placeholder, icon } = this.props;
-
-		const Icon: IconType | null = icon !== undefined ? Button.mapIcons()[icon] : null;
-
-		return (
-			<button className={`${Styles[className]}`} onClick={onClick} type={type}>
-				{Icon && <Icon />}
-				<div>{placeholder}</div>
-			</button>
-		);
-	}
+	return (
+		<button className={styles["button"]} disabled={loading} {...buttonProps}>
+			{loading && <AiOutlineLoading className={styles["button__icon__loading"]} />}
+			{label}
+		</button>
+	);
 }
 
 export default Button;
