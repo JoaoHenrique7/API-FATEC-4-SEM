@@ -52,7 +52,7 @@ export default class UserService {
 
 	public static async getAllUsers(): Promise<UserResponse> {
 		try {
-			const response = await DataServiceAPI.get("http://localhost:3000/getAll");
+			const response = await DataServiceAPI.get("http://localhost:3001/user/get-all");
 
 			const responseJson = await response.json();
 
@@ -74,10 +74,11 @@ export default class UserService {
 		
 	}
 
-	public static async createAdmin(user: User): Promise<boolean> {
+	public static async create(user: User): Promise<boolean> {
 		try {
-		  const response = await DataServiceAPI.post('http://localhost:3000/user/createAdmin', user);
-	
+			
+		  const response = await DataServiceAPI.postCreate('http://localhost:3001/user/create', user);
+			
 		  if (response.ok) {
 			return true;
 		  } else {
@@ -90,52 +91,5 @@ export default class UserService {
 		}
 	  }
 
-	public static async createPartner(user: User): Promise<boolean> {
-		try {
-		  const response = await DataServiceAPI.post('http://localhost:3000/user/createPartner', user);
-	
-		  if (response.ok) {
-			return true;
-		  } else {
-			return false;
-		  }
-	
-		} catch (error) {
-		  console.error(error);
-		  return false;
-		}
-	  }
-
-	  public static async createCompany(user: User): Promise<boolean> {
-		try {
-		  const response = await DataServiceAPI.post('http://localhost:3000/user/createCompany', user);
-	
-		  if (response.ok) {
-			return true;
-		  } else {
-			return false;
-		  }
-	
-		} catch (error) {
-		  console.error(error);
-		  return false;
-		}
-	  }
-	  
-	public static async createIndividual(user: User): Promise<boolean> {
-		try {
-		  const response = await DataServiceAPI.post('http://localhost:3000/user/createIndividual', user);
-	
-		  if (response.ok) {
-			return true;
-		  } else {
-			return false;
-		  }
-	
-		} catch (error) {
-		  console.error(error);
-		  return false;
-		}
-	  }
 }
 

@@ -4,61 +4,65 @@ export default class User {
 	public cpf: string;
 	public email: string;
 	public password: string;
-	public active: boolean;
 	public address: string;
 	public neighbordhood: string;
 	public number: string;
 	public complement: string;
 	public city: string;
+    public cep: string;
+    public state: string;
+	public typeUser: string;
 
 	constructor(
 		userName: string,
-		cpf: string,
 		email: string,
 		password: string,
-		active: boolean,
+		cpf: string,
+		typeUser: string,
+        cep: string,
+        number: string,
 		address: string,
 		neighbordhood: string,
-		number: string,
-		complement: string,
 		city: string,
+		state: string,
+        complement: string,
 		id?: number,
 	) {
 		id ? (this.id = id) : (this.id = -1);
 		this.userName = userName;
-		this.cpf = cpf;
 		this.email = email;
 		this.password = password;
-		this.active = active;
-		this.address = address;
+		this.cpf = cpf;
+		this.typeUser= typeUser;
+		this.cep = cep;
+        this.number= number;
+        this.address = address;
 		this.neighbordhood= neighbordhood;
-		this.number= number;
+        this.city= city;
+		this.state=state;
 		this.complement= complement;
-		this.city= city;
 	}
 
 	public getUserName(): string {
 		return this.userName;
 	}
-
 	public getId(): number {
 		return this.id;
 	}
-
 	public getCpf(): string {
 		return this.cpf;
 	}
-
 	public getEmail(): string {
 		return this.email;
 	}
-
 	public getPassword(): string {
 		return this.password;
 	}
-
-	public isActive(): boolean {
-		return this.active;
+    public getCep(): string {
+		return this.cep;
+	}
+    public getNumber(): string {
+		return this.number;
 	}
 	public getAddress(): string {
 		return this.address;
@@ -66,13 +70,37 @@ export default class User {
 	public getNeighbordhood(): string {
 		return this.neighbordhood;
 	}
-	public getNumber(): string {
-		return this.number;
+    public getCity(): string {
+		return this.city;
+	}
+    public getState(): string {
+		return this.state;
 	}
 	public getComplement(): string {
 		return this.complement;
 	}
-	public getCity(): string {
-		return this.city;
+	public getTypeUser(): string {
+		return this.typeUser;
+	}
+
+	public toJson() {
+		return {
+			"nomeUsuario": this.getUserName(),
+			"emailUsuario": this.getEmail(),
+			"senhaUsuario": this.getPassword(),
+			"documentoUsuario": this.getCpf(),
+			"tipoUsuario": {
+				"tipoUsuario": this.getTypeUser()
+			},
+			"endereco": {
+				"zip_code": this.getCep(),
+				"numero": this.getNumber(),
+				"rua": this.getAddress(),
+				"bairro": this.getNeighbordhood(),
+				"cidade": this.getCity(),
+				"estado": this.getState(),
+				"complemento": this.getComplement()
+			}
+		}
 	}
 }

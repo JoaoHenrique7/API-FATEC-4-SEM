@@ -10,7 +10,7 @@ interface Properties<T> {
 
 type OmitProperties<T, K extends keyof T> = Omit<T, K>;
 
-class Table<T extends { [key: string]: unknown }> extends Component<Properties<T>> {
+class Table<T extends { [key: string]: any }> extends Component<Properties<T>> {
 	omitProperties<T, K extends keyof T>(obj: T, keys: K[]): OmitProperties<T, K> {
 		const result = { ...obj };
 		keys.forEach((key) => delete result[key]);
@@ -55,26 +55,15 @@ class Table<T extends { [key: string]: unknown }> extends Component<Properties<T
 					</tr>
 				</thead>
 				<tbody>
-					{/* {data.map((datum, key: number) => {
+					{data.map((datum, key: number) => {
 						return (
 							<tr key={key}>
 								{columns.map((column: keyof T, key: number) => {
-									if (column === "active") {
-										return datum[column] === true ? (
-											<td key={key}>
-												<Tag label="Ativo" type="success" />
-											</td>
-										) : (
-											<td key={key}>
-												<Tag label="Inativo" type="error" />
-											</td>
-										);
-									}
 									return <td key={key}>{datum[column].toString()}</td>;
 								})}
 							</tr>
 						);
-					})} */}
+					})}
 				</tbody>
 			</table>
 		);

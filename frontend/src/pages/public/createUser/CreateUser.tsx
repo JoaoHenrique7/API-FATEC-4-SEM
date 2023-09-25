@@ -19,39 +19,28 @@ class CreateUser extends Component {
 		number: string,
 		complement: string,
 		city: string,
+		cep: string,
+		state: string,
 	) => {
-		const ADMIN = "0";
-		const PARTNER = "1";
-		const COMPANY = "2";
-		const INDIVIDUAL = "3";
-		let usuario: User = new User(userName, cpfCnpj,email, password, true, address, neighbordhood, number, complement, city);
-		let validacao = false;
-
-		if (userType === ADMIN) {
-			validacao = await UserService.createAdmin(usuario);
-		} else if (userType === PARTNER) {
-			validacao = await UserService.createPartner(usuario);
-		} else if (userType === COMPANY) {
-			validacao = await UserService.createPartner(usuario);
-		} else if (userType === INDIVIDUAL) {
-			validacao = await UserService.createIndividual(usuario);
-		} else {
-			new SaltyAlert().modal({
-				icon: "Error",
-				title: "Erro",
-				text: "Tipo de usuário desconhecido!",
-				closeOnClickOutside: true,
-				timerInMiliseconds: 7000,
-			});
-			return;
-		}
+		let usuario: User = new User(
+			userName,
+			email,
+			password,
+			cpfCnpj,
+			userType,
+			cep,
+			number,
+			address,
+			neighbordhood,
+			city,
+			state,
+			complement,
+		);
+		console.log(usuario)
+		const validacao = await UserService.create(usuario);
 
 		if (validacao) {
-			new SaltyAlert().toast({
-				icon: "Success",
-				text: "Usuário adicionado com sucesso!",
-				timerInMiliseconds: 5000,
-			});
+			window.location.href = "/sign-in";
 		} else {
 			new SaltyAlert().toast({
 				icon: "Error",

@@ -16,6 +16,8 @@ interface CreateUserFormState {
 	number: string;
 	complement: string;
 	city: string;
+	cep: string;
+	state: string;
 }
 
 interface CreateUserFormProps {
@@ -31,6 +33,8 @@ interface CreateUserFormProps {
 		number: string,
 		complement: string,
 		city: string,
+		cep: string,
+		state: string,
 	) => void;
 }
 class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState> {
@@ -48,6 +52,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 			number: "",
 			complement: "",
 			city: "",
+			cep: "",
+			state: "",
 		};
 	}
 
@@ -57,7 +63,7 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 	handleCpfCnpjChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ cpfCnpj: event.target.value });
 	};
-	handleaddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ address: event.target.value });
 	};
 	handleuserTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -66,24 +72,29 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 	handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ email: event.target.value });
 	};
-
-	handlepasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ password: event.target.value });
 	};
-	handleconfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handleConfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ confirmPassword: event.target.value });
 	};
-	handleneighbordhoodChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handleNeighbordhoodChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ neighbordhood: event.target.value });
 	};
-	handlenumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ number: event.target.value });
 	};
-	handlecomplementChange = (event: ChangeEvent<HTMLInputElement>) => {
+	handleComplementChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ complement: event.target.value });
 	};
-	handlecityChange = (event: ChangeEvent<HTMLInputElement>) => {
-		this.setState({ complement: event.target.value });
+	handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ city: event.target.value });
+	};
+	handleCEPChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ cep: event.target.value });
+	};
+	handleStateChange = (event: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ state: event.target.value });
 	};
 
 	handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -100,6 +111,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 			number,
 			complement,
 			city,
+			cep,
+			state
 		} = this.state;
 
 		if (password !== confirmPassword) {
@@ -123,6 +136,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 				number,
 				complement,
 				city,
+				cep,
+				state
 			);
 		}
 	};
@@ -140,6 +155,8 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 			number,
 			complement,
 			city,
+			cep,
+			state
 		} = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}>
@@ -170,49 +187,68 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 							<div className={styles["line"]}>
 								<div className={styles["inputPlace"]}>
 									<TextInput
+										label="CEP"
+										hint=""
+										value={cep}
+										onChange={this.handleCEPChange}
+										placeholder="Coloque seu CEP..."
+										validation={/^[0-9]{5}$/g}
+									/>
+								</div>
+								<TextInput
+									label="Estado"
+									hint=""
+									value={state}
+									onChange={this.handleStateChange}
+									placeholder="Insira seu Bairro..."
+								/>
+							</div>
+							<div className={styles["line"]}>
+								<div className={styles["inputPlace"]}>
+									<TextInput
 										label="Endereço"
 										hint=""
 										value={address}
-										onChange={this.handleaddressChange}
-										placeholder="Coloque o Endereço..."
+										onChange={this.handleAddressChange}
+										placeholder="Coloque sua Rua..."
 										validation={/^[0-9]{5}$/g}
 									/>
 								</div>
 								<TextInput
-									label="neighbordhood"
+									label="Bairro"
 									hint=""
 									value={neighbordhood}
-									onChange={this.handleneighbordhoodChange}
-									placeholder="Insira seu neighbordhood..."
+									onChange={this.handleNeighbordhoodChange}
+									placeholder="Insira seu Bairro..."
 								/>
 							</div>
 							<div className={styles["line"]}>
 								<div className={styles["inputPlace"]}>
 									<TextInput
-										label="number"
+										label="Numero"
 										hint=""
 										value={number}
-										onChange={this.handlenumberChange}
-										placeholder="Coloque o number do endereço..."
+										onChange={this.handleNumberChange}
+										placeholder="Coloque o numero do endereço..."
 										validation={/^[0-9]{5}$/g}
 									/>
 								</div>
 								<TextInput
-									label="complement"
+									label="Complemento"
 									hint=""
 									value={complement}
-									onChange={this.handlecomplementChange}
-									placeholder="Insira o complement..."
+									onChange={this.handleComplementChange}
+									placeholder="Insira o complemento (caso tenha)..."
 								/>
 							</div>
 							<div className={styles["line"]}>
 								<div className={styles["inputPlace"]}>
 									<TextInput
-										label="city"
+										label="Cidade"
 										hint=""
 										value={city}
-										onChange={this.handlecityChange}
-										placeholder="Coloque sua city..."
+										onChange={this.handleCityChange}
+										placeholder="Coloque sua cidade..."
 									/>
 								</div>
 								<TextInput
@@ -226,19 +262,19 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 							<div className={styles["line"]}>
 								<div className={styles["inputPlace"]}>
 									<PasswordInput
-										label="Crie sua password"
+										label="Crie sua senha"
 										hint=""
 										value={password}
-										onChange={this.handlepasswordChange}
-										placeholder="Crie sua password..."
+										onChange={this.handlePasswordChange}
+										placeholder="Crie sua senha..."
 									/>
 								</div>
 								<PasswordInput
-									label="Confirme sua password"
+									label="Confirme sua senha"
 									hint=""
 									value={confirmPassword}
-									onChange={this.handleconfirmPasswordChange}
-									placeholder="Confirme sua password..."
+									onChange={this.handleConfirmPasswordChange}
+									placeholder="Confirme sua senha..."
 								/>
 							</div>
 						</form>
@@ -257,10 +293,10 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 								value={userType}
 								onChange={this.handleuserTypeChange}
 							>
-								<option value="0">Administrador</option>
-								<option value="1">Cooperativa</option>
-								<option value="2">Empresa</option>
-								<option value="3">Individuo</option>
+								<option value="Administrador">Administrador</option>
+								<option value="Cooperativa">Cooperativa</option>
+								<option value="Empresa">Empresa</option>
+								<option value="Individuo">Individuo</option>
 							</select>
 						</div>
 						<button className={styles["button"]}>Salvar</button>
