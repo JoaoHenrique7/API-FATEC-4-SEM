@@ -66,7 +66,7 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 	handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
 		this.setState({ address: event.target.value });
 	};
-	handleuserTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+	handleUserTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
 		this.setState({ userType: event.target.value });
 	};
 	handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -291,8 +291,9 @@ class CreateUserForm extends Component<CreateUserFormProps, CreateUserFormState>
 								required
 								id="userType"
 								value={userType}
-								onChange={this.handleuserTypeChange}
+								onChange={this.handleUserTypeChange}
 							>
+								<option value="0"></option>
 								<option value="Administrador">Administrador</option>
 								<option value="Cooperativa">Cooperativa</option>
 								<option value="Empresa">Empresa</option>

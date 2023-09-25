@@ -36,17 +36,23 @@ class CreateUser extends Component {
 			state,
 			complement,
 		);
-		console.log(usuario)
-		const validacao = await UserService.create(usuario);
-
-		if (validacao) {
-			window.location.href = "/sign-in";
-		} else {
+		if (userType == "0") {
 			new SaltyAlert().toast({
 				icon: "Error",
-				text: "Erro ao adicionar usuário!",
+				text: "Erro tipo de usuario não aceito!",
 				timerInMiliseconds: 5000,
 			});
+		} else {
+			const validacao = await UserService.create(usuario);
+			if (validacao) {
+				window.location.href = "/sign-in";
+			} else {
+				new SaltyAlert().toast({
+					icon: "Error",
+					text: "Erro ao adicionar usuário!",
+					timerInMiliseconds: 5000,
+				});
+			}
 		}
 	};
 	render() {
