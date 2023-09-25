@@ -6,7 +6,7 @@ function AuthLayout() {
 	return (
 		<main className={styles["layout"]}>
 			<svg
-				className="auth__layout_background__green"
+				className="auth__layout__background__green"
 				width="297"
 				height="284"
 				viewBox="0 0 297 284"
@@ -46,7 +46,7 @@ function AuthLayout() {
 				</defs>
 			</svg>
 			<svg
-				className="auth__layout_background__gray"
+				className="auth__layout__background__gray"
 				width="323"
 				height="423"
 				viewBox="0 0 323 423"
