@@ -1,30 +1,56 @@
-.loginButton {
-    width: 100%;
-    padding-block: 10px;
-    background-color: rgba(var(--primary-clr), 1);
-    border-radius: var(--br-default);
-    color: rgba(var(--base-ntrl-min), 1);
-    font-weight: var(--fw-bold);
-    font-size: var(--fs-txt-small);
-    transition: filter .1s linear;
-}
+.button {
+    /* Variables */
+    --min-width: 300px;
+    --max-width: 600px;
+    --button-background: var(--primary-540-def);
+    --block-spacing: var(--spacing-2);
+    --inline-spacing: var(--spacing-3);
+    --button-radius: var(--radius-1);
+    --button-font-size: var(--font-size-2);
+    --button-gap: var(--spacing-3);
 
-.logout {
+    /* Style */
     display: flex;
-    gap: 10px;
-    color: rgba(var(--base-ntrl-min), 1);
-    background-color: rgba(var(--primary-clr), 1);
-    padding: var(--p-button);
-    font-weight: var(--fw-bold);
-    border-radius: var(--br-default);
-    margin-top: auto;
+    gap: var(--button-gap);
+    align-items: center;
+    justify-content: center;
+    min-width: var(--min-width);
+    width: max(var(--min-width), 100%);
+    max-width: var(--max-width);
+    padding: var(--block-spacing) var(--inline-spacing);
+    background-color: var(--button-background);
+    border-radius: var(--button-radius);
+    font-size: var(--button-font-size);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color .1s linear;
 }
 
-button {
-    cursor: pointer;
-    border: none;
+.button:hover {
+    /* Variables */
+    --button-background: var(--primary-720);
 }
-  
-button:hover {
-    filter: brightness(.7);
+
+.button:active {
+    /* Variables */
+    --button-background: var(--primary-900);
+}
+
+.button:disabled {
+    /* Variables */
+    --button-background: var(--primary-360);
+
+    /* Style */
+    cursor: default;
+}
+
+.button__icon__loading {
+    /* Style */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

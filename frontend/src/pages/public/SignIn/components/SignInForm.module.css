@@ -1,15 +1,16 @@
 .signInForm {
 	/* Variables */
-	--wrapper-width: 450px;
+	--wrapper-width: min-content;
 	--wrapper-height: min-content;
-	--wrapper-gap: var(--spacing-2);
-	--wrapper-spacing: var(--spacing-4);
+	--wrapper-gap: var(--spacing-4);
+	--wrapper-spacing: var(--spacing-6);
 	--wrapper-border-radius: var(--radius-1);
 	--wrapper-layer: var(--layer-important);
+	--wrapper-background: var(--white);
 
 	/* Styles */
-	width: min(100%, min-content);
-	min-height: min(100%, min-content);
+	width: min(100%, var(--wrapper-width));
+	min-height: min(100%, var(--wrapper-height));
 	height: var(--wrapper-height);
 	max-height: var(--wrappper-max-height);
 	display: flex;
@@ -18,6 +19,7 @@
 	padding: var(--wrapper-spacing);
 	border-radius: var(--wrapper-border-radius);
 	box-shadow: 4px 0 16px 0 rgba(0, 0, 0, .15);
+	background-color: var(--wrapper-background);
 	z-index: var(--wrapper-layer);
 }
 

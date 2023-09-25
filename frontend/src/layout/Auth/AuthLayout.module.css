@@ -6,9 +6,14 @@
     justify-content: center;
 }
 
-.layout svg[class*="auth__layout_background__"],
-.layout svg[class*="auth__layout_background__"] {
+.layout svg[class*="auth__layout__background__"],
+.layout svg[class*="auth__layout__background__"] {
+    /* Variables */
+    --background-layer: var(--layer-0);
+
+    /* Styles */
     position: absolute;
+    z-index: var(--background-layer);
 }
 
 .layout svg[class$="__green"] {
