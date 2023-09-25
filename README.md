@@ -84,35 +84,7 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 ![Equipe bytech](/readme/burndownSprint1.png)
 
 <br>
-<h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
-<h2>Sprint 1</h2>
-<details>
-  <summary>Detalhes</summary>
-  <h3 align="center">Demonstração de usabilidade</h3>
-   <br>
-  <h4 align="center">Tela de login<br><a href="">Youtube (Qualidade melhor)</a></h4>
-  
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração da tela de login e autenticação. Esta interface contempla o processo de login e o padrão de autenticação.</p>
-  
-  <br>
-  <h4 align="center">Erro de Autentificação na Tela de Login<br><a href="">Youtube (Qualidade melhor)</a></h4>
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração na Tela de Login caso o usuario erre seu E-mail ou Senha.</p>
-
-  <br>
-  <h4 align="center">Tela de cadastro do Usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração da tela de cadastro de usuários.</p>
-</details>
  
-
 <br>
 <h1 align="center"><samp>Manual do Usuário</samp></h1>
 
