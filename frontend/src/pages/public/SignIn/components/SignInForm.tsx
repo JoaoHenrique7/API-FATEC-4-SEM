@@ -3,7 +3,6 @@ import styles from "./SignInForm.module.css";
 import TextInput from "../../../../components/TextInput/TextInput";
 import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
 import Button from "../../../../components/Button/Button";
-import Auth from "../../../../services/auth/Auth.service";
 import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
 
 type SignInFormProps = React.HTMLProps<HTMLFormElement>;

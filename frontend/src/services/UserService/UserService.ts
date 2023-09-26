@@ -76,20 +76,19 @@ export default class UserService {
 
 	public static async create(user: User): Promise<boolean> {
 		try {
+			const response = await DataServiceAPI.postCreate("http://localhost:3001/user/create", user);
 			
-		  const response = await DataServiceAPI.postCreate('http://localhost:3001/user/create', user);
-			
-		  if (response.ok) {
-			return true;
-		  } else {
-			return false;
-		  }
+			if (response.ok) {
+				return true;
+			} else {
+				return false;
+			}
 	
 		} catch (error) {
-		  console.error(error);
-		  return false;
+			console.error(error);
+			return false;
 		}
-	  }
+	}
 
 }
 

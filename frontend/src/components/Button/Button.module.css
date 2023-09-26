@@ -2,12 +2,12 @@
     /* Variables */
     --min-width: 300px;
     --max-width: 600px;
-    --button-background: var(--primary-540-def);
     --block-spacing: var(--spacing-2);
     --inline-spacing: var(--spacing-3);
     --button-radius: var(--radius-1);
     --button-font-size: var(--font-size-2);
     --button-gap: var(--spacing-3);
+    --button-text: var(--black);
 
     /* Style */
     display: flex;
@@ -21,20 +21,57 @@
     background-color: var(--button-background);
     border-radius: var(--button-radius);
     font-size: var(--button-font-size);
-    border: none;
+    border: var(--button-border);
     cursor: pointer;
     outline: none;
+    color: var(--button-text);
     transition: background-color .1s linear;
 }
 
-.button:hover {
+.button[data-variant="primary"] {
     /* Variables */
-    --button-background: var(--primary-720);
+    --button-background: var(--primary-540-def);
+    --button-hover: var(--primary-720);
+    --button-active: var(--primary-900);
 }
 
-.button:active {
+.button[data-variant="secondary"] {
     /* Variables */
-    --button-background: var(--primary-900);
+    --button-background: var(--secondary-540-def);
+    --button-hover: var(--secondary-720);
+    --button-active: var(--secondary-900);
+}
+
+.button[data-variant="accent"] {
+    /* Variables */
+    --button-background: var(--accent-540-def);
+    --button-hover: var(--accent-720);
+    --button-active: var(--accent-900);
+}
+
+.button[data-fill="fill"] {
+    --button-border: none;
+}
+
+.button[data-fill="border"] {
+    --button-border: 1px solid var(--button-background);
+
+}
+
+.button[data-fill="empty"] {
+    --button-border: none;
+    --button-text: var(--button-hover);
+    --button-background: transparent;
+}
+
+.button:not([data-fill="empty"], :disabled):hover {
+    /* Variables */
+    --button-background: var(--button-hover);
+}
+
+.button:not([data-fill="empty"], :disabled):active {
+    /* Variables */
+    --button-background: var(--button-active);
 }
 
 .button:disabled {

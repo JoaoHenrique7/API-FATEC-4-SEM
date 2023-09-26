@@ -5,7 +5,6 @@ import User from "../../../../model/classes/User";
 import UserService from "../../../../services/UserService/UserService";
 import { FaPlus } from "react-icons/fa";
 
-
 interface Endereco {
 	id: number;
 	zip_code: string;
@@ -44,8 +43,8 @@ interface State {
 	table: { data: any[]; isLoading: boolean };
 }
 
-class ListUserTable extends Component<{}, State> {
-	constructor(props: {}) {
+class ListUserTable extends Component<object, State> {
+	constructor(props: object) {
 		super(props);
 		this.state = {
 			table: {
@@ -61,13 +60,13 @@ class ListUserTable extends Component<{}, State> {
 
 	async getAllUsers(): Promise<void> {
 		const resultadoRequest: Usuario[] = (await UserService.getAllUsers()).data;
-		let list: { Nome: string; Email: string; Documento: string }[] = [];
+		const list: { Nome: string; Email: string; Documento: string }[] = [];
 		resultadoRequest.forEach((element) => {
-			let user = {
+			const user = {
 				Nome: element.nomeUsuario,
 				Email: element.emailUsuario,
 				Documento: element.documentoUsuario,
-				Tipo:element.tipoUsuario.tipoUsuario
+				Tipo: element.tipoUsuario.tipoUsuario,
 			};
 			list.push(user);
 		});
