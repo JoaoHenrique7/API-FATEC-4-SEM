@@ -8,4 +8,9 @@ export default class AuthRepository implements IAuthRepository {
 	async login(credentials: ILoginDTO): Promise<Usuario | null> {
 		return Usuario.findOne({ where: { emailUsuario: credentials.email, senhaUsuario: credentials.password }, include: [ Endereco, TipoUsuario ] });
 	};
+
+	async updatePasswordByEmail(email: string, newPassword: string): Promise<number> {
+        const result = await Usuario.update({ password: newPassword }, { where: { email } });
+        return result[0];
+    }
 }

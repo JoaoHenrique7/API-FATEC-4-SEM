@@ -3,7 +3,6 @@ import IRecoveryPass from "../../model/interfaces/IRecoveryPass";
 import UserResponse from "../../model/interfaces/IUserResponse";
 import DataServiceAPI from "../DataServiceAPI";
 
-
 export default class UserService {
 	public static async recoveryPass(email: string): Promise<boolean> {
 		const credentials: IRecoveryPass = {
@@ -12,7 +11,7 @@ export default class UserService {
 
 		try {
 			const response = await DataServiceAPI.post(
-				"http://localhost:3000/auth/recovery",
+				"http://localhost:3001/auth/recovery",
 				credentials,
 			);
 
@@ -35,7 +34,7 @@ export default class UserService {
 
 		try {
 			const response = await DataServiceAPI.post(
-				"http://localhost:3000/auth/updatePassword",
+				"http://localhost:3001/updatePassword",
 				requestBody,
 			);
 
@@ -71,7 +70,6 @@ export default class UserService {
 			};
 			return response;
 		}
-		
 	}
 
 	public static async create(user: User): Promise<boolean> {
@@ -89,6 +87,4 @@ export default class UserService {
 			return false;
 		}
 	}
-
 }
-

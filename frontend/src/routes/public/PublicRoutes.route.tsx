@@ -6,6 +6,7 @@ import SignUpLayout from "../../layout/SignUp/SignUpLayout";
 import SignUp from "../../pages/public/SignUp/SignUp";
 import ListUserTable from "../../pages/public/ListUser/ListUser";
 import PublicRoutesMiddleware from "./PublicRoutesMiddleware";
+import RecoveryPass from "../../pages/public/RecoveryPass/RecoveryPass";
 
 function PublicRoutes(): JSX.Element {
 	return (
@@ -14,9 +15,11 @@ function PublicRoutes(): JSX.Element {
 				<Route element={<AuthLayout />}>
 					<Route path="/sign-in" element={<SignIn />} />
 					<Route path="/listUser" element={<ListUserTable />} />
+					
 				</Route>
 				<Route element={<SignUpLayout />}>
 					<Route path="/sign-up" element={<SignUp />} />
+					<Route path="/recovery" element={<RecoveryPass loggedIn={false} />} />
 				</Route>
 			</Route>
 		</Routes>
