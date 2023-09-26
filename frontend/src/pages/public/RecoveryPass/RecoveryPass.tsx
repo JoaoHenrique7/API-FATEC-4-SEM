@@ -1,3 +1,4 @@
+import React from "react";
 import { Component } from "react";
 import SaltyAlert from "../../../@utils/libs/SaltyAlert";
 import UserService from "../../../services/UserService/UserService";
@@ -15,7 +16,7 @@ class RecoveryPass extends Component<RecoveryPassState, RecoveryPassState> {
 		};
 	}
 	handleLogin = async (email: string) => {
-		let matchUser = UserService.recoveryPass(email);
+		const matchUser = UserService.recoveryPass(email);
 		if ((await matchUser) === true) {
 			this.setState({ loggedIn: true });
 			window.open("/login");
@@ -30,11 +31,7 @@ class RecoveryPass extends Component<RecoveryPassState, RecoveryPassState> {
 		}
 	};
 	render() {
-		return (
-			<div>
-				<Form onSubmit={this.handleLogin} />
-			</div>
-		);
+		return <Form onSubmit={this.handleLogin} />;
 	}
 }
 

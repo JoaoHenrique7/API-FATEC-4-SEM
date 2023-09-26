@@ -146,7 +146,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 			case 1:
 				return (
 					<div className={styles["recoveryForm"]}>
-						<form className={styles.recoveryForm} onSubmit={this.handleSubmit}>
+						<form className={styles["recoveryForm__form"]} onSubmit={this.handleSubmit}>
 							<h1 className={styles["recoveryForm__title"]}>Recuperação de Senha</h1>
 							<h3 className={styles["recoveryForm__subtitle"]}>
 								Insira seu código!
@@ -171,7 +171,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 			case 2:
 				return (
 					<div className={styles["recoveryForm"]}>
-						<form className={styles.recoveryForm} onSubmit={this.handleSubmit}>
+						<form className={styles["recoveryForm__form"]} onSubmit={this.handleSubmit}>
 							<h1 className={styles["recoveryForm__title"]}>Recuperação de Senha</h1>
 							<h3 className={styles["recoveryForm__subtitle"]}>
 								Coloque sua nova senha!
@@ -190,7 +190,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 			default:
 				return (
 					<div className={styles["recoveryForm"]}>
-						<form className={styles.recoveryForm} onSubmit={this.handleSubmit}>
+						<form className={styles["recoveryForm__form"]} onSubmit={this.handleSubmit}>
 							<h1 className={styles["recoveryForm__title"]}>Recuperação de Senha</h1>
 							<h3 className={styles["recoveryForm__subtitle"]}>
 								Por favor, insira seu email.

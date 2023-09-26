@@ -14,12 +14,11 @@ function PublicRoutes(): JSX.Element {
 			<Route element={<PublicRoutesMiddleware redirectPath="/" />}>
 				<Route element={<AuthLayout />}>
 					<Route path="/sign-in" element={<SignIn />} />
+					<Route path="/recovery" element={<RecoveryPass loggedIn={false} />} />
 					<Route path="/listUser" element={<ListUserTable />} />
-					
 				</Route>
 				<Route element={<SignUpLayout />}>
 					<Route path="/sign-up" element={<SignUp />} />
-					<Route path="/recovery" element={<RecoveryPass loggedIn={false} />} />
 				</Route>
 			</Route>
 		</Routes>
