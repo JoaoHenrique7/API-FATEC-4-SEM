@@ -84,6 +84,32 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 ![Equipe bytech](/readme/burndownSprint1.png)
 
 <br>
+
+<br>
+<h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
+<h2>Sprint 1</h2>
+<details>
+  <summary>Detalhes</summary>
+  <h3 align="center">Apresentação da Primeira Sprint</h3>
+   <br>
+  <h4 align="center">Apresentação<br><a href="https://youtu.be/9jeg1lrz-QU">Youtube</a></h4>
+  
+  <h3 align="center">Demonstração de usabilidade</h3>
+   <br>
+  <h4 align="center">Tela de cadastro<br><a href="https://youtu.be/thHnFg1cLQk">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/cadastro.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração da Tela de Cadastro de usuários. Esta interface contempla o processo de cadastro de parceiro ou estabelecimento.</p>
+  
+  <br>
+  <h4 align="center">Tela de Login e Recuperação de senha<br><a href="https://youtu.be/9lyCE3NIka0">Youtube (Qualidade melhor)</a></h4>
+  <p align="center">
+    <img src="/readme/login_recuperacaoSenha.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração na Tela de Login e da Tela Recuperação de senha caso o usuário não se recorde de suas credenciais.</p>
+</details>
  
 <br>
 <h1 align="center"><samp>Manual do Usuário</samp></h1>
