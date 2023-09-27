@@ -155,8 +155,8 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 								maxLength={255}
 								value={firstCode}
 								onChange={this.handlefirstCodeChange}
-								placeholder="Insira seu código"
-								hint="text"
+								placeholder="Insira seu código..."
+								hint="Insira seu código"
 								label="Confira seu email, e insira o código!"
 							/>
 							<Button label="Enviar" type="button" onClick={this.confireCode} />
@@ -199,8 +199,8 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 								maxLength={255}
 								value={email}
 								onChange={this.handleEmailChange}
-								placeholder="Insira seu email"
-								hint="text"
+								placeholder="Insira seu email..."
+								hint="Insira seu email"
 								label="Email"
 							/>
 							<Button label="Enviar" type="button" onClick={this.verifyEmail} />
