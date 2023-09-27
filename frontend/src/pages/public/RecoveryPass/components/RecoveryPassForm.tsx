@@ -71,7 +71,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 		try {
 			const { checkCode } = this.state;
 			const { email } = this.state;
-			const serviceId = "service_kqomqwj";
+			const serviceId = "service_7646zmb";
 			const templateId = "template_qarf2lg";
 			const userId = "l5AVz2asaABljn9nL";
 			const templateParams = {
@@ -159,7 +159,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 								hint="text"
 								label="Confira seu email, e insira o código!"
 							/>
-							<Button label="Enviar" onClick={this.confireCode} />
+							<Button label="Enviar" type="button" onClick={this.confireCode} />
 							<RecoveryLink
 								newPath="sign-in"
 								text="Retornar ao login"
@@ -178,7 +178,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 							</h3>
 							<PasswordInput label="Nova senha" hint="Coloque sua nova senha" />
 							<PasswordInput label="Confirme sua senha" hint="Confirme sua senha" />
-							<Button label="Enviar" onClick={this.changePassword} />
+							<Button label="Enviar" type="button" onClick={this.changePassword} />
 							<RecoveryLink
 								newPath="sign-in"
 								text="Retornar ao login"
@@ -203,7 +203,7 @@ class RecoveryPassForm extends Component<RecoveryPassFormProps, RecoveryPassForm
 								hint="text"
 								label="Email"
 							/>
-							<Button label="Enviar" onClick={this.verifyEmail} />
+							<Button label="Enviar" type="button" onClick={this.verifyEmail} />
 							<RecoveryLink
 								newPath="sign-in"
 								text="Retornar ao login"
