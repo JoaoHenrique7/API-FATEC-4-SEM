@@ -4,7 +4,7 @@ import TransacaoProduto from "./TransacaoProduto.model";
 import TransacaoOleo from "./TransacaoOleo.model";
 
 @Table({ tableName: "Carteira", timestamps: true })
-export default class TipoUsuario extends Model {
+export default class Carteira extends Model {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false })
 	id!: number;
 

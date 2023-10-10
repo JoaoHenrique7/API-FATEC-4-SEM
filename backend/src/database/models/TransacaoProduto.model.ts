@@ -3,7 +3,7 @@ import Carteira from "./Carteira.model";
 import Produto from "./Produto.model";
 
 @Table({ tableName: "TransacaoProduto", timestamps: true })
-export default class TipoUsuario extends Model {
+export default class TransacaoProduto extends Model {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false })
 	id!: number;
 

@@ -2,7 +2,7 @@ import { Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-t
 import TransacaoProduto from "./TransacaoProduto.model";
 
 @Table({ tableName: "Produto", timestamps: true })
-export default class TipoUsuario extends Model {
+export default class Produto extends Model {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false })
 	id!: number;
 
