@@ -1,0 +1,94 @@
+.dropdown-input-container {
+	display: flex;
+	align-items: center;
+}
+
+.dropdown-input {
+	/* Variables */
+	--max-width: 600px;
+	--min-width: 300px;
+	--border-radius: var(--radius-1);
+	--block-spacing: var(--spacing-2);
+	--inline-spacing: var(--spacing-3);
+	--input-background: var(--white);
+	--input-border: var(--neutral-300);
+	--input-font-size: var(--font-size-fluid-paragraph);
+	--input-height: var(--input-height);
+
+	/* Style */
+	min-width: var(--min-width);
+	width: max(var(--min-width), 100%);
+	max-width: var(--max-width);
+	padding: var(--block-spacing) var(--inline-spacing);
+	border-radius: var(--border-radius);
+	border: 2px solid var(--input-border);
+	outline: none;
+	transition: all 0.2s linear;
+	font-size: var(--input-font-size);
+	height: var(--input-height);
+	flex-grow: 1;
+}
+
+.dropdown-button {
+	/* Variables */
+	--border-radius: var(--radius-1);
+	--input-border: var(--neutral-300);
+	--input-height: var(--input-height);
+	/* Estilos do seu botão quadrado e cinza escuro */
+	background: var(--input-border);
+	border: 2px solid var(--input-border); /* Use o mesmo estilo de borda do input */
+	color: #fff;
+	border-radius: var(--border-radius); /* Use o mesmo raio de borda do input */
+	cursor: pointer;
+	padding: 0; /* Remova o preenchimento para corresponder à altura do input */
+	height: var(--input-height); /* Defina a altura do botão igual à altura do input */
+	flex-shrink: 0; /* Impede que o botão diminua de tamanho */
+}
+
+.dropdown-options {
+	/* Variables */
+	--max-width: 600px;
+	--min-width: 300px;
+	--border-radius: var(--radius-1);
+	--block-spacing: var(--spacing-2);
+	--inline-spacing: var(--spacing-3);
+	--input-background: var(--white);
+	--input-border: var(--neutral-300);
+	--input-font-size: var(--font-size-fluid-paragraph);
+	--input-height: var(--input-height);
+
+	/* Style */
+	max-height: 150px;
+	min-width: var(--min-width);
+	width: max(var(--min-width), 100%);
+	max-width: var(--max-width);
+	overflow-y: auto;
+	border: 2px solid var(--input-border);
+	background: var(--white);
+}
+
+.dropdown-options li {
+	/* Variables */
+	--block-spacing: var(--spacing-2);
+	--inline-spacing: var(--spacing-3);
+	--input-border: var(--neutral-300);
+	--input-font-size: var(--font-size-fluid-paragraph);
+
+	/* Style */
+	color: var(--input-label);
+	font-size: calc(var(--input-font-size) - 2px);
+	padding: var(--block-spacing) var(--inline-spacing);
+	border-bottom: 1px solid var(--input-border);
+}
+
+.dropdown-options li:last-child {
+	border-bottom: none;
+}
+
+.dropdown-options li:hover {
+	/* Variables */
+	--input-background: var(--white);
+
+	/* Style */
+	background: var(--input-background);
+}
