@@ -2,8 +2,8 @@ import React, { ForwardedRef, useState } from "react";
 import styles from "./TextInput.module.css";
 
 type TextInputProps = {
-	label: string;
-	hint: string;
+	label?: string;
+	hint?: string;
 	validation?: RegExp;
 	forwardedRef?: ForwardedRef<HTMLInputElement>;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -25,7 +25,7 @@ function TextInput(props: TextInputProps): JSX.Element {
 
 	return (
 		<label className={styles["textInput"]}>
-			<span className={styles["textInput__label"]}>{label}</span>
+			{label && <span className={styles["textInput__label"]}>{label}</span>}
 			<input
 				ref={forwardedRef}
 				className={`${styles["textInput__input"]} ${
@@ -39,7 +39,7 @@ function TextInput(props: TextInputProps): JSX.Element {
 				type="text"
 				{...inputProps}
 			/>
-			<small className={styles["textInput__hint"]}>{hint}</small>
+			{hint && <small className={styles["textInput__hint"]}>{hint}</small>}
 		</label>
 	);
 }
