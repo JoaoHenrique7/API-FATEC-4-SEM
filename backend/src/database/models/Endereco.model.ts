@@ -9,8 +9,11 @@ export default class Endereco extends Model {
 	@Column({ type: DataType.STRING(255), allowNull: false })
 	zip_code!: string
 
+	// @Column({ type: DataType.NUMBER, allowNull: false })
+	// numero!: string;
+
 	@Column({ type: DataType.NUMBER, allowNull: false })
-	numero!: string;
+	numero!: number;
 
 	@Column({ type: DataType.STRING(255), allowNull: false })
 	rua!: string

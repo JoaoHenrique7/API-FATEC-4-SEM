@@ -1,0 +1,24 @@
+.layout {
+    position: relative;
+    min-height: 100dvh;
+}
+
+.layout svg[class*="signUp__layout__background__"],
+.layout svg[class*="signUp__layout__background__"] {
+    /* Variables */
+    --background-layer: var(--layer-0);
+
+    /* Styles */
+    position: absolute;
+    z-index: var(--background-layer);
+}
+
+.layout svg[class$="__green"] {
+    left: 0;
+    bottom: 0;
+}
+
+.layout svg[class$="__gray"] {
+    left: 0;
+    top: 0;
+}

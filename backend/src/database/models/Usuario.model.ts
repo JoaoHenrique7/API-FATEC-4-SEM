@@ -1,6 +1,7 @@
 import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
 import TipoUsuario from "./TipoUsuario.model";
 import Endereco from "./Endereco.model";
+import Carteira from "./Carteira.model"
 
 @Table({ tableName: "Usuario", timestamps: true })
 export default class Usuario extends Model {
@@ -24,4 +25,7 @@ export default class Usuario extends Model {
 
 	@HasOne(() => Endereco, { constraints: false, onDelete: 'cascade' })
 	endereco!: Endereco;
+
+	@HasOne(() => Carteira, { constraints: false, onDelete: 'cascade' })
+	carteira!: Carteira;
 }

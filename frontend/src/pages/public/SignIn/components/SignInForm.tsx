@@ -3,7 +3,7 @@ import styles from "./SignInForm.module.css";
 import TextInput from "../../../../components/TextInput/TextInput";
 import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
 import Button from "../../../../components/Button/Button";
-import Auth from "../../../../services/auth/Auth.service";
+import RecoveryLink from "../../../../components/BasicLink/BasicLink";
 import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
 
 type SignInFormProps = React.HTMLProps<HTMLFormElement>;
@@ -62,6 +62,11 @@ function SignInForm(props: SignInFormProps) {
 					placeholder="Insira sua senha..."
 					hint="Preencha com sua senha"
 					shouldValidate={false}
+				/>
+				<RecoveryLink
+					newPath="recovery"
+					text="Recuperar Senha"
+					className="returnLoginLink"
 				/>
 				<Button label="Logar" onClick={handleLogin} loading={loading} />
 			</form>

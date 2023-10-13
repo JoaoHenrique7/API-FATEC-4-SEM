@@ -9,8 +9,8 @@ export default class User {
 	public number: string;
 	public complement: string;
 	public city: string;
-    public cep: string;
-    public state: string;
+	public cep: string;
+	public state: string;
 	public typeUser: string;
 
 	constructor(
@@ -19,13 +19,13 @@ export default class User {
 		password: string,
 		cpf: string,
 		typeUser: string,
-        cep: string,
-        number: string,
+		cep: string,
+		number: string,
 		address: string,
 		neighbordhood: string,
 		city: string,
 		state: string,
-        complement: string,
+		complement: string,
 		id?: number,
 	) {
 		id ? (this.id = id) : (this.id = -1);
@@ -35,10 +35,10 @@ export default class User {
 		this.cpf = cpf;
 		this.typeUser= typeUser;
 		this.cep = cep;
-        this.number= number;
-        this.address = address;
+		this.number= number;
+		this.address = address;
 		this.neighbordhood= neighbordhood;
-        this.city= city;
+		this.city= city;
 		this.state=state;
 		this.complement= complement;
 	}
@@ -58,10 +58,10 @@ export default class User {
 	public getPassword(): string {
 		return this.password;
 	}
-    public getCep(): string {
+	public getCep(): string {
 		return this.cep;
 	}
-    public getNumber(): string {
+	public getNumber(): string {
 		return this.number;
 	}
 	public getAddress(): string {
@@ -70,10 +70,10 @@ export default class User {
 	public getNeighbordhood(): string {
 		return this.neighbordhood;
 	}
-    public getCity(): string {
+	public getCity(): string {
 		return this.city;
 	}
-    public getState(): string {
+	public getState(): string {
 		return this.state;
 	}
 	public getComplement(): string {
@@ -101,6 +101,6 @@ export default class User {
 				"estado": this.getState(),
 				"complemento": this.getComplement()
 			}
-		}
+		};
 	}
 }

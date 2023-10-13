@@ -1,0 +1,120 @@
+.SignUpForm {
+    /* Variables */
+    --wrapper-layer: var(--layer-important);
+
+    /* Styles */
+    width: 100%;
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    z-index: var(--wrapper-layer);
+}
+
+.SignUpForm__status {
+    /* Variables */
+    --status-gap: var(--spacing-3);
+
+    /* Styles */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--status-gap);
+    margin: 0 auto;
+}
+
+.SignUpForm__status ol {
+    /* Styles */
+    list-style: none;
+    counter-reset: steps;
+}
+
+.SignUpForm__status ol li::before {
+    /* Variables */
+    --counter-size: 2.5rem;
+    --counter-background: var(--secondary-540-def);
+    --counter-radius: var(--radius-round);
+    --counter-spacing: var(--spacing-3);
+
+    /* Styles */
+    counter-increment: steps;
+    content: counter(steps) " ";
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--counter-size);
+    height: var(--counter-size);
+    background-color: var(--counter-background);
+    border-radius: var(--counter-radius);
+    margin: var(--counter-spacing);
+}
+
+.SignUpForm__status ol li.__active::before {
+    /* Variables */
+    --counter-background: var(--accent-540-def);
+}
+
+.SignUpForm__form {
+    /* Styles */
+    overflow-y: scroll;
+}
+
+.SignUpForm__form__content {
+    /* Styles */
+    display: flex;
+    overflow-x: hidden;
+}
+
+.SignUpForm__form__content fieldset[class$="__fieldset"] {
+    /* Variables */
+    --fieldset-width: 100%;
+    --fieldset-height: 100dvh;
+    --fieldset-spacing: var(--spacing-6);
+
+    /* Styles */
+    position: relative;
+    left: 0%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--fieldset-width);
+    height: var(--fieldset-height);
+    padding: var(--fieldset-spacing);
+    overflow-y: scroll;
+    border: none;
+    transition: left .2s ease-in-out;
+}
+
+
+.SignUpForm__form__content fieldset[class$="__fieldset"] button {
+    /* Styles */
+    width: min-content;
+}
+
+.SignUpForm__form__content[data-step="1"] fieldset[class$="__fieldset"] {
+    /* Styles */
+    left: 0%;
+}
+
+.SignUpForm__form__content[data-step="2"] fieldset[class$="__fieldset"] {
+    /* Styles */
+    left: -100%;
+}
+
+.SignUpForm__form__content[data-step="3"] fieldset[class$="__fieldset"] {
+    /* Styles */
+    left: -200%;
+}
+
+.SignUpForm__form__content[data-step="4"] fieldset[class$="__fieldset"] {
+    /* Styles */
+    left: -300%;
+}
+
+.__fieldset__buttons {
+    /* Styles */
+  display: flex;
+  justify-content: center;
+}

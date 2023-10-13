@@ -1,0 +1,32 @@
+.radioInput {
+	/* Variables */
+	--max-width: 600px;
+	--min-width: 300px;
+	--margin: var(--spacing-2);
+
+	/* Style */
+	display: flex;
+	gap: 0.5rem;
+	min-width: var(--min-width);
+	width: max(var(--min-width), min(100%, var(--min-width)));
+	max-width: var(--max-width);
+	margin-block: var(--margin);
+}
+
+.radioInput__input {
+	/* Variables */
+	--border-radius: var(--radius-1);
+	--block-spacing: var(--spacing-2);
+	--inline-spacing: var(--spacing-3);
+	--input-background: var(--white);
+	--input-border: var(--neutral-300);
+	--input-font-size: var(--font-size-fluid-paragraph);
+
+	/* Style */
+	padding: var(--block-spacing) var(--inline-spacing);
+	border-radius: var(--border-radius);
+	border: 2px solid var(--input-border);
+	outline: none;
+	transition: all .2s linear;
+	font-size: var(--input-font-size);
+}
