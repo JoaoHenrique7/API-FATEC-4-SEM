@@ -68,6 +68,11 @@ function SignInForm(props: SignInFormProps) {
 					text="Recuperar Senha"
 					className="returnLoginLink"
 				/>
+				<RecoveryLink
+					newPath="sign-up"
+					text="Ciar conta"
+					className="returnLoginLink"
+				/>
 				<Button label="Logar" onClick={handleLogin} loading={loading} />
 			</form>
 		</div>

@@ -2,66 +2,88 @@ import React, { useState } from "react";
 import Dropdown from "../../../../components/Dropdown/Dropdown";
 import TextInput from "../../../../components/TextInput/TextInput";
 import Button from "../../../../components/Button/Button";
+import Sidebar from "../../../../components/SideBar/SideBar";
+import VerticalDivider from "../../../../components/VerticalDivider/VerticalDivider";
 
 const TransactionForm: React.FC = () => {
 	const emailRef = React.useRef<HTMLInputElement>(null);
 	const passwordRef = React.useRef<HTMLInputElement>(null);
-	const [category, setCategory] = useState<string | null>(null);
-	const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+	const [local, setLocal] = useState<string | null>(null);
+	const [oleoOption, setOleoOption] = useState<string | null>(null);
 	const [amount, setAmount] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
 
-	const handleSelectCategory = (selectedCategory: string) => {
-		setCategory(selectedCategory);
+	const handleSelectLocal = (selectedLocal: string) => {
+		setLocal(selectedLocal);
 	};
 
-	const handleSelectPaymentMethod = (selectedMethod: string) => {
-		setPaymentMethod(selectedMethod);
+	const handleSelectOleoOption = (selectedMethod: string) => {
+		setOleoOption(selectedMethod);
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		console.log("Dados do formulário:");
-		console.log("Categoria:", category);
-		console.log("Método de pagamento:", paymentMethod);
+		console.log("Categoria:", local);
+		console.log("Método de pagamento:", oleoOption);
 		console.log("Valor:", amount);
 		console.log("Descrição:", description);
 	};
 
-	const categoryOptions = ["Categoria 1", "Categoria 2", "Categoria 3"];
-	const paymentMethodOptions = ["Cartão de Crédito", "Dinheiro", "Transferência Bancária"];
+	const localOptions = ["Categoria 1", "Categoria 2", "Categoria 3"];
+	const OleoOpetions = ["Oléo Virgem", "Óleo usado"];
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<h2>Formulário de Transação</h2>
+		<div>
+			{/* Sidebar do sistema (verde) */}
+			<div>
+				<Sidebar />
+			</div>
 
-			<label>Categoria</label>
-			<Dropdown options={categoryOptions} onSelect={handleSelectCategory} />
+			{/* sidebar da página (carteira) */}
+			<div>
+				<h2>Carteira</h2>
+				<h3>Histórico</h3>
+				<h3>Transações</h3>
+				<VerticalDivider/>
+			</div>
 
-			<label>Método de Pagamento</label>
-			<Dropdown options={paymentMethodOptions} onSelect={handleSelectPaymentMethod} />
+			{/* Formulário */}
+			<div>
+				<form onSubmit={handleSubmit}>
+					<h2>Transações</h2>
 
-			<label>Volume</label>
-			<TextInput forwardedRef={emailRef} placeholder="Insira o volume..." />
+					<h2></h2>
 
-			<label>Valor</label>
-			<TextInput forwardedRef={emailRef} placeholder="Insira o valor..." />
+					<label>Estabelecimentos</label>
+					<Dropdown options={localOptions} onSelect={handleSelectLocal} />
 
-			<label>Valor do litro do óleo virgem</label>
-			<TextInput
-				forwardedRef={emailRef}
-				placeholder="Insira o valor do litro do óleo virgem..."
-			/>
+					<label>Tipoe de Óleo</label>
+					<Dropdown options={OleoOpetions} onSelect={handleSelectOleoOption} />
 
-			<label>Valor do litro do óleo usado</label>
-			<TextInput
-				forwardedRef={emailRef}
-				placeholder="Insira o valor do litro do óleo usado..."
-			/>
+					<label>Volume</label>
+					<TextInput forwardedRef={emailRef} placeholder="Insira o volume..." />
 
-			<Button label="Comprar" type="submit" />
-		</form>
+					<label>Valor</label>
+					<TextInput forwardedRef={emailRef} placeholder="Insira o valor..." />
+
+					<label>Valor do litro do óleo virgem</label>
+					<TextInput
+						forwardedRef={emailRef}
+						placeholder="Insira o valor do litro do óleo virgem..."
+					/>
+
+					<label>Valor do litro do óleo usado</label>
+					<TextInput
+						forwardedRef={emailRef}
+						placeholder="Insira o valor do litro do óleo usado..."
+					/>
+
+					<Button label="Comprar" type="submit" />
+				</form>
+			</div>
+		</div>
 	);
 };
 
