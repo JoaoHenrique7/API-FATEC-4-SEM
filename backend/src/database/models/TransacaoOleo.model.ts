@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import { Column, DataType, ForeignKey, Model, Table, BelongsTo } from "sequelize-typescript";
 import Carteira from "./Carteira.model";
 
 @Table({ tableName: "TransacaoOleo", timestamps: true })
@@ -15,9 +15,6 @@ export default class TransacaoOleo extends Model {
 	@Column({ type: DataType.NUMBER, allowNull: false })
 	valorTransacaoOleo!: number;
 
-	@Column({ type: DataType.DATE, allowNull: false })
-	dataTransacaoOleo!: Date;
-
 	@ForeignKey(() => Carteira)
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idVendedor!: number;
@@ -26,4 +23,9 @@ export default class TransacaoOleo extends Model {
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idComprador!: number;
 
+	@BelongsTo(() => Carteira, "idComprador")
+	comprador!: Carteira;
+
+	@BelongsTo(() => Carteira, "idVendedor")
+	vendedor!: Carteira;
 }

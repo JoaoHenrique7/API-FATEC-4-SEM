@@ -10,9 +10,6 @@ export default class TransacaoProduto extends Model {
 	@Column({ type: DataType.NUMBER, allowNull: false })
 	valorTransacaoProduto!: number;
 
-	@Column({ type: DataType.DATE, allowNull: false })
-	dataTransacaoProduto!: Date;
-
 	@ForeignKey(() => Carteira)
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idComprador!: number;
@@ -20,5 +17,4 @@ export default class TransacaoProduto extends Model {
 	@ForeignKey(() => Produto)
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idProduto!: number;
-
 }
