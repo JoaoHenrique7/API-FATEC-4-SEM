@@ -19,9 +19,16 @@ const AuthRoutes = Object.freeze(router({
 	Login: "auth/login",
 }));
 
+const TransactionRoutes = Object.freeze(router({
+	All: "oil-transaction/get-all",
+	Create: "oil-transaction/create",
+}));
+
 const URLs = {
 	UserRoutes,
 	AuthRoutes,
+	TransactionRoutes,
+
 } as const;
 
 export default URLs;
