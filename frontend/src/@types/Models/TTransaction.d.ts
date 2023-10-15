@@ -1,11 +1,8 @@
 type TTransaction = {
 	id: number;
-	tipoOleo: string;
+	tipoOleo: "Virgem" | "Usado";
 	volume: number;
-	valorTransacao: number;
-	dataTransacao: Date;
-	createdAt: Date;
-	updatedAt: Date;
+	valorTransacaoOleo: number;
 	idVendedor: number;
 	idComprador: number;
 };

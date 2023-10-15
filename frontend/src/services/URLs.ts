@@ -10,25 +10,30 @@ const router = <T extends Record<string, string>>(routes: T): { [K in keyof T]: 
 	return result;
 };
 
-const UserRoutes = Object.freeze(router({
-	All: "user/get-all",
-	Create: "user/create",
-}));
+const UserRoutes = Object.freeze(
+	router({
+		All: "user/get-all",
+		Create: "user/create",
+	}),
+);
 
-const AuthRoutes = Object.freeze(router({
-	Login: "auth/login",
-}));
+const AuthRoutes = Object.freeze(
+	router({
+		Login: "auth/login",
+	}),
+);
 
-const TransactionRoutes = Object.freeze(router({
-	All: "oil-transaction/get-all",
-	Create: "oil-transaction/create",
-}));
+const TransactionRoutes = Object.freeze(
+	router({
+		All: "oil-transaction/get-all",
+		Create: "oil-transaction/new-transaction",
+	}),
+);
 
 const URLs = {
 	UserRoutes,
 	AuthRoutes,
 	TransactionRoutes,
-
 } as const;
 
 export default URLs;

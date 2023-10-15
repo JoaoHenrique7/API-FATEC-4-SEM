@@ -1,11 +1,9 @@
 type TTransactionDTO = {
-    tipoOleo: string;
-    volume: number;
-    valorTransacao: number;
-    createdAt: Date;
-    updatedAt: Date;
-    idVendedor: number;
-    idComprador: number;
-}
+	tipoOleo: string;
+	volume: number;
+	valorTransacaoOleo: number;
+	idVendedor: number;
+	idComprador: number;
+};
 
 export default TTransactionDTO;
