@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
-import { SessionContext } from "../../../../context/Session/SessionContext";
+import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
 import historic from "../../../../assets/historic.svg";
 import transaction from "../../../../assets/transaction.svg";
 
@@ -18,80 +18,102 @@ interface Transactions {
 	idComprador: number;
 }
 
-interface State {
-	table: { data: any[]; isLoading: boolean };
-}
+const ListTransactionsTable: React.FC = () => {
+	const [table, setTable] = useState<{ data: any[]; isLoading: boolean }>({
+		data: [],
+		isLoading: true,
+	});
 
-class ListTransactionsTable extends Component<object, State> {
-	constructor(props: object) {
-		super(props);
-		this.state = {
-			table: {
-				data: [],
-				isLoading: true,
-			},
-		};
-	}
+	const redirectTransaction = () => {
+		window.location.href = "/transaction";
+	};
 
-	redirectPage() {
-		window.location.href = "/createUser";
-	}
+	const redirectHistoric = () => {
+		window.location.href = "/listTransaction";
+	};
 
-	async getAllTransactions(): Promise<void> {
-		const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
-			.data;
-		// const list: { Nome: string; Email: string; Documento: string }[] = [];
-		const list: { Tipo: string; Volume: number; Valor: number; Feito: Date }[] = [];
-		resultadoRequest.forEach((element) => {
-			const user = {
-				Tipo: element.tipoOleo,
-				Volume: element.volume,
-				Valor: element.valorTransacaoOleo,
-				Feito: element.createdAt,
-			};
-			list.push(user);
-		});
-		this.setState({ table: { data: list, isLoading: false } });
-	}
+	const { session } = useContext(SessionContext) as SessionContextType;
+	console.log(session?.user.id);
 
-	componentDidMount(): void {
-		this.getAllTransactions();
-	}
+	const getAllTransactions = async () => {
+		try {
+			const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
+				.data;
 
-	render() {
-		const { table } = this.state;
+			const list: {
+				Tipo_Oleo: string;
+				Volume: number;
+				Valor: number;
+				Feito: Date;
+				idVendedor?: number;
+				idComprador?: number;
+				Compra_ou_Venda: string;
+			}[] = [];
 
-		return (
-			<>
-				<div className={styles["menu"]}>
-					<div className={styles["menuLine"]}>
-						<img src={historic} className={styles["options"]}></img>
-						<h3 className={styles["title"]}>Historico</h3>
-					</div>
-					<div className={styles["menuLine"]}>
-						<img src={transaction} className={styles["options"]}></img>
-						<h3 className={styles["title"]}>Transações</h3>
-					</div>
+			resultadoRequest.forEach((element) => {
+				if (element.idComprador == session?.user.id) {
+					const user = {
+						Tipo_Oleo: element.tipoOleo,
+						Volume: element.volume,
+						Valor: element.valorTransacaoOleo,
+						Feito: element.createdAt,
+						idVendedor: element.idVendedor,
+						Compra_ou_Venda: "Compra",
+					};
+					list.push(user);
+				} else if (element.idVendedor == session?.user.id) {
+					const user = {
+						Tipo_Oleo: element.tipoOleo,
+						Volume: element.volume,
+						Valor: element.valorTransacaoOleo,
+						Feito: element.createdAt,
+						idComprador: element.idComprador,
+						Compra_ou_Venda: "Venda",
+					};
+					list.push(user);
+				}
+			});
+
+			setTable({ data: list, isLoading: false });
+		} catch (error) {
+			// Handle errors here
+		}
+	};
+
+	useEffect(() => {
+		getAllTransactions();
+	}, []);
+
+	return (
+		<>
+			<div className={styles["menu"]}>
+				<div className={styles["menuLine"]} onClick={redirectHistoric}>
+					<img src={historic} className={styles["options"]} alt="Historic" />
+					<h3 className={styles["title"]}>Historico</h3>
 				</div>
-				<div className={styles["listTransactionsTable"]}>
-					<h1 className={styles["title"]}>Transações realizadas</h1>
-					<Table
-						data={table.data}
-						omit={[
-							"id",
-							// "tipoOleo",
-							"volume",
-							// "valorTransacaoOleo",
-							"updatedAt",
-							"idVendedor",
-							"idComprador",
-						]}
-						isLoading={table.isLoading}
-					/>
+				<div className={styles["menuLine"]} onClick={redirectTransaction}>
+					<img src={transaction} className={styles["options"]} alt="Transaction" />
+					<h3 className={styles["title"]}>Transações</h3>
 				</div>
-			</>
-		);
-	}
-}
+			</div>
+			<div className={styles["listTransactionsTable"]}>
+				<h1 className={styles["title"]}>Transações realizadas</h1>
+				<Table
+					data={table.data}
+					omit={[
+						"id",
+						// "tipoOleo",
+						"volume",
+						// "valorTransacaoOleo",
+						"updatedAt",
+						"idVendedor",
+						"idComprador",
+					]}
+					isLoading={table.isLoading}
+				/>
+			</div>
+		</>
+	);
+};
 
 export default ListTransactionsTable;
