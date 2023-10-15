@@ -15,9 +15,9 @@ export default class Carteira extends Model {
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idUsuario!: number;
 
-	@HasMany(() => TransacaoProduto, { constraints: false, onDelete: 'cascade' })
-	transacaoProduto!: TransacaoProduto;
+	@HasMany(() => TransacaoProduto, { constraints: false, onDelete: "cascade" })
+	transacaoProduto!: TransacaoProduto[];
 
-	@HasMany(() => TransacaoOleo, { constraints: false, onDelete: 'cascade' })
-	transacaoOleo!: TransacaoOleo;
+	@HasMany(() => TransacaoOleo, { constraints: false, onDelete: "cascade" })
+	transacaoOleo!: TransacaoOleo[];
 }

@@ -1,42 +1,21 @@
 import React, { Component } from "react";
 import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
-import User from "../../../../model/classes/User";
-import UserService from "../../../../services/UserService/UserService";
 import { FaPlus } from "react-icons/fa";
+import TransactionService from "../../../../services/TransactionService/TransactionService";
+import { SessionContext } from "../../../../context/Session/SessionContext";
+import historic from "../../../../assets/historic.svg";
+import transaction from "../../../../assets/transaction.svg";
 
-interface Endereco {
+interface Transactions {
 	id: number;
-	zip_code: string;
-	numero: number;
-	rua: string;
-	bairro: string;
-	cidade: string;
-	estado: string;
-	complemento: string;
-	idUsuario: number;
-	createdAt: string;
-	updatedAt: string;
-}
-
-interface TipoUsuario {
-	id: number;
-	tipoUsuario: string;
-	idUsuario: number;
-	createdAt: string;
-	updatedAt: string;
-}
-
-interface Usuario {
-	id: number;
-	nomeUsuario: string;
-	emailUsuario: string;
-	senhaUsuario: string;
-	documentoUsuario: string;
-	createdAt: string;
-	updatedAt: string;
-	tipoUsuario: TipoUsuario;
-	endereco: Endereco;
+	tipoOleo: string;
+	volume: number;
+	valorTransacaoOleo: number;
+	createdAt: Date;
+	updatedAt: Date;
+	idVendedor: number;
+	idComprador: number;
 }
 
 interface State {
@@ -58,15 +37,17 @@ class ListTransactionsTable extends Component<object, State> {
 		window.location.href = "/createUser";
 	}
 
-	async getAllUsers(): Promise<void> {
-		const resultadoRequest: Usuario[] = (await UserService.getAllUsers()).data;
-		const list: { Nome: string; Email: string; Documento: string }[] = [];
+	async getAllTransactions(): Promise<void> {
+		const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
+			.data;
+		// const list: { Nome: string; Email: string; Documento: string }[] = [];
+		const list: { Tipo: string; Volume: number; Valor: number; Feito: Date }[] = [];
 		resultadoRequest.forEach((element) => {
 			const user = {
-				Nome: element.nomeUsuario,
-				Email: element.emailUsuario,
-				Documento: element.documentoUsuario,
-				Tipo: element.tipoUsuario.tipoUsuario,
+				Tipo: element.tipoOleo,
+				Volume: element.volume,
+				Valor: element.valorTransacaoOleo,
+				Feito: element.createdAt,
 			};
 			list.push(user);
 		});
@@ -74,28 +55,41 @@ class ListTransactionsTable extends Component<object, State> {
 	}
 
 	componentDidMount(): void {
-		this.getAllUsers();
+		this.getAllTransactions();
 	}
 
 	render() {
 		const { table } = this.state;
 
 		return (
-			<div className={styles["listTransactionsTable"]}>
-				<h1 className={styles["title"]}>Usuários Cadastrados</h1>
-				<Table
-					data={table.data}
-					omit={[
-						"id",
-						"senhaUsuario",
-						"createdAt",
-						"tipoUsuario",
-						"updatedAt",
-						"endereco",
-					]}
-					isLoading={table.isLoading}
-				/>
-			</div>
+			<>
+				<div className={styles["menu"]}>
+					<div className={styles["menuLine"]}>
+						<img src={historic} className={styles["options"]}></img>
+						<h3 className={styles["title"]}>Historico</h3>
+					</div>
+					<div className={styles["menuLine"]}>
+						<img src={transaction} className={styles["options"]}></img>
+						<h3 className={styles["title"]}>Transações</h3>
+					</div>
+				</div>
+				<div className={styles["listTransactionsTable"]}>
+					<h1 className={styles["title"]}>Transações realizadas</h1>
+					<Table
+						data={table.data}
+						omit={[
+							"id",
+							// "tipoOleo",
+							"volume",
+							// "valorTransacaoOleo",
+							"updatedAt",
+							"idVendedor",
+							"idComprador",
+						]}
+						isLoading={table.isLoading}
+					/>
+				</div>
+			</>
 		);
 	}
 }
