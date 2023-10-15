@@ -34,15 +34,18 @@
 	--border-radius: var(--radius-1);
 	--input-border: var(--neutral-300);
 	--input-height: var(--input-height);
-	/* Estilos do seu botão quadrado e cinza escuro */
+
+	/* Style */
 	background: var(--input-border);
-	border: 2px solid var(--input-border); /* Use o mesmo estilo de borda do input */
+	border: 2px solid var(--input-border);
 	color: #fff;
-	border-radius: var(--border-radius); /* Use o mesmo raio de borda do input */
+	border-radius: var(--border-radius);
 	cursor: pointer;
-	padding: 0; /* Remova o preenchimento para corresponder à altura do input */
-	height: var(--input-height); /* Defina a altura do botão igual à altura do input */
-	flex-shrink: 0; /* Impede que o botão diminua de tamanho */
+	padding: 0;
+	/* height: var(--input-height); */
+	height: 2.85rem;
+	width: 1.5rem;
+	flex-shrink: 0;
 }
 
 .dropdown-options {
@@ -86,9 +89,7 @@
 }
 
 .dropdown-options li:hover {
-	/* Variables */
-	--input-background: var(--white);
-
 	/* Style */
-	background: var(--input-background);
+	background: lightgrey;
+	cursor: pointer;
 }
