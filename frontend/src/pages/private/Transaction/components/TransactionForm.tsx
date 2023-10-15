@@ -37,9 +37,6 @@ const TransactionForm: React.FC = () => {
 	return (
 		<div>
 			{/* Sidebar do sistema (verde) */}
-			<div>
-				<Sidebar />
-			</div>
 
 			{/* sidebar da página (carteira) */}
 			<div>

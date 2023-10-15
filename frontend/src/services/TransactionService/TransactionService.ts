@@ -1,8 +1,8 @@
-import UserResponse from "../../model/interfaces/IUserResponse";
+import TransactionResponse from "../../model/interfaces/ITransaction";
 import DataServiceAPI from "../DataServiceAPI";
 
 export default class TransactionService {
-	public static async getAllTransactions(): Promise<UserResponse> {
+	public static async getAllTransactions(): Promise<TransactionResponse> {
 		try {
 			const response = await DataServiceAPI.get(" http://localhost:3001/oil-transaction/get-all");
 
@@ -16,7 +16,7 @@ export default class TransactionService {
 
 			return userResponse;
 		} catch (error) {
-			const response: UserResponse = {
+			const response: TransactionResponse = {
 				data: [],
 				message: `${error}`,
 				ok: false,

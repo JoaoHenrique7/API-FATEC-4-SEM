@@ -3,13 +3,14 @@ import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
+import { SessionContext } from "../../../../context/Session/SessionContext";
+import Menu from "../../../../components/Menu/Menu";
 
 interface Transactions {
 	id: number;
 	tipoOleo: string;
 	volume: number;
-	valorTransacao: number;
-	dataTransacao: Date;
+	valorTransacaoOleo: number;
 	createdAt: Date;
 	updatedAt: Date;
 	idVendedor: number;
@@ -37,20 +38,17 @@ class ListTransactionsTable extends Component<object, State> {
 
 	async getAllTransactions(): Promise<void> {
 		const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions()).data;
-		console.log(resultadoRequest)
 		// const list: { Nome: string; Email: string; Documento: string }[] = [];
-		const list: { Valor: number; Feito: Date; }[] = [];
+		const list: {Tipo: string, Volume:number, Valor:number, Feito:Date}[] = [];
 		resultadoRequest.forEach((element) => {
 			const user = {
-				// Nome: element.nomeUsuario,
-				// Transação_Para: element.emailUsuario,
-				Valor: element.valorTransacao,
+				Tipo: element.tipoOleo,
+				Volume: element.volume,
+				Valor: element.valorTransacaoOleo,
 				Feito: element.createdAt,
 			};
-			console.log(user)
 			list.push(user);
 		});
-		console.log(list,"3")
 		this.setState({ table: { data: list, isLoading: false } });
 	}
 
@@ -62,21 +60,21 @@ class ListTransactionsTable extends Component<object, State> {
 		const { table } = this.state;
 
 		return (
-			<div className={styles["listTransactionsTable"]}>
-				<h1 className={styles["title"]}>Usuários Cadastrados</h1>
+			<><Menu /><div className={styles["listTransactionsTable"]}>
+				<h1 className={styles["title"]}>Transações realizadas</h1>
 				<Table
 					data={table.data}
 					omit={[
 						"id",
-						"senhaUsuario",
-						"createdAt",
-						"tipoUsuario",
+						// "tipoOleo",
+						"volume",
+						// "valorTransacaoOleo",
 						"updatedAt",
-						"endereco",
+						"idVendedor",
+						"idComprador",
 					]}
-					isLoading={table.isLoading}
-				/>
-			</div>
+					isLoading={table.isLoading} />
+			</div></>
 		);
 	}
 }
