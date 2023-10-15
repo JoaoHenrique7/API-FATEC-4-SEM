@@ -96,18 +96,24 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 <br>
 <h2 align="center"><samp>PRIMEIRA SPRINT</samp></h2>
 
-![Equipe bytech](/readme/modeloConceitualSprint1.png)
+<p align="center">
+    <img src="/readme/modeloConceitualSprint1.png"/>
+</p>
 
-![Equipe bytech](/readme/modeloLogicoSprint1.png)
+<p align="center">
+    <img src="/readme/modeloLogicoSprint1.png"/>
+</p>
 
 <br>
 <h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
 
-![Equipe bytech](/readme/modeloConceitualSprint2.png)
+<p align="center">
+    <img src="/readme/modeloConceitualSprint2.png"/>
+</p>
 
-![Equipe bytech](/readme/modeloLogicoSprint2.png)
-
-<br>
+<p align="center">
+    <img src="/readme/modeloLogicoSprint2.png"/>
+</p>
 
 <br>
 <h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
