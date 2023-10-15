@@ -1,18 +1,23 @@
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
   height: 100vh; 
   width: 4rem;
   background-color: #31BE62; 
-  color: #fff; 
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
   align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .options{
     padding-top: 2.5rem;
+    cursor: pointer;
 }
 .signOut{
-  padding-top: 22rem;
+  margin-top: 22rem;
+  cursor: pointer;
+}
+.content{
+  flex: 1;
+  margin-left: 4rem;
 }
