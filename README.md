@@ -91,6 +91,25 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 <br>
 
 <br>
+<h1 align="center"><samp>MODELOS DO BANCOS DE DADOS AO LONGO DAS SPRINTS</samp></h1>
+
+<br>
+<h2 align="center"><samp>PRIMEIRA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/modeloConceitualSprint1.png)
+
+![Equipe bytech](/readme/modeloLogicoSprint1.png)
+
+<br>
+<h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/modeloConceitualSprint2.png)
+
+![Equipe bytech](/readme/modeloLogicoSprint2.png)
+
+<br>
+
+<br>
 <h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
 <h2>Sprint 1</h2>
 <details>
