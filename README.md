@@ -31,14 +31,14 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 + - [x] Funcionalidade "esqueci minha senha".
 + - [ ] Administrador editar e visualizar usuários já cadastrados em forma de lista;
 + - [ ] Administrador visualizar as transações;
-+ - [ ] Parceiros e Estabelecimentos efetuar transações de compra e venda;
-+ - [ ] Parceiros e Estabelecimentos possuirem acesso ao seu respectivo saldo de créditos;
-+ - [ ] Parceiros e Estabelecimentos possuirem acesso as suas respectivas transações;
++ - [x] Parceiros e Estabelecimentos efetuar transações de compra e venda;
++ - [x] Parceiros e Estabelecimentos possuirem acesso ao seu respectivo saldo de créditos;
++ - [x] Parceiros e Estabelecimentos possuirem acesso as suas respectivas transações;
 + - [ ] Dashboard.
 
 
 ### 🔖 Requisitos não funcionais
-+ - [ ] Documentação apresentada no Github
++ - [x] Documentação apresentada no Github
 + - [ ] Manual do usuário
 <br>
 
@@ -84,6 +84,36 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 ![Equipe bytech](/readme/burndownSprint1.png)
 
 <br>
+<h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/burndownSprint2.png)
+
+<br>
+
+<br>
+<h1 align="center"><samp>MODELOS DO BANCOS DE DADOS AO LONGO DAS SPRINTS</samp></h1>
+
+<br>
+<h2 align="center"><samp>PRIMEIRA SPRINT</samp></h2>
+
+<p align="center">
+    <img src="/readme/modeloConceitualSprint1.png"/>
+</p>
+
+<p align="center">
+    <img src="/readme/modeloLogicoSprint1.png"/>
+</p>
+
+<br>
+<h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
+
+<p align="center">
+    <img src="/readme/modeloConceitualSprint2.png"/>
+</p>
+
+<p align="center">
+    <img src="/readme/modeloLogicoSprint2.png"/>
+</p>
 
 <br>
 <h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
@@ -109,6 +139,50 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
     <img src="/readme/login_recuperacaoSenha.gif" width="65%" />
   </p>
   <p align="justify">Demonstração na Tela de Login e da Tela Recuperação de senha caso o usuário não se recorde de suas credenciais.</p>
+</details>
+
+<h2>Sprint 2</h2>
+<details>
+  <summary>Detalhes</summary>
+  <h3 align="center">Demonstração de usabilidade</h3>
+   <br>
+  <h4 align="center">Tela Perfil dos Parceiros<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração da Tela de Perfil dos Parceiros. Esta interface contempla a tela de perfil do usuário do tipo parceiro.</p>
+
+  <br>
+  <h4 align="center">Tela Perfil dos Estabelecimentos<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento.</p>
+
+  <br>
+  <h4 align="center">Tela de Histórico de Transações dos Parceiros<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração de Histórico de Transações dos Parceiros. Esta interface contempla a tela que contem o histórico de transações do usuário do tipo parceiro.</p>
+
+  <br>
+  <h4 align="center">Tela de Histórico de Transações dos Estabelecimentos<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração de Histórico de Transações dos Estabelecimentos. Esta interface contempla a tela que contem o histórico de transações do usuário do tipo estabelecimentos.</p>
+
+  <br>
+  <h4 align="center">Tela de compra de Oléo<br><a href="https://youtu.be/9lyCE3NIka0">Youtube (Qualidade melhor)</a></h4>
+  <p align="center">
+    <img src="/readme/" width="65%" />
+  </p>
+  <p align="justify">Demonstração na Tela de compra de óleo.</p>
 </details>
  
 <br>
