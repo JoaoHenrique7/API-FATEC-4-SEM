@@ -84,6 +84,11 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 ![Equipe bytech](/readme/burndownSprint1.png)
 
 <br>
+<h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/burndownSprint2.png)
+
+<br>
 
 <br>
 <h1 align="center"><samp>DETALHES DAS SPRINTS</samp></h1>
