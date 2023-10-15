@@ -1,13 +1,13 @@
+import Transaction from "../model/classes/Transaction";
 import User from "../model/classes/User";
 export default class DataServiceAPI {
-    
 	public static async post(url: string, params: object) {
 		const token: string | null = window.localStorage.getItem("session_token");
 		return await fetch(url, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
+				Authorization: `Bearer ${token}`,
 			},
 			redirect: "follow",
 			body: JSON.stringify(params),
@@ -20,9 +20,9 @@ export default class DataServiceAPI {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
+				Authorization: `Bearer ${token}`,
 			},
-			body: JSON.stringify(params)
+			body: JSON.stringify(params),
 		});
 	}
 
@@ -32,24 +32,23 @@ export default class DataServiceAPI {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
+				Authorization: `Bearer ${token}`,
 			},
 			redirect: "follow",
-			body: JSON.stringify(params)
+			body: JSON.stringify(params),
 		});
 	}
 
-	public static async postCreate(url: string, params: User) {
+	public static async postCreate(url: string, params: User | Transaction) {
 		const token: string | null = window.localStorage.getItem("session_token");
 		return await fetch(url, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": `Bearer ${token}`
+				Authorization: `Bearer ${token}`,
 			},
 			redirect: "follow",
 			body: JSON.stringify(params.toJson()),
 		});
 	}
-
 }

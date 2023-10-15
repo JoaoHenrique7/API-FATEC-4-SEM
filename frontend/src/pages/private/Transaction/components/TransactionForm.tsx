@@ -1,49 +1,112 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dropdown from "../../../../components/Dropdown/Dropdown";
 import TextInput from "../../../../components/TextInput/TextInput";
 import Button from "../../../../components/Button/Button";
-import Sidebar from "../../../../components/SideBar/SideBar";
 import VerticalDivider from "../../../../components/VerticalDivider/VerticalDivider";
+import User from "../../../../services/UserService/User.service";
+import TUsuario from "../../../../@types/Models/TUsuario";
+import TGenericResponse from "../../../../@types/Responses/TGenericResponse";
+import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
+import Transaction from "../../../../services/TransactionService/Transaction.service";
+import TTransaction from "../../../../@types/Models/TTransaction";
+
+const userMap: { [key: string]: number } = {};
 
 const TransactionForm: React.FC = () => {
-	const emailRef = React.useRef<HTMLInputElement>(null);
-	const passwordRef = React.useRef<HTMLInputElement>(null);
-	const [local, setLocal] = useState<string | null>(null);
-	const [oleoOption, setOleoOption] = useState<string | null>(null);
-	const [amount, setAmount] = useState<string>("");
-	const [description, setDescription] = useState<string>("");
+	const { session } = useContext(SessionContext) as SessionContextType;
 
-	const handleSelectLocal = (selectedLocal: string) => {
-		setLocal(selectedLocal);
+	const value = React.useRef<HTMLInputElement>(null);
+	const amount = React.useRef<HTMLInputElement>(null);
+	const [seller, setSeller] = useState<string | null>(null);
+	const [oilOption, setOilOption] = useState<string | null>(null);
+	const [userOptions, setUserOptions] = useState<string[]>([]);
+
+	const OilOptions = ["Virgem", "Usado"];
+
+	const fetchUsers = async () => {
+		try {
+			const response: TGenericResponse<TUsuario[]> = await User.All();
+			if (response.Ok) {
+				const users = response.Data;
+				if (Array.isArray(users) && users.length > 0) {
+					const estabelecimentoUsers = users.filter(
+						(user) => user.tipoUsuario.tipoUsuario === "Estabelecimento",
+					);
+					if (estabelecimentoUsers.length > 0) {
+						estabelecimentoUsers.forEach((user) => {
+							userMap[user.nomeUsuario] = user.carteira.id;
+						});
+						const userNames = estabelecimentoUsers.map((user) => user.nomeUsuario);
+						setUserOptions(userNames);
+					} else {
+						console.error("Nenhum estabelecimento encontrado.");
+					}
+				} else {
+					console.error("Nenhum usuário encontrado.");
+				}
+			} else {
+				console.error(response.Message);
+			}
+		} catch (error) {
+			console.error("Erro ao buscar os usuários: ", error);
+		}
 	};
 
-	const handleSelectOleoOption = (selectedMethod: string) => {
-		setOleoOption(selectedMethod);
+	useEffect(() => {
+		fetchUsers();
+	}, []);
+
+	const handleSelectSeller = (selectedSeller: string) => {
+		setSeller(selectedSeller);
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSelectOilOption = (selectedMethod: string) => {
+		setOilOption(selectedMethod);
+	};
+
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		if (!checkRefs()) {
+			return;
+		}
 
-		console.log("Dados do formulário:");
-		console.log("Categoria:", local);
-		console.log("Método de pagamento:", oleoOption);
-		console.log("Valor:", amount);
-		console.log("Descrição:", description);
+		if (!amount.current?.value) return false;
+		if (!value.current?.value) return false;
+		if (!seller) return false;
+		if (!oilOption) return false;
+
+		const createTransaction: TGenericResponse<TTransaction> = await Transaction.Create({
+			tipoOleo: oilOption,
+			volume: parseFloat(amount.current.value.replace(",", ".")),
+			valorTransacaoOleo: parseFloat(value.current.value.replace(",", ".")),
+			idVendedor: userMap[seller],
+			idComprador: 1,
+		});
+
+		if (createTransaction.Ok) {
+			alert(createTransaction.Message);
+		} else {
+			alert(createTransaction.Message);
+		}
 	};
 
-	const localOptions = ["Categoria 1", "Categoria 2", "Categoria 3"];
-	const OleoOpetions = ["Oléo Virgem", "Óleo usado"];
+	const checkRefs = (): boolean => {
+		if (!amount.current?.value) return false;
+		if (!value.current?.value) return false;
+		if (!seller) return false;
+		if (!oilOption) return false;
+
+		return true;
+	};
 
 	return (
 		<div>
-			{/* Sidebar do sistema (verde) */}
-
 			{/* sidebar da página (carteira) */}
 			<div>
 				<h2>Carteira</h2>
 				<h3>Histórico</h3>
 				<h3>Transações</h3>
-				<VerticalDivider/>
+				<VerticalDivider />
 			</div>
 
 			{/* Formulário */}
@@ -54,28 +117,28 @@ const TransactionForm: React.FC = () => {
 					<h2></h2>
 
 					<label>Estabelecimentos</label>
-					<Dropdown options={localOptions} onSelect={handleSelectLocal} />
+					<Dropdown options={userOptions} onSelect={handleSelectSeller} />
 
-					<label>Tipoe de Óleo</label>
-					<Dropdown options={OleoOpetions} onSelect={handleSelectOleoOption} />
+					<label>Tipo de Óleo</label>
+					<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />
 
 					<label>Volume</label>
-					<TextInput forwardedRef={emailRef} placeholder="Insira o volume..." />
+					<TextInput forwardedRef={amount} placeholder="Insira o volume..." />
 
 					<label>Valor</label>
-					<TextInput forwardedRef={emailRef} placeholder="Insira o valor..." />
+					<TextInput forwardedRef={value} placeholder="Insira o valor..." />
 
-					<label>Valor do litro do óleo virgem</label>
+					{/* <label>Valor do litro do óleo virgem</label>
 					<TextInput
-						forwardedRef={emailRef}
+						forwardedRef={textRef}
 						placeholder="Insira o valor do litro do óleo virgem..."
 					/>
 
 					<label>Valor do litro do óleo usado</label>
 					<TextInput
-						forwardedRef={emailRef}
+						forwardedRef={textRef}
 						placeholder="Insira o valor do litro do óleo usado..."
-					/>
+					/> */}
 
 					<Button label="Comprar" type="submit" />
 				</form>

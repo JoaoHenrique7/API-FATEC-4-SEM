@@ -9,7 +9,10 @@ export default abstract class Transaction {
 		return await API.Get<TGenericResponse<TTransaction[]>>(URLs.TransactionRoutes.All);
 	}
 
-	public static async Create(transacao: TransactionDTO) {
-		return await API.Post<TGenericResponse<TTransaction>>(URLs.TransactionRoutes.Create, JSON.stringify(transacao));
+	public static async Create(transaction: TransactionDTO) {
+		return await API.Post<TGenericResponse<TTransaction>>(
+			URLs.TransactionRoutes.Create,
+			JSON.stringify(transaction),
+		);
 	}
 }
