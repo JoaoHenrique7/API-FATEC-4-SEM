@@ -4,7 +4,8 @@ import Table from "../../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
 import { SessionContext } from "../../../../context/Session/SessionContext";
-import Menu from "../../../../components/Menu/Menu";
+import historic from "../../../../assets/historic.svg";
+import transaction from "../../../../assets/transaction.svg";
 
 interface Transactions {
 	id: number;
@@ -37,9 +38,10 @@ class ListTransactionsTable extends Component<object, State> {
 	}
 
 	async getAllTransactions(): Promise<void> {
-		const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions()).data;
+		const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
+			.data;
 		// const list: { Nome: string; Email: string; Documento: string }[] = [];
-		const list: {Tipo: string, Volume:number, Valor:number, Feito:Date}[] = [];
+		const list: { Tipo: string; Volume: number; Valor: number; Feito: Date }[] = [];
 		resultadoRequest.forEach((element) => {
 			const user = {
 				Tipo: element.tipoOleo,
@@ -60,21 +62,34 @@ class ListTransactionsTable extends Component<object, State> {
 		const { table } = this.state;
 
 		return (
-			<><Menu /><div className={styles["listTransactionsTable"]}>
-				<h1 className={styles["title"]}>Transações realizadas</h1>
-				<Table
-					data={table.data}
-					omit={[
-						"id",
-						// "tipoOleo",
-						"volume",
-						// "valorTransacaoOleo",
-						"updatedAt",
-						"idVendedor",
-						"idComprador",
-					]}
-					isLoading={table.isLoading} />
-			</div></>
+			<>
+				<div className={styles["menu"]}>
+					<div className={styles["menuLine"]}>
+						<img src={historic} className={styles["options"]}></img>
+						<h3 className={styles["title"]}>Historico</h3>
+					</div>
+					<div className={styles["menuLine"]}>
+						<img src={transaction} className={styles["options"]}></img>
+						<h3 className={styles["title"]}>Transações</h3>
+					</div>
+				</div>
+				<div className={styles["listTransactionsTable"]}>
+					<h1 className={styles["title"]}>Transações realizadas</h1>
+					<Table
+						data={table.data}
+						omit={[
+							"id",
+							// "tipoOleo",
+							"volume",
+							// "valorTransacaoOleo",
+							"updatedAt",
+							"idVendedor",
+							"idComprador",
+						]}
+						isLoading={table.isLoading}
+					/>
+				</div>
+			</>
 		);
 	}
 }

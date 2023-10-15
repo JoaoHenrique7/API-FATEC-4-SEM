@@ -1,11 +1,12 @@
 .listTransactionsTable {
-    width: 93%;
+    width: 73%;
     height: 100%;
     position: absolute;
     padding: var(--spacing-5);
     gap: 32px;
     display: flex;
     flex-direction: column;
+    margin-left: 17rem;
 }
 
 .line {
@@ -30,4 +31,26 @@
   .right { grid-area: 1 / 2 / 2 / 3; }
 .title{
   padding-top: var(--spacing-4);
+}
+
+.menu{
+  position: absolute;
+  margin-right: 4rem; 
+  height: 100vh; 
+  width: 15rem;
+  background-color: #FFFFFF; 
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); 
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLine{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 2rem;
+  cursor: pointer;
 }
