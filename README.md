@@ -146,43 +146,20 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
   <summary>Detalhes</summary>
   <h3 align="center">Demonstração de usabilidade</h3>
    <br>
-  <h4 align="center">Tela Perfil dos Parceiros<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Tela Perfil dos Parceiros<br><a href="https://youtu.be/w14n9CfPCaE">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
-    <img src="/readme/" width="65%" />
+    <img src="/readme/parceiro.gif" width="65%" />
   </p>
-  <p align="justify">Demonstração da Tela de Perfil dos Parceiros. Esta interface contempla a tela de perfil do usuário do tipo parceiro.</p>
+  <p align="justify">Demonstração da Tela de Perfil dos Parceiros. Esta interface contempla a tela de perfil do usuário do tipo parceiro assim como histórico de transações do usuário e tela de compra de óleo.</p>
 
   <br>
-  <h4 align="center">Tela Perfil dos Estabelecimentos<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Tela Perfil dos Estabelecimentos<br><a href="https://youtu.be/jLK-PpFPoq0">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
-    <img src="/readme/" width="65%" />
+    <img src="/readme/estabelecimento.gif" width="65%" />
   </p>
-  <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento.</p>
-
-  <br>
-  <h4 align="center">Tela de Histórico de Transações dos Parceiros<br><a href="">Youtube (Qualidade melhor)</a></h4>
-  
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração de Histórico de Transações dos Parceiros. Esta interface contempla a tela que contem o histórico de transações do usuário do tipo parceiro.</p>
-
-  <br>
-  <h4 align="center">Tela de Histórico de Transações dos Estabelecimentos<br><a href="">Youtube (Qualidade melhor)</a></h4>
-  
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração de Histórico de Transações dos Estabelecimentos. Esta interface contempla a tela que contem o histórico de transações do usuário do tipo estabelecimentos.</p>
-
-  <br>
-  <h4 align="center">Tela de compra de Oléo<br><a href="https://youtu.be/9lyCE3NIka0">Youtube (Qualidade melhor)</a></h4>
-  <p align="center">
-    <img src="/readme/" width="65%" />
-  </p>
-  <p align="justify">Demonstração na Tela de compra de óleo.</p>
+  <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento assim como histórico de transações do usuário.</p>
 </details>
  
 <br>
