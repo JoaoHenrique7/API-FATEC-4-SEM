@@ -188,6 +188,11 @@ function SignUpForm(props: SignUpFormProps) {
 
 		if (createUser.Ok) {
 			alert(createUser.Message);
+			if (createUser.Message === "Created.") {
+				setTimeout(() => {
+					window.location.href = "/sign-in";
+				}, 2000);
+			}
 		} else {
 			alert(createUser.Message);
 		}
@@ -216,7 +221,7 @@ function SignUpForm(props: SignUpFormProps) {
 						<p>Qual cadastro você deseja fazer?</p>
 						<RadioInput
 							forwardRef={radioParceiroRef}
-							label="Cooperativa"
+							label="Parceiro"
 							name="typeRadios"
 							value={"Parceiro"}
 						/>

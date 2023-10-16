@@ -1,0 +1,35 @@
+.sidebar {
+	width: min-content;
+	display: flex;
+}
+
+.sidebar__main {
+	min-width: 70px;
+	background-color: #31BE62;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+}
+
+.sidebar__extras {
+	width: max(min(250px, min-content), 250px);
+	background-color: white;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar__options {
+	background-color: white;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.sidebar__options>*:not(h3) {
+	display: flex;
+	gap: .5rem;
+	text-decoration: none;
+	color: black;
+}

@@ -9,7 +9,7 @@ export default class OilTransactionController {
 	 *
 	 * @param {OilTransactionUC} newTransactionUC - an instance of the OilTransactionUC class
 	 */
-	constructor(private newTransactionUC: OilTransactionUC) {}
+	constructor(private newTransactionUC: OilTransactionUC) { }
 
 	/**
 	 * Creates a new resource.
@@ -20,6 +20,7 @@ export default class OilTransactionController {
 	 */
 	async newTransaction(req: Request<IOilTransactionDTO>, res: Response): Promise<Response> {
 		let body: IOilTransactionDTO = req.body;
+		console.log(body);
 
 		try {
 			const newTransaction: Transacao = await this.newTransactionUC.execute(body);

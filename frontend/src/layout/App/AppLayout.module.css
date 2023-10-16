@@ -1,0 +1,9 @@
+.layout {
+	display: grid;
+	grid-template-columns: min-content auto;
+	grid-template-rows: 100dvh;
+}
+
+.layout > :nth-child(2) {
+	padding: 1rem;
+}

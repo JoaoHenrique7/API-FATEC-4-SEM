@@ -43,7 +43,6 @@ function SignInForm(props: SignInFormProps) {
 	return (
 		<div className={styles["signInForm"]}>
 			<h1 className={styles["signInForm__title"]}>Login</h1>
-			<h3 className={styles["signInForm__subtitle"]}>Lorem ipsum dolor sit amet.</h3>
 			<form className={styles["signInForm__form"]} {...props}>
 				{!isValid && (
 					<span className={styles["signInForm__error"]}>
@@ -70,7 +69,7 @@ function SignInForm(props: SignInFormProps) {
 				/>
 				<RecoveryLink
 					newPath="sign-up"
-					text="Ciar conta"
+					text="Criar uma conta"
 					className="returnLoginLink"
 				/>
 				<Button label="Logar" onClick={handleLogin} loading={loading} />

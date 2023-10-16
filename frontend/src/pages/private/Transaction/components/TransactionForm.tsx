@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Dropdown from "../../../../components/Dropdown/Dropdown";
 import TextInput from "../../../../components/TextInput/TextInput";
 import Button from "../../../../components/Button/Button";
-import VerticalDivider from "../../../../components/VerticalDivider/VerticalDivider";
 import User from "../../../../services/UserService/User.service";
 import TUsuario from "../../../../@types/Models/TUsuario";
 import TGenericResponse from "../../../../@types/Responses/TGenericResponse";
@@ -10,8 +9,6 @@ import { SessionContext, SessionContextType } from "../../../../context/Session/
 import Transaction from "../../../../services/TransactionService/Transaction.service";
 import TTransaction from "../../../../@types/Models/TTransaction";
 import styles from "./TransactionForm.module.css";
-import historic from "../../../../assets/historic.svg";
-import transaction from "../../../../assets/transaction.svg";
 
 const userMap: { [key: string]: number } = {};
 
@@ -37,7 +34,6 @@ const TransactionForm: React.FC = () => {
 					);
 					if (estabelecimentoUsers.length > 0) {
 						estabelecimentoUsers.forEach((user) => {
-							console.log(userOptions);
 							userMap[user.nomeUsuario] = user.carteira.id;
 						});
 						const userNames = estabelecimentoUsers.map((user) => user.nomeUsuario);
@@ -66,14 +62,6 @@ const TransactionForm: React.FC = () => {
 
 	const handleSelectOilOption = (selectedMethod: string) => {
 		setOilOption(selectedMethod);
-	};
-
-	const redirectHistoric = () => {
-		window.location.href = "/listTransaction";
-	};
-
-	const redirectTransaction = () => {
-		window.location.href = "/transaction";
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -112,18 +100,7 @@ const TransactionForm: React.FC = () => {
 	};
 
 	return (
-		<div>
-			{/* sidebar da página (carteira) */}
-			<div className={styles["menu"]}>
-				<div className={styles["menuLine"]} onClick={redirectHistoric}>
-					<img src={historic} className={styles["options"]} alt="Historic" />
-					<h3 className={styles["title"]}>Historico</h3>
-				</div>
-				<div className={styles["menuLine"]} onClick={redirectTransaction}>
-					<img src={transaction} className={styles["options"]} alt="Transaction" />
-					<h3 className={styles["title"]}>Transações</h3>
-				</div>
-			</div>
+		<div>			
 			{/* Formulário */}
 			<div>
 				<form onSubmit={handleSubmit} className={styles["form"]}>
@@ -132,7 +109,7 @@ const TransactionForm: React.FC = () => {
 					<div className={styles["label"]}>
 						<label>Estabelecimentos</label>
 						<Dropdown options={userOptions} onSelect={handleSelectSeller} />
-					</div>
+					</div>|
 					<div className={styles["label"]}>
 						<label>Tipo de Óleo</label>
 						<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />

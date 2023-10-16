@@ -86,16 +86,6 @@ const ListTransactionsTable: React.FC = () => {
 
 	return (
 		<>
-			<div className={styles["menu"]}>
-				<div className={styles["menuLine"]} onClick={redirectHistoric}>
-					<img src={historic} className={styles["options"]} alt="Historic" />
-					<h3 className={styles["title"]}>Historico</h3>
-				</div>
-				<div className={styles["menuLine"]} onClick={redirectTransaction}>
-					<img src={transaction} className={styles["options"]} alt="Transaction" />
-					<h3 className={styles["title"]}>Transações</h3>
-				</div>
-			</div>
 			<div className={styles["listTransactionsTable"]}>
 				<h1 className={styles["title"]}>Transações realizadas</h1>
 				<Table
