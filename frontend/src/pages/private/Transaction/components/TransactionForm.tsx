@@ -80,7 +80,7 @@ const TransactionForm: React.FC = () => {
 			volume: parseFloat(amount.current.value.replace(",", ".")),
 			valorTransacaoOleo: parseFloat(value.current.value.replace(",", ".")),
 			idVendedor: userMap[seller],
-			idComprador: 1,
+			idComprador: session!.user.carteira.id,
 		});
 
 		if (createTransaction.Ok) {
@@ -109,7 +109,7 @@ const TransactionForm: React.FC = () => {
 					<div className={styles["label"]}>
 						<label>Estabelecimentos</label>
 						<Dropdown options={userOptions} onSelect={handleSelectSeller} />
-					</div>|
+					</div>
 					<div className={styles["label"]}>
 						<label>Tipo de Óleo</label>
 						<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />

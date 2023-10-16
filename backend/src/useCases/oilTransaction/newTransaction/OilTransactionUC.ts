@@ -29,7 +29,7 @@ export default class OilTransactionUC {
 
 		if (!seller || !payer || payer.saldo < props.valorTransacaoOleo) {
 			throw new UnprocessableEntityError(
-				"A transação não pode ser concluída devido a erros semânticos.",
+				"A transação não foi concluida.",
 			);
 		}
 		this.walletRepository.updateCreditById(
