@@ -1,7 +1,7 @@
 import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
 import TipoUsuario from "./TipoUsuario.model";
 import Endereco from "./Endereco.model";
-import Carteira from "./Carteira.model"
+import Carteira from "./Registro.model"
 
 @Table({ tableName: "Usuario", timestamps: true })
 export default class Usuario extends Model {
