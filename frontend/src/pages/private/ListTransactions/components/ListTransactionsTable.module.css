@@ -58,3 +58,13 @@
 	padding-top: 2rem;
 	cursor: pointer;
 }
+
+
+.h2 {
+    position: 'fixed';
+    top: 0;
+    left: 0;
+    padding: '16px';
+    backgroundColor: 'rgba(0, 0, 0, 0.5)';
+    color: 'white';
+  }

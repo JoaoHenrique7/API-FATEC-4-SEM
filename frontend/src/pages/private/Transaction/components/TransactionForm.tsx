@@ -9,6 +9,8 @@ import { SessionContext, SessionContextType } from "../../../../context/Session/
 import Transaction from "../../../../services/TransactionService/Transaction.service";
 import TTransaction from "../../../../@types/Models/TTransaction";
 import styles from "./TransactionForm.module.css";
+import IconWithText from "../../../../components/IconWithText/IconWithText";
+import { FaMoneyBill } from "react-icons/fa";
 
 const userMap: { [key: string]: number } = {};
 
@@ -104,7 +106,8 @@ const TransactionForm: React.FC = () => {
 			{/* Formulário */}
 			<div>
 				<form onSubmit={handleSubmit} className={styles["form"]}>
-					<h2 className={styles["label"]}>Transações</h2>
+					<h1 className={styles["label"]}>Transações</h1>
+					<IconWithText icon={FaMoneyBill} text={ session && session.user.carteira.saldo }/>
 
 					<div className={styles["label"]}>
 						<label>Estabelecimentos</label>

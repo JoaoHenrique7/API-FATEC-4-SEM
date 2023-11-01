@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
-import { FaPlus } from "react-icons/fa";
+import { FaMoneyBill, FaPlus, FaUser } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
 import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
 import historic from "../../../../assets/historic.svg";
 import transaction from "../../../../assets/transaction.svg";
+import IconWithText from "../../../../components/IconWithText/IconWithText";
+import { IconBaseProps } from "react-icons";
 
 interface Transactions {
 	id: number;
@@ -87,7 +89,8 @@ const ListTransactionsTable: React.FC = () => {
 	return (
 		<>
 			<div className={styles["listTransactionsTable"]}>
-				<h1 className={styles["title"]}>Transações realizadas</h1>
+				<h1 className={styles["title"]}>Histórico</h1>
+				<IconWithText icon={FaMoneyBill} text={ session && session.user.carteira.saldo }/>
 				<Table
 					data={table.data}
 					omit={[

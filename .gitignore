@@ -22,3 +22,7 @@
 **/yarn-error.log*
 
 # **/*.sqlite
+
+
+# IDE
+/.vscode
