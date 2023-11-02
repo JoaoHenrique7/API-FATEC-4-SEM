@@ -1,8 +1,8 @@
 import IOilTransactionDTO from "./IOilTransactionDTO";
 import IOiltransactionRepository from "../../../repositories/IOilTransactionRepository";
-import IWalletRepository from "../../../repositories/IWalletRepository";
+import IWalletRepository from "../../../repositories/IRegistryRepository";
 import Transacao from "../../../database/models/TransacaoOleo.model";
-import Carteira from "../../../database/models/Carteira.model";
+import Carteira from "../../../database/models/Registro.model";
 import { UnprocessableEntityError } from "../../../utils/customError";
 
 export default class OilTransactionUC {

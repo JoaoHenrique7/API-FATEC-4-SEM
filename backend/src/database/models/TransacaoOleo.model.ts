@@ -1,5 +1,5 @@
 import { Column, DataType, ForeignKey, Model, Table, BelongsTo } from "sequelize-typescript";
-import Carteira from "./Carteira.model";
+import Registro from "./Registro.model";
 
 @Table({ tableName: "TransacaoOleo", timestamps: true })
 export default class TransacaoOleo extends Model {
@@ -15,17 +15,17 @@ export default class TransacaoOleo extends Model {
 	@Column({ type: DataType.NUMBER, allowNull: false })
 	valorTransacaoOleo!: number;
 
-	@ForeignKey(() => Carteira)
+	@ForeignKey(() => Registro)
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idVendedor!: number;
 
-	@ForeignKey(() => Carteira)
+	@ForeignKey(() => Registro)
 	@Column({ type: DataType.INTEGER, allowNull: false })
 	idComprador!: number;
 
-	@BelongsTo(() => Carteira, "idComprador")
-	comprador!: Carteira;
+	@BelongsTo(() => Registro, "idComprador")
+	comprador!: Registro;
 
-	@BelongsTo(() => Carteira, "idVendedor")
-	vendedor!: Carteira;
+	@BelongsTo(() => Registro, "idVendedor")
+	vendedor!: Registro;
 }
