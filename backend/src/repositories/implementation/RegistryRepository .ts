@@ -12,4 +12,8 @@ export default class RegistryRepository implements IRegistryRepository {
 		const result = await Registro.update({ saldo: credit }, { where: { id: id } });
 		return result[0];
 	}
+	async findById(id: number): Promise<Registro | null> {
+		const result = await Registro.findOne({ where: { id: id } });
+		return result;
+	}
 }

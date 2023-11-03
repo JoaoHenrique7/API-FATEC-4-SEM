@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
-import { FaMoneyBill, FaPlus, FaUser } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaMoneyBill, FaPlus, FaUser } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
 import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
 import historic from "../../../../assets/historic.svg";
 import transaction from "../../../../assets/transaction.svg";
 import IconWithText from "../../../../components/IconWithText/IconWithText";
 import { IconBaseProps } from "react-icons";
+import ReactPaginate from "react-paginate";
+import TextInput from "../../../../components/TextInput/TextInput";
 
 interface Transactions {
 	id: number;
@@ -26,16 +28,17 @@ const ListTransactionsTable: React.FC = () => {
 		isLoading: true,
 	});
 
-	const redirectTransaction = () => {
-		window.location.href = "/transaction";
+	const [currentPage, setCurrentPage] = useState(0); // Estado para controlar a página atual
+
+	const itemsPerPage = 5;
+
+	const handlePageChange = (selectedPage: { selected: number }) => {
+		setCurrentPage(selectedPage.selected);
 	};
 
-	const redirectHistoric = () => {
-		window.location.href = "/listTransaction";
-	};
-
+	
 	const { session } = useContext(SessionContext) as SessionContextType;
-	console.log(session?.user.id);
+	let [filteredData, setFilteredData] = useState(table.data);
 
 	const getAllTransactions = async () => {
 		try {
@@ -77,6 +80,7 @@ const ListTransactionsTable: React.FC = () => {
 			});
 
 			setTable({ data: list, isLoading: false });
+			setFilteredData(list);
 		} catch (error) {
 			// Handle errors here
 		}
@@ -86,23 +90,56 @@ const ListTransactionsTable: React.FC = () => {
 		getAllTransactions();
 	}, []);
 
+	const [searchTerm, setSearchTerm] = useState("");
+	
+	console.log(filteredData);
+	const handleSearch = (searchValue: string) => {
+		setSearchTerm(searchValue);
+		const filtered = table.data.filter((item) =>
+			item.Tipo_Oleo.toLowerCase().includes(searchValue.toLowerCase()),
+		);
+		setFilteredData(filtered);
+		setCurrentPage(0);
+	};
+
+
 	return (
 		<>
 			<div className={styles["listTransactionsTable"]}>
 				<h1 className={styles["title"]}>Histórico</h1>
-				<IconWithText icon={FaMoneyBill} text={ session && session.user.carteira.saldo }/>
+				<IconWithText icon={FaMoneyBill} text={session && session.user.carteira.saldo} />
+				<div className={styles["searchContainer"]}>
+					<TextInput
+						placeholder="Pesquisar por tipo de óleo"
+						value={searchTerm}
+						onChange={(e) => handleSearch(e.target.value)}
+					/>
+					<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
+				</div>
 				<Table
-					data={table.data}
-					omit={[
-						"id",
-						// "tipoOleo",
-						"volume",
-						// "valorTransacaoOleo",
-						"updatedAt",
-						"idVendedor",
-						"idComprador",
-					]}
+					data={filteredData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
+					omit={["id", "volume", "updatedAt", "idVendedor", "idComprador"]}
 					isLoading={table.isLoading}
+				/>
+				<ReactPaginate
+					pageCount={Math.ceil(table.data.length / itemsPerPage)}
+					pageRangeDisplayed={5}
+					marginPagesDisplayed={2}
+					onPageChange={handlePageChange}
+					containerClassName={styles["paginationContainer"]}
+					pageClassName={styles["paginationItem"]}
+					activeClassName={styles["paginationActive"]}
+					nextLabel={
+						<span className={styles["paginationNext"]}>
+							<FaChevronRight />
+						</span>
+					}
+					previousLabel={
+						<span className={styles["paginationPrevious"]}>
+							<FaChevronLeft />
+						</span>
+					}
+					breakLabel={"..."}
 				/>
 			</div>
 		</>
