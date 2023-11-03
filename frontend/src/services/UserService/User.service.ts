@@ -12,4 +12,8 @@ export default abstract class User {
 	public static async Create(usuario: UsuarioDTO) {
 		return await API.Post<TGenericResponse<TUsuario>>(URLs.UserRoutes.Create, JSON.stringify(usuario));
 	}
+
+	public static async FindById() {
+		return await API.Get<TGenericResponse<TUsuario[]>>(URLs.UserRoutes.FindUserById);
+	}
 }

@@ -14,6 +14,7 @@ const UserRoutes = Object.freeze(
 	router({
 		All: "user/get-all",
 		Create: "user/create",
+		FindUserById: "user/find-by-id"
 	}),
 );
 
@@ -30,10 +31,17 @@ const TransactionRoutes = Object.freeze(
 	}),
 );
 
+const RegistryRoutes = Object.freeze(
+	router({
+		All: "registry/find-by-id",
+	}),
+);
+
 const URLs = {
 	UserRoutes,
 	AuthRoutes,
 	TransactionRoutes,
+	RegistryRoutes
 } as const;
 
 export default URLs;

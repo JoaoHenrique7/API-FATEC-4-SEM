@@ -89,4 +89,22 @@ export default class UserService {
 			return false;
 		}
 	}
+	public static async findByid(id: number){
+		const requestBody = { id: id };
+		try {
+			const response = await DataServiceAPI.post(
+				"http://localhost:3001/user/find-by-id",
+				requestBody,
+			);
+
+			if (response.ok) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			console.error(error);
+			return false;
+		}
+	}
 }

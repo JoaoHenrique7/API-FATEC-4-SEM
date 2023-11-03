@@ -10,6 +10,8 @@ import IconWithText from "../../../../components/IconWithText/IconWithText";
 import { IconBaseProps } from "react-icons";
 import ReactPaginate from "react-paginate";
 import TextInput from "../../../../components/TextInput/TextInput";
+import RegistryService from "../../../../services/RegistryService/RegistryService";
+import UserService from "../../../../services/UserService/UserService";
 
 interface Transactions {
 	id: number;
@@ -44,7 +46,6 @@ const ListTransactionsTable: React.FC = () => {
 		try {
 			const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
 				.data;
-
 			const list: {
 				Tipo_Oleo: string;
 				Volume: number;
@@ -55,7 +56,7 @@ const ListTransactionsTable: React.FC = () => {
 				Compra_ou_Venda: string;
 			}[] = [];
 
-			resultadoRequest.forEach((element) => {
+			resultadoRequest.forEach(async (element) => {
 				if (element.idComprador == session?.user.id) {
 					const user = {
 						Tipo_Oleo: element.tipoOleo,
@@ -74,6 +75,7 @@ const ListTransactionsTable: React.FC = () => {
 						Feito: element.createdAt,
 						idComprador: element.idComprador,
 						Compra_ou_Venda: "Venda",
+						Remetente: "pato"
 					};
 					list.push(user);
 				}
@@ -86,13 +88,13 @@ const ListTransactionsTable: React.FC = () => {
 		}
 	};
 
+	
 	useEffect(() => {
 		getAllTransactions();
 	}, []);
 
 	const [searchTerm, setSearchTerm] = useState("");
 	
-	console.log(filteredData);
 	const handleSearch = (searchValue: string) => {
 		setSearchTerm(searchValue);
 		const filtered = table.data.filter((item) =>
