@@ -1,4 +1,4 @@
-import TCarteira from "./TCarteira";
+import TRegistro from "./TRegistro";
 import TEndereco from "./TEndereco";
 import TTipoUsuario from "./TTipoUsuario";
 
@@ -10,7 +10,7 @@ type TUsuario = {
 	documentoUsuario: string;
 	tipoUsuario: TTipoUsuario;
 	endereco: TEndereco;
-	carteira: TCarteira;
+	registro: TRegistro;
 	createdAt: string;
 	updatedAt: string
 };

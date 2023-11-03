@@ -90,7 +90,7 @@ const ListTransactionsTable: React.FC = () => {
 		<>
 			<div className={styles["listTransactionsTable"]}>
 				<h1 className={styles["title"]}>Histórico</h1>
-				<IconWithText icon={FaMoneyBill} text={ session && session.user.carteira.saldo }/>
+				<IconWithText icon={FaMoneyBill} text={ session && session.user.registro.saldo }/>
 				<Table
 					data={table.data}
 					omit={[

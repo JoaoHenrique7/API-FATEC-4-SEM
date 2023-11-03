@@ -36,7 +36,7 @@ const TransactionForm: React.FC = () => {
 					);
 					if (estabelecimentoUsers.length > 0) {
 						estabelecimentoUsers.forEach((user) => {
-							userMap[user.nomeUsuario] = user.carteira.id;
+							userMap[user.nomeUsuario] = user.registro.id;
 						});
 						const userNames = estabelecimentoUsers.map((user) => user.nomeUsuario);
 						setUserOptions(userNames);
@@ -82,13 +82,14 @@ const TransactionForm: React.FC = () => {
 			volume: parseFloat(amount.current.value.replace(",", ".")),
 			valorTransacaoOleo: parseFloat(value.current.value.replace(",", ".")),
 			idVendedor: userMap[seller],
-			idComprador: session!.user.carteira.id,
+			idComprador: session!.user.registro.id,
 		});
 
 		if (createTransaction.Ok) {
 			alert(createTransaction.Message);
+			location.reload();
 		} else {
-			alert(createTransaction.Message);
+			alert(createTransaction.Message);		
 		}
 	};
 
@@ -107,7 +108,7 @@ const TransactionForm: React.FC = () => {
 			<div>
 				<form onSubmit={handleSubmit} className={styles["form"]}>
 					<h1 className={styles["label"]}>Transações</h1>
-					<IconWithText icon={FaMoneyBill} text={ session && session.user.carteira.saldo }/>
+					<IconWithText icon={FaMoneyBill} text={ session && session.user.registro.saldo }/>
 
 					<div className={styles["label"]}>
 						<label>Estabelecimentos</label>
