@@ -9,6 +9,7 @@ import { IconBaseProps } from "react-icons";
 import ReactPaginate from "react-paginate";
 import TextInput from "../../../../components/TextInput/TextInput";
 import UserService from "../../../../services/UserService/UserService";
+import RegistryService from "../../../../services/RegistryService/RegistryService";
 
 interface Transactions {
 	id: number;
@@ -19,6 +20,7 @@ interface Transactions {
 	updatedAt: Date;
 	idVendedor: number;
 	idComprador: number;
+	Remetente: string;
 }
 
 const ListTransactionsTable: React.FC = () => {
@@ -42,6 +44,7 @@ const ListTransactionsTable: React.FC = () => {
 		try {
 			const resultadoRequest: Transactions[] = (await TransactionService.getAllTransactions())
 				.data;
+
 			const list: {
 				Tipo_Oleo: string;
 				Volume: number;
@@ -50,10 +53,16 @@ const ListTransactionsTable: React.FC = () => {
 				idVendedor?: number;
 				idComprador?: number;
 				Compra_ou_Venda: string;
+				Remetente: string;
 			}[] = [];
 
 			resultadoRequest.forEach(async (element) => {
+				
 				if (element.idComprador == session?.user.id) {
+					const resultadoRegistry = (await RegistryService.getOneRegistry(element.idComprador))
+					.data;
+					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
+					.data;	
 					const user = {
 						Tipo_Oleo: element.tipoOleo,
 						Volume: element.volume,
@@ -61,9 +70,14 @@ const ListTransactionsTable: React.FC = () => {
 						Feito: element.createdAt,
 						idVendedor: element.idVendedor,
 						Compra_ou_Venda: "Compra",
+						Remetente: resultadoUsuario.nomeUsuario
 					};
 					list.push(user);
 				} else if (element.idVendedor == session?.user.id) {
+					const resultadoRegistry = (await RegistryService.getOneRegistry(element.idComprador))
+					.data;
+					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
+					.data;
 					const user = {
 						Tipo_Oleo: element.tipoOleo,
 						Volume: element.volume,
@@ -71,13 +85,15 @@ const ListTransactionsTable: React.FC = () => {
 						Feito: element.createdAt,
 						idComprador: element.idComprador,
 						Compra_ou_Venda: "Venda",
+						Remetente: resultadoUsuario.nomeUsuario
 					};
 					list.push(user);
 				}
+				setFilteredData(list);
 			});
 
 			setTable({ data: list, isLoading: false });
-			setFilteredData(list);
+			
 		} catch (error) {
 			// Handle errors here
 		}

@@ -89,4 +89,31 @@ export default class UserService {
 			return false;
 		}
 	}
+
+	public static async getOneUser(id:number): Promise<UserResponse> {
+        const requestBody = {
+			id: id,
+		};
+		try {
+			const response = await DataServiceAPI.post(
+				" http://localhost:3001/user/get-one-user", requestBody
+			);
+			const responseJson = await response.json();
+
+			const registryResponse = {
+				data: responseJson.Data,
+				message: responseJson.message,
+				ok: responseJson.Ok,
+			};
+
+			return registryResponse;
+		} catch (error) {
+			const response: UserResponse = {
+				data: [],
+				message: `${error}`,
+				ok: false,
+			};
+			return response;
+		}
+	}
 }
