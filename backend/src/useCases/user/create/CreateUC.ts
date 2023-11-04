@@ -1,4 +1,4 @@
-import Carteira from "../../../database/models/Registro.model";
+import Registro from "../../../database/models/Registro.model";
 import Endereco from "../../../database/models/Endereco.model";
 import TipoUsuario from "../../../database/models/TipoUsuario.model";
 import Usuario from "../../../database/models/Usuario.model";
@@ -30,8 +30,8 @@ export default class CreateUC {
 		}
 
 		const user: Usuario = Usuario.build(
-			{ ...props, carteira: { saldo: 0 } },
-			{ include: [Endereco, TipoUsuario, Carteira] },
+			{ ...props, registro: { saldo: 0, volumeOleoUsado: 0, volumeOleoVirgem: 0 } },
+			{ include: [Endereco, TipoUsuario, Registro] },
 		);
 		return await this.userRepository.create(user);
 	}

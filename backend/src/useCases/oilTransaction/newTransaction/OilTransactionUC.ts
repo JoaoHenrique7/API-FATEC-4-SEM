@@ -1,8 +1,8 @@
 import IOilTransactionDTO from "./IOilTransactionDTO";
 import IOiltransactionRepository from "../../../repositories/IOilTransactionRepository";
-import IWalletRepository from "../../../repositories/IRegistryRepository";
+import IRegistryRepository from "../../../repositories/IRegistryRepository";
 import Transacao from "../../../database/models/TransacaoOleo.model";
-import Carteira from "../../../database/models/Registro.model";
+import Registro from "../../../database/models/Registro.model";
 import { UnprocessableEntityError } from "../../../utils/customError";
 
 export default class OilTransactionUC {
@@ -10,11 +10,11 @@ export default class OilTransactionUC {
 	 * Constructs a new instance of the class.
 	 *
 	 * @param {IOiltransactionRepository} oilTransactionRepository - The transaction repository.
-	 * @param {IWalletRepository} walletRepository - The transaction repository.
+	 * @param {IRegistryRepository} registryRepository - The transaction repository.
 	 */
 	constructor(
 		private oilTransactionRepository: IOiltransactionRepository,
-		private walletRepository: IWalletRepository,
+		private registryRepository: IRegistryRepository,
 	) {}
 
 	/**
@@ -24,22 +24,74 @@ export default class OilTransactionUC {
 	 * @return {Promise<Transacao>} - A Promise that resolves to a Transacao object.
 	 */
 	async execute(props: IOilTransactionDTO): Promise<Transacao> {
-		const seller: Carteira | null = await this.walletRepository.getCredit(props.idVendedor);
-		const payer: Carteira | null = await this.walletRepository.getCredit(props.idComprador);
+		const seller: Registro | null = await this.registryRepository.getRegistry(props.idVendedor);
+		const payer: Registro | null = await this.registryRepository.getRegistry(props.idComprador);
 
-		if (!seller || !payer || payer.saldo < props.valorTransacaoOleo) {
-			throw new UnprocessableEntityError(
-				"A transação não foi concluida.",
-			);
+		switch (props.tipoOleo) {
+			case "Virgem":
+				if (
+					!seller ||
+					!payer ||
+					payer.saldo < props.valorTransacaoOleo ||
+					seller.volumeOleoVirgem < props.volume
+				) {
+					throw new UnprocessableEntityError("A transação não foi concluida.");
+				}
+				this.registryRepository.updateCreditById(
+					props.idVendedor,
+					seller.saldo + props.valorTransacaoOleo,
+				);
+				this.registryRepository.updateCreditById(
+					props.idComprador,
+					payer.saldo - props.valorTransacaoOleo,
+				);
+				this.registryRepository.updateOilValueById(
+					props.idVendedor,
+					seller.volumeOleoVirgem - props.volume,
+					props.tipoOleo,
+				);
+				this.registryRepository.updateOilValueById(
+					props.idComprador,
+					payer.volumeOleoVirgem + props.volume,
+					props.tipoOleo,
+				);
+				break;
+
+			case "Usado":
+				if (
+					!seller ||
+					!payer ||
+					payer.saldo < props.valorTransacaoOleo ||
+					seller.volumeOleoUsado < props.volume
+				) {
+					throw new UnprocessableEntityError("A transação não foi concluida.");
+				}
+				this.registryRepository.updateCreditById(
+					props.idVendedor,
+					seller.saldo + props.valorTransacaoOleo,
+				);
+				this.registryRepository.updateCreditById(
+					props.idComprador,
+					payer.saldo - props.valorTransacaoOleo,
+				);
+				this.registryRepository.updateOilValueById(
+					props.idVendedor,
+					seller.volumeOleoUsado - props.volume,
+					props.tipoOleo
+				);
+				this.registryRepository.updateOilValueById(
+					props.idComprador,
+					payer.volumeOleoUsado + props.volume,
+					props.tipoOleo
+				);
+				break;
+
+			default:
+				throw new UnprocessableEntityError(
+					"A transação não foi concluida. Tipo de óleo inválido.",
+				);
 		}
-		this.walletRepository.updateCreditById(
-			props.idVendedor,
-			seller.saldo + props.valorTransacaoOleo,
-		);
-		this.walletRepository.updateCreditById(
-			props.idComprador,
-			payer.saldo - props.valorTransacaoOleo,
-		);
+
 		const transaction: Transacao = Transacao.build({ ...props });
 		return await this.oilTransactionRepository.create(transaction);
 	}

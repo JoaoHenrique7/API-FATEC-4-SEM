@@ -9,7 +9,7 @@ function Home(): JSX.Element {
 		<section className={styles["page"]}>
 			<h1>{session && session.user.nomeUsuario}</h1>
 			<h3>{session && session.user.emailUsuario}</h3>
-			<p>Saldo: { session && session.user.carteira.saldo }</p>
+			<p>Saldo: { session && session.user.registro.saldo }</p>
 		</section>
 	);
 }
