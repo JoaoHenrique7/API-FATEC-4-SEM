@@ -33,4 +33,14 @@ export default class UserRepository implements IUserRepository {
 	findByEmail(email: string): Promise<Usuario | null> {
 		return Usuario.findOne({ where: { emailUsuario: email } });
 	}
+
+	/**
+	 * Finds a user by id.
+	 *
+	 * @param {number} id - The id of the user to find.
+	 * @return {Promise<Usuario | null>} A promise that resolves to the found user or null if not found.
+	 */
+	getOneUser(id: number): Promise<Usuario | null> {
+		return Usuario.findOne({ where: { id: id } });
+	}
 }
