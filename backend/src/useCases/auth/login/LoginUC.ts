@@ -2,6 +2,7 @@ import Usuario from "../../../database/models/Usuario.model";
 import IAuthRepository from "../../../repositories/IAuthRepository";
 import IUserRepository from "../../../repositories/IUserRepository";
 import ILoginDTO from "./ILoginDTO";
+import * as bcrypt from "bcryptjs";
 
 export default class LoginUC {
 
@@ -23,7 +24,9 @@ export default class LoginUC {
     async execute(credentials: ILoginDTO): Promise<{ success: boolean, usuario: Usuario | null }> {
         const usuario: Usuario | null = await this.authRepository.login(credentials);
 
-        if (usuario) {
+        if (usuario != null) {
+            const isPasswordValid = bcrypt.compareSync(credentials.password, usuario.senhaUsuario);
+            if (!isPasswordValid) return { success: false, usuario: null };
             return { success: true, usuario: usuario };
         } else {
             return { success: false, usuario: null };
