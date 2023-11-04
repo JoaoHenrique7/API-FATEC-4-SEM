@@ -65,48 +65,6 @@
     top: 0;
     left: 0;
     padding: '16px';
-    background-Color: 'rgba(0, 0, 0, 0.5)';
+    backgroundColor: 'rgba(0, 0, 0, 0.5)';
     color: 'white';
   }
-
-.paginationContainer {
-	display: flex;
-	justify-content: center;
-	list-style: none;
-	padding: 0;
-  }
-  
-  .paginationItem {
-	margin: 0 5px;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	border-radius: 5px;
-  }
-  
-  .paginationNext {
-	display: inline-block;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	border-radius: 5px;
-  }
-  
-  .paginationPrevious {
-	display: inline-block;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	border-radius: 5px;
-  }
-
-  .paginationActive {
-	background-color: var(--primary-360);
-	color: #fff;
-  }
-
-  .searchContainer{
-	width: 3rem;
-	display: inline;
-  }
-  

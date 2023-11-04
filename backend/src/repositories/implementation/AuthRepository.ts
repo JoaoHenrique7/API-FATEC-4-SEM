@@ -7,7 +7,7 @@ import Registro from "../../database/models/Registro.model";
 
 export default class AuthRepository implements IAuthRepository {
 	async login(credentials: ILoginDTO): Promise<Usuario | null> {
-		return Usuario.findOne({ where: { emailUsuario: credentials.email, senhaUsuario: credentials.password }, include: [ Endereco, TipoUsuario, Registro ] });
+		return Usuario.findOne({ where: { emailUsuario: credentials.email }, include: [ Endereco, TipoUsuario, Registro ] });
 	};
 
 	async updatePasswordByEmail(email: string, newPassword: string): Promise<number> {

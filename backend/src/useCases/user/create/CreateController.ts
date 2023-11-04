@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CreateUC from "./CreateUC";
 import ICreateDTO from "./ICreateDTO";
 import Usuario from "../../../database/models/Usuario.model";
+import * as bcrypt from "bcryptjs";
 
 export default class CreatePartnerController {
     /**
@@ -22,6 +23,9 @@ export default class CreatePartnerController {
      */
     async create(req: Request<ICreateDTO>, res: Response): Promise<Response> {
         let body: ICreateDTO = req.body;
+        const salt = await bcrypt.genSalt(10);
+		const hashPassword = await bcrypt.hash(body.senhaUsuario, salt);
+        body.senhaUsuario = hashPassword;
         
         try {
             const createdUsuario: Usuario = await this.createUserUC.execute(body);
