@@ -27,7 +27,7 @@ const ListTransactionsTable: React.FC = () => {
 		isLoading: true,
 	});
 
-	const [currentPage, setCurrentPage] = useState(0); // Estado para controlar a página atual
+	const [currentPage, setCurrentPage] = useState(0);
 
 	const itemsPerPage = 5;
 
@@ -71,7 +71,6 @@ const ListTransactionsTable: React.FC = () => {
 						Feito: element.createdAt,
 						idComprador: element.idComprador,
 						Compra_ou_Venda: "Venda",
-						Remetente: "pato"
 					};
 					list.push(user);
 				}
