@@ -103,12 +103,18 @@ const TransactionForm: React.FC = () => {
 	};
 
 	return (
-		<div>			
+		<div>
 			{/* Formulário */}
 			<div>
 				<form onSubmit={handleSubmit} className={styles["form"]}>
 					<h1 className={styles["label"]}>Transações</h1>
-					<IconWithText icon={FaMoneyBill} text={ session && session.user.registro.saldo }/>
+					<p>
+						Saldo:{" "}
+						<IconWithText
+							icon={FaMoneyBill}
+							text={session && session.user.registro.saldo}
+						/>
+					</p>
 
 					<div className={styles["label"]}>
 						<label>Estabelecimentos</label>

@@ -35,7 +35,6 @@ const ListTransactionsTable: React.FC = () => {
 		setCurrentPage(selectedPage.selected);
 	};
 
-	
 	const { session } = useContext(SessionContext) as SessionContextType;
 
 	const getAllTransactions = async () => {
@@ -71,6 +70,7 @@ const ListTransactionsTable: React.FC = () => {
 						Feito: element.createdAt,
 						idComprador: element.idComprador,
 						Compra_ou_Venda: "Venda",
+						Remetente: "pato",
 					};
 					list.push(user);
 				}
@@ -83,11 +83,10 @@ const ListTransactionsTable: React.FC = () => {
 		}
 	};
 
-	
 	useEffect(() => {
 		getAllTransactions();
 	}, []);
-	let [filteredData, setFilteredData] = useState(table.data);
+	const [filteredData, setFilteredData] = useState(table.data);
 	const [selectedColumn, setSelectedColumn] = useState<string>("Tipo_Oleo"); // Default to searching by "Tipo_Oleo"
 
 	const columnOptions = [
@@ -96,49 +95,58 @@ const ListTransactionsTable: React.FC = () => {
 		{ label: "Valor", value: "Valor" },
 	];
 	const [searchTerm, setSearchTerm] = useState("");
-	
+
 	const handleSearch = (searchValue: string) => {
 		setSearchTerm(searchValue);
 		const filtered = table.data.filter((item) => {
-		  const columnValue = item[selectedColumn];
-	  
-		  if (typeof columnValue === "string") {
-			return columnValue.toLowerCase().includes(searchValue.toLowerCase());
-		  } else if (typeof columnValue === "number") {
-			return columnValue.toString().includes(searchValue);
-		  }
+			const columnValue = item[selectedColumn];
 
-		  return false;
+			if (typeof columnValue === "string") {
+				return columnValue.toLowerCase().includes(searchValue.toLowerCase());
+			} else if (typeof columnValue === "number") {
+				return columnValue.toString().includes(searchValue);
+			}
+
+			return false;
 		});
 		setFilteredData(filtered);
 		setCurrentPage(0);
-	  };
-
+	};
 
 	return (
 		<>
 			<div className={styles["listTransactionsTable"]}>
 				<h1 className={styles["title"]}>Histórico</h1>
+				<p>
+					Saldo:{" "}
+					<IconWithText
+						icon={FaMoneyBill}
+						text={session && session.user.registro.saldo}
+					/>
+				</p>
 				<div className={styles["searchContainer"]}>
-				<select
-					value={selectedColumn}
-					onChange={(e) => setSelectedColumn(e.target.value)}
-				>
-					{columnOptions.map((option) => (
-					<option key={option.value} value={option.value}>
-						{option.label}
-					</option>
-					))}
-				</select>
-				<TextInput
-					placeholder={`Pesquisar por ${selectedColumn}`}
-					value={searchTerm}
-					onChange={(e) => handleSearch(e.target.value)}
-				/>
-				<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
+					<select
+						value={selectedColumn}
+						onChange={(e) => setSelectedColumn(e.target.value)}
+					>
+						{columnOptions.map((option) => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
+					<TextInput
+						placeholder={`Pesquisar por ${selectedColumn}`}
+						value={searchTerm}
+						onChange={(e) => handleSearch(e.target.value)}
+					/>
+					<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
 				</div>
 				<Table
-					data={filteredData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
+					data={filteredData.slice(
+						currentPage * itemsPerPage,
+						(currentPage + 1) * itemsPerPage,
+					)}
 					omit={["id", "volume", "updatedAt", "idVendedor", "idComprador"]}
 					isLoading={table.isLoading}
 				/>
