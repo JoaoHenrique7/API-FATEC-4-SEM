@@ -37,7 +37,6 @@ const ListTransactionsTable: React.FC = () => {
 
 	
 	const { session } = useContext(SessionContext) as SessionContextType;
-	let [filteredData, setFilteredData] = useState(table.data);
 
 	const getAllTransactions = async () => {
 		try {
@@ -89,31 +88,55 @@ const ListTransactionsTable: React.FC = () => {
 	useEffect(() => {
 		getAllTransactions();
 	}, []);
+	let [filteredData, setFilteredData] = useState(table.data);
+	const [selectedColumn, setSelectedColumn] = useState<string>("Tipo_Oleo"); // Default to searching by "Tipo_Oleo"
 
+	const columnOptions = [
+		{ label: "Tipo de Óleo", value: "Tipo_Oleo" },
+		{ label: "Volume", value: "Volume" },
+		{ label: "Valor", value: "Valor" },
+	];
 	const [searchTerm, setSearchTerm] = useState("");
 	
 	const handleSearch = (searchValue: string) => {
 		setSearchTerm(searchValue);
-		const filtered = table.data.filter((item) =>
-			item.Tipo_Oleo.toLowerCase().includes(searchValue.toLowerCase()),
-		);
+		const filtered = table.data.filter((item) => {
+		  const columnValue = item[selectedColumn];
+	  
+		  if (typeof columnValue === "string") {
+			return columnValue.toLowerCase().includes(searchValue.toLowerCase());
+		  } else if (typeof columnValue === "number") {
+			return columnValue.toString().includes(searchValue);
+		  }
+
+		  return false;
+		});
 		setFilteredData(filtered);
 		setCurrentPage(0);
-	};
+	  };
 
 
 	return (
 		<>
 			<div className={styles["listTransactionsTable"]}>
 				<h1 className={styles["title"]}>Histórico</h1>
-				{/* <IconWithText icon={FaMoneyBill} text={session && session.user.carteira.saldo} /> */}
 				<div className={styles["searchContainer"]}>
-					<TextInput
-						placeholder="Pesquisar por tipo de óleo"
-						value={searchTerm}
-						onChange={(e) => handleSearch(e.target.value)}
-					/>
-					<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
+				<select
+					value={selectedColumn}
+					onChange={(e) => setSelectedColumn(e.target.value)}
+				>
+					{columnOptions.map((option) => (
+					<option key={option.value} value={option.value}>
+						{option.label}
+					</option>
+					))}
+				</select>
+				<TextInput
+					placeholder={`Pesquisar por ${selectedColumn}`}
+					value={searchTerm}
+					onChange={(e) => handleSearch(e.target.value)}
+				/>
+				<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
 				</div>
 				<Table
 					data={filteredData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)}
