@@ -14,7 +14,7 @@ router.post('/create', (request: Request<ICreateDTO>, response: Response) => {
     return create.create(request, response);
 });
 
-router.get('/get-one-user', (request: Request, response: Response) => {
+router.post('/get-one-user', (request: Request, response: Response) => {
     return GetOneUser.getOneUser(request, response);
 });
 
