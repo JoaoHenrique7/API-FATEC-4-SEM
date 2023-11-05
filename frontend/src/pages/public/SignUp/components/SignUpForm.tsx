@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import styles from "./SignUpForm.module.css";
 import TextInput from "../../../../components/TextInput/TextInput";
 import PasswordInput from "../../../../components/PasswordInput/PasswordInput";
@@ -21,6 +21,8 @@ function SignUpForm(props: SignUpFormProps) {
 
 	const radioParceiroRef = useRef<HTMLInputElement | null>(null);
 	const radioEstabelecimentoRef = useRef<HTMLInputElement | null>(null);
+	const radioCnpjRef = useRef<HTMLInputElement | null>(null);
+	const radioCpfRef = useRef<HTMLInputElement | null>(null);
 
 	const nomeRef = useRef<HTMLInputElement | null>(null);
 	const emailRef = useRef<HTMLInputElement | null>(null);
@@ -66,6 +68,31 @@ function SignUpForm(props: SignUpFormProps) {
 		if (!senhaRef.current) return false;
 		if (!confirmarSenhaRef.current) return false;
 		return true;
+	};
+
+	const handleDocumentChange = (event: ChangeEvent<HTMLInputElement>) => {
+		let document = event.target.value;
+		document = document.replace(/\D/g, "");
+		if (radioCpfRef.current?.checked) {
+			// Se for menor ou igual a 14 caracteres, chama a função para CPF
+			event.target.value = formatCPF(document);
+		} else if(radioCnpjRef.current?.checked){
+			// Se for maior que 14 caracteres, chama a função para CNPJ
+			event.target.value = formatCNPJ(document);
+		}
+	};
+
+	const handleDocIdChange = (event: ChangeEvent<HTMLInputElement>) => {
+		if(documentRef.current)
+			documentRef.current.value = "";
+	};
+	
+	const formatCPF = (value: string) => {
+		return value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+	};
+	
+	const formatCNPJ = (value: string) => {
+		return value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
 	};
 
 	const validateStep1 = (): void => {
@@ -202,7 +229,7 @@ function SignUpForm(props: SignUpFormProps) {
 		<section className={styles["SignUpForm"]}>
 			<div className={styles["SignUpForm__status"]}>
 				<h1>Cadastro</h1>
-				<h3>Lorem ipsum dolor sit amet.</h3>
+				<h3>Etapas de cadastro.</h3>
 				<ol>
 					<li className={styles["__active"]}>Tipo de cadastro</li>
 					<li className={step >= 2 ? styles["__active"] : styles["__inactive"]}>
@@ -249,10 +276,25 @@ function SignUpForm(props: SignUpFormProps) {
 							label={"Email"}
 							hint={"Insira seu e-mail."}
 						/>
+						<p>Documento</p>
+						<RadioInput
+							forwardRef={radioCnpjRef}
+							label="Cnpj"
+							name="typeRadios"
+							onChange={handleDocIdChange}
+						/>
+						<RadioInput
+							forwardRef={radioCpfRef}
+							label="Cpf"
+							name="typeRadios"
+							onChange={handleDocIdChange}
+						/>
 						<TextInput
 							forwardedRef={documentRef}
-							label={"CPF/CNPJ"}
 							hint={"Documento de identificação."}
+							maxLength={radioCpfRef.current?.checked ? 11 : (radioCnpjRef.current?.checked ? 14 : 14)}
+							onChange={handleDocumentChange}
+							
 						/>
 						<span className={styles["__fieldset__buttons"]}>
 							<Button
