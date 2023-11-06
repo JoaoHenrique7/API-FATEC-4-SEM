@@ -39,6 +39,7 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 
 ### 🔖 Requisitos não funcionais
 + - [x] Documentação apresentada no Github
++ - [x] BPMN
 + - [ ] Manual do usuário
 <br>
 
@@ -72,8 +73,15 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 <h1 align="center"><samp>SPRINT BACKLOG</samp></h1>
 
 <p align="center">
-    <img src="/readme/sprintBacklog.png"/>
- </p>
+    <img src="/readme/SprintBacklog.png"/>
+</p>
+
+<br>
+<h1 align="center"><samp>BPMN</samp></h1>
+
+<p align="center">
+    <img src="/readme/BPMN.png"/>
+</p>
 
 <br>
 <h1 align="center"><samp>BURNDOWN DAS SPRINTS</samp></h1>
@@ -87,6 +95,11 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 <h2 align="center"><samp>SEGUNDA SPRINT</samp></h2>
 
 ![Equipe bytech](/readme/burndownSprint2.png)
+
+<br>
+<h2 align="center"><samp>TERCEIRA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/burndownSprint3.png)
 
 <br>
 
@@ -113,6 +126,16 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 
 <p align="center">
     <img src="/readme/modeloLogicoSprint2.png"/>
+</p>
+
+<h2 align="center"><samp>TERCEIRA SPRINT</samp></h2>
+
+<p align="center">
+    <img src="/readme/modeloConceitualSprint3.png"/>
+</p>
+
+<p align="center">
+    <img src="/readme/modeloLogicoSprint3.png"/>
 </p>
 
 <br>
@@ -161,7 +184,49 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
   </p>
   <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento assim como histórico de transações do usuário.</p>
 </details>
+
+<h2>Sprint 3</h2>
+<details>
+  <summary>Detalhes</summary>
+  <h3 align="center">Demonstração de usabilidade</h3>
+   <br>
+  <h4 align="center">Cadastrando Usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração do processo de cadastro de um usuário.</p>
+
+  <br>
+  <h4 align="center">Tela de Estabelecimento<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/estabelecimento1.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento assim como histórico de transações do usuário.</p>
+
+  <br>
+  <h4 align="center">Transação entre Estabelecimento e Parceiro<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração da transação entre estabelecimento e parceiro.</p>
+
+  <br>
+  <h4 align="center">Edição de usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração do processo de edição de usuário.</p>
+</details>
  
+<br>
+<h1 align="center"><samp>Product Backlog</samp></h1>
+
+[Clique aqui para ter acesso ao fluxograma do sistema!](https://github.com/CamilaRedondo/API-FATEC-4-SEM/blob/main/readme/Product%20Backlog%20do%20Projeto_V01.xlsx)
+
 <br>
 <h1 align="center"><samp>Manual do Usuário</samp></h1>
 
