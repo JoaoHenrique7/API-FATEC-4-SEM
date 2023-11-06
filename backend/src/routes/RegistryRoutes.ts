@@ -3,7 +3,7 @@ import { GetOneRegistry } from "../useCases/registry/getOneRegistry/GetOneRegist
 
 const router = Router();
 
-router.get('/get-one-registry', (request: Request, response: Response) => {
+router.post('/get-one-registry', (request: Request, response: Response) => {
     return GetOneRegistry.getOneRegistry(request, response);
 });
 
