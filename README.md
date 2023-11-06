@@ -225,7 +225,7 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 <br>
 <h1 align="center"><samp>Product Backlog</samp></h1>
 
-[Clique aqui para ter acesso ao manual do usuário!](https://github.com/CamilaRedondo/API-FATEC-4-SEM/blob/main/readme/Product%20Backlog%20do%20Projeto_V01.xlsx)
+[Clique aqui para ter acesso ao fluxograma do sistema!](https://github.com/CamilaRedondo/API-FATEC-4-SEM/blob/main/readme/Product%20Backlog%20do%20Projeto_V01.xlsx)
 
 <br>
 <h1 align="center"><samp>Manual do Usuário</samp></h1>
