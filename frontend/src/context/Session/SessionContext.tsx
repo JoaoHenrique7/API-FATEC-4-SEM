@@ -8,6 +8,7 @@ export type SessionContextType = {
 	session: { user: TUsuario } | undefined;
 	login: (credentials: TLoginDTO) => Promise<boolean>;
 	logout: () => void;
+	reload: () => void;
 };
 
 export const SessionContext = createContext<SessionContextType | null>(null);
@@ -43,8 +44,24 @@ function SessionContextProvider(props: TProperties): JSX.Element {
 		window.location.href = "/sign-in";
 	};
 
+	const reload = async () => {
+		const response = await Auth.Login({
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+			email: session?.user.emailUsuario!,
+			password: "123456",
+		});
+
+		if (response.Ok.success && response.Ok.usuario) {
+			setSession({ user: response.Ok.usuario });
+			setCookie("@_user", JSON.stringify(response.Ok.usuario), { path: "/" });
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	return (
-		<SessionContext.Provider value={{ session, login, logout }}>
+		<SessionContext.Provider value={{ session, login, logout, reload }}>
 			{props.children}
 		</SessionContext.Provider>
 	);

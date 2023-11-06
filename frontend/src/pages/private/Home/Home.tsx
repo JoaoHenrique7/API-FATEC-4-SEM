@@ -1,19 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styles from "./Home.module.css";
-import { SessionContext, SessionContextType } from "../../../context/Session/SessionContext";
-import IconWithText from "../../../components/IconWithText/IconWithText";
-import { FaMoneyBill } from "react-icons/fa";
+import { RiOilLine } from "react-icons/ri";
 
 function Home(): JSX.Element {
-	const { session } = useContext(SessionContext) as SessionContextType;
-
 	return (
 		<section className={styles["page"]}>
-			<h1>{session && session.user.nomeUsuario}</h1>
-			<h3>{session && session.user.emailUsuario}</h3>
-			<p>
-				Saldo:
-				<IconWithText icon={FaMoneyBill} text={session && session.user.registro.saldo} />
+			<p className={styles["profile__extra"]}>
+				<span>
+					<RiOilLine />
+						Cotação do óleo virgem:
+				</span>
+				<span>
+					1L : 2 moedas
+				</span>
+			</p>
+			<p className={styles["profile__extra"]}>
+				<span>
+					<RiOilLine />
+						Cotação do óleo usado:
+				</span>
+				<span>
+					1L : 1 moeda
+				</span>
 			</p>
 		</section>
 	);

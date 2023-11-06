@@ -1,0 +1,11 @@
+.title {
+	/* Variables */
+	--title-padding: var(--spacing-3);
+	--title-margin: var(--spacing-6);
+	--title-border-color: var(--neutral-200);
+
+	/* Styles */
+	padding: var(--title-padding);
+	margin-bottom: var(--title-margin);
+	border-bottom: 1px solid var(--title-border-color);
+}

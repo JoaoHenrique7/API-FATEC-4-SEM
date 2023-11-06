@@ -1,22 +1,51 @@
 .page {
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin: 16px 0;
-  }
-  
-  h3 {
-    font-size: 18px;
-    color: #666;
-  }
-  
-  p {
-    font-size: 16px;
-    color: #666;
-  }
+	display: flex;
+	gap: var(--spacing-4)
+}
+
+.profile__extra {
+	/* Variables */
+	--extra-radius: var(--radius-1);
+	--extra-border-color: var(--neutral-200);
+	--extra-padding: var(--spacing-2);
+
+	/* Styles */
+	padding: var(--extra-padding);
+	border-radius: var(--extra-radius);
+	border: 1px solid var(--extra-border-color);
+
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	height: 100px;
+}
+
+.profile__extra span:first-child {
+	/* Variables */
+	--extra-item-gap: var(--spacing-1);
+
+	/* Styles */
+	display: flex;
+	align-items: center;
+	gap: var(--extra-item-gap);
+}
+
+.profile__extra span:first-child :first-child {
+	/* Variables */
+	--extra-item-font-size: var(--font-size-3);
+	--extra-item-font-weight: var(--font-weight-8);
+
+	/* Styles */
+	font-size: var(--extra-item-font-size);
+	font-weight: var(--extra-item-font-weight);
+}
+
+.profile__extra span:last-child {
+	/* Variables */
+	--extra-item-font-size: var(--font-size-5);
+	--extra-item-font-weight: var(--font-weight-6);
+
+	/* Styles */
+	font-size: var(--extra-item-font-size);
+	font-weight: var(--extra-item-font-weight);
+}

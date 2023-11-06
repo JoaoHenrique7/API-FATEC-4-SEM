@@ -1,0 +1,118 @@
+.title {
+	/* Variables */
+	--title-padding: var(--spacing-3);
+	--title-margin: var(--spacing-6);
+	--title-border-color: var(--neutral-200);
+
+	/* Styles */
+	padding: var(--title-padding);
+	margin-bottom: var(--title-margin);
+	border-bottom: 1px solid var(--title-border-color);
+}
+
+.profile__tag {
+	/* Variables */
+	--tag-padding: var(--spacing-3);
+	--tag-margin: var(--spacing-5);
+	--tag-border-color: var(--neutral-200);
+	--tag-radius: var(--radius-1);
+	--tag-background: var(--neutral-100);
+
+	/* Styles */
+	background-color: var(--tag-background);
+	border-radius: var(--tag-radius);
+	padding: var(--tag-padding);
+	margin-bottom: var(--tag-margin);
+	border: 1px solid var(--tag-border-color);
+}
+
+.profile__extras {
+	/* Variables */
+	--extras-gap: var(--spacing-3);
+	--extra-margin: var(--spacing-5);
+
+	/* Styles */
+	margin-bottom: var(--extra-margin);
+
+
+	display: flex;
+	gap: var(--extras-gap);
+}
+
+.profile__extra {
+	/* Variables */
+	--extra-radius: var(--radius-1);
+	--extra-border-color: var(--neutral-200);
+	--extra-padding: var(--spacing-2);
+
+	/* Styles */
+	padding: var(--extra-padding);
+	border-radius: var(--extra-radius);
+	border: 1px solid var(--extra-border-color);
+
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	height: 100px;
+}
+
+.profile__extra span:first-child {
+	/* Variables */
+	--extra-item-gap: var(--spacing-1);
+
+	/* Styles */
+	display: flex;
+	align-items: center;
+	gap: var(--extra-item-gap);
+}
+
+.profile__extra span:first-child :first-child {
+	/* Variables */
+	--extra-item-font-size: var(--font-size-3);
+	--extra-item-font-weight: var(--font-weight-8);
+
+	/* Styles */
+	font-size: var(--extra-item-font-size);
+	font-weight: var(--extra-item-font-weight);
+}
+
+.profile__extra span:last-child {
+	/* Variables */
+	--extra-item-font-size: var(--font-size-6);
+	--extra-item-font-weight: var(--font-weight-8);
+
+	/* Styles */
+	font-size: var(--extra-item-font-size);
+	font-weight: var(--extra-item-font-weight);
+}
+
+.page fieldset[class$="__fieldset"] {
+	/* Variables */
+	--fieldset-gap: var(--spacing-3);
+
+	/* Styles */
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--fieldset-gap);
+
+	border: none;
+}
+
+.page fieldset[class$="__fieldset"] > * {
+	/* Styles */
+	flex: 1;
+}
+
+.profile__form {
+	/* Variables */
+	--form-gap: var(--spacing-6);
+
+	/* Styles */
+	display: flex;
+	flex-direction: column;
+	gap: var(--form-gap);
+}
+
+.profile__form button:last-child {
+	align-self: flex-end;
+}

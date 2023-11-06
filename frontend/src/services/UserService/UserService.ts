@@ -91,7 +91,7 @@ export default class UserService {
 	}
 
 	public static async getOneUser(id:number): Promise<UserResponse> {
-        const requestBody = {
+		const requestBody = {
 			id: id,
 		};
 		try {

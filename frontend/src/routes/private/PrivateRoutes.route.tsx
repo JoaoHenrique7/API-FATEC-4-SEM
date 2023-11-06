@@ -5,6 +5,7 @@ import Home from "../../pages/private/Home/Home";
 import Transaction from "../../pages/private/Transaction/Transaction";
 import ListTransactions from "../../pages/private/ListTransactions/ListTransactions";
 import AppLayout from "../../layout/App/AppLayout";
+import Profile from "../../pages/private/Profile/Profile";
 
 function PrivateRoutes(): JSX.Element {
 	return (
@@ -12,8 +13,9 @@ function PrivateRoutes(): JSX.Element {
 			<Route element={<PrivateRoutesMiddleware redirectPath="/sign-in" />}>
 				<Route element={<AppLayout/>}>
 					<Route path="/" element={<Home />} />
-					<Route path="/transaction" element={<Transaction />} />
-					<Route path="/transaction/list" element={<ListTransactions/>} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/transaction/new" element={<Transaction />} />
+					<Route path="/transaction/historic" element={<ListTransactions/>} />
 				</Route>
 			</Route>
 		</Routes>

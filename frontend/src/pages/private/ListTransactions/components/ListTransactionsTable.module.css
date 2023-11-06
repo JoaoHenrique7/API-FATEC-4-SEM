@@ -1,112 +1,68 @@
 .listTransactionsTable {
-	width: 73%;
-	height: 100%;
-	position: absolute;
-	padding: var(--spacing-5);
-	gap: 32px;
-	display: flex;
-	flex-direction: column;
-	margin-left: 17rem;
-}
+	/* Variables */
+	--table-gap: var(--spacing-4);
 
-.line {
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
+	/* Styles */
+	gap: var(--table-gap);
 
-.inputPlace {
-	padding-right: var(--spacing-3);
-}
-.content {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 1fr;
-	grid-column-gap: 5%;
-	grid-row-gap: 0px;
-}
-
-.left {
-	grid-area: 1 / 1 / 2 / 2;
-}
-.right {
-	grid-area: 1 / 2 / 2 / 3;
-}
-.title {
-	padding-top: var(--spacing-4);
-}
-
-.menu {
-	position: fixed;
-	margin-right: 4rem;
-	height: 100%;
-	width: 15rem;
-	background-color: #ffffff;
-	padding: 20px;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-	align-items: center;
 	display: flex;
 	flex-direction: column;
 }
 
-.menuLine {
-	width: 100%;
+.searchContainer {
+	/* Variables */
+	--container-gap: var(--spacing-4);
+
+	/* Styles */
+	gap: var(--container-gap);
+
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding-top: 2rem;
-	cursor: pointer;
 }
 
+.searchContainer > * {
+	width: 300px;
+}
 
-.h2 {
-    position: 'fixed';
-    top: 0;
-    left: 0;
-    padding: '16px';
-    background-Color: 'rgba(0, 0, 0, 0.5)';
-    color: 'white';
-  }
+.searchContainer > select {
+	background-color: white;
+	padding: var(--spacing-2);
+	font-size: var(--font-size-3);
+	border-radius: var(--radius-1);
+	border: 2px solid var(--neutral-300);
+}
 
 .paginationContainer {
 	display: flex;
 	justify-content: center;
 	list-style: none;
 	padding: 0;
-  }
-  
-  .paginationItem {
+}
+
+.paginationItem {
 	margin: 0 5px;
 	cursor: pointer;
 	border: 1px solid #ccc;
 	padding: 5px 10px;
 	border-radius: 5px;
-  }
-  
-  .paginationNext {
-	display: inline-block;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	border-radius: 5px;
-  }
-  
-  .paginationPrevious {
-	display: inline-block;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	border-radius: 5px;
-  }
+}
 
-  .paginationActive {
+.paginationNext {
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.paginationPrevious {
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.paginationActive {
 	background-color: var(--primary-360);
 	color: #fff;
-  }
-
-  .searchContainer{
-	width: 3rem;
-	display: inline;
-  }
-  
+}  

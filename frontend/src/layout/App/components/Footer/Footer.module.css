@@ -1,0 +1,17 @@
+.footer {
+	/* Variables */
+	--footer-radius: var(--radius-2);
+	--footer-padding: var(--spacing-3);
+	--footer-border-color: var(--neutral-200);
+	--footer-background: var(--white);
+	--footer-height: 50px;
+
+	/* Styles */
+	border-radius: var(--footer-radius);
+	padding: var(--footer-padding);
+	height: var(--footer-height);
+	border: 1px solid var(--footer-border-color);
+	background-color: var(--footer-background);
+
+	box-shadow: 0 0 8px rgba(0, 0, 0, .15);
+}

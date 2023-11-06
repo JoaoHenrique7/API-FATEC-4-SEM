@@ -1,9 +1,45 @@
 .layout {
+	/* Variables */
+	--layout-padding: var(--spacing-3);
+	--layout-background: var(--neutral-100);
+	--layout-gap: var(--spacing-3);
+
+	/* Styles */
+	padding: var(--layout-padding);
+	background-color: var(--layout-background);
+
 	display: grid;
-	grid-template-columns: min-content auto;
-	grid-template-rows: 100dvh;
+	grid-template-columns: min-content 1fr;
+	grid-template-rows: 1fr min-content;
+	gap: var(--layout-gap);
+}
+
+.layout > :nth-child(1) {
+	grid-column: 1 / 2;
+	grid-row: 1 / 3;
 }
 
 .layout > :nth-child(2) {
-	padding: 1rem;
+	/* Variables */
+	--page-radius: var(--radius-2);
+	--page-background: var(--white);
+	--page-border-color: var(--neutral-200);
+	--page-padding: var(--spacing-3);
+
+	/* Styles */
+	border-radius: var(--page-radius);
+	background-color: var(--page-background);
+	border: 1px solid var(--page-border-color);
+	padding: var(--page-padding);
+
+	height: 100%;
+	width: 100%;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .15);
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+}
+
+.layout > :nth-child(3) {
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
 }

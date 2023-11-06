@@ -9,13 +9,11 @@ import { SessionContext, SessionContextType } from "../../../../context/Session/
 import Transaction from "../../../../services/TransactionService/Transaction.service";
 import TTransaction from "../../../../@types/Models/TTransaction";
 import styles from "./TransactionForm.module.css";
-import IconWithText from "../../../../components/IconWithText/IconWithText";
-import { FaMoneyBill } from "react-icons/fa";
 
 const userMap: { [key: string]: number } = {};
 
 const TransactionForm: React.FC = () => {
-	const { session } = useContext(SessionContext) as SessionContextType;
+	const { session, reload } = useContext(SessionContext) as SessionContextType;
 
 	const value = React.useRef<HTMLInputElement>(null);
 	const amount = React.useRef<HTMLInputElement>(null);
@@ -87,7 +85,7 @@ const TransactionForm: React.FC = () => {
 
 		if (createTransaction.Ok) {
 			alert(createTransaction.Message);
-			location.reload();
+			reload();
 		} else {
 			alert(createTransaction.Message);		
 		}
@@ -103,51 +101,25 @@ const TransactionForm: React.FC = () => {
 	};
 
 	return (
-		<div>
-			{/* Formulário */}
-			<div>
-				<form onSubmit={handleSubmit} className={styles["form"]}>
-					<h1 className={styles["label"]}>Transações</h1>
-					<p>
-						Saldo:{" "}
-						<IconWithText
-							icon={FaMoneyBill}
-							text={session && session.user.registro.saldo}
-						/>
-					</p>
-
-					<div className={styles["label"]}>
-						<label>Estabelecimentos</label>
-						<Dropdown options={userOptions} onSelect={handleSelectSeller} />
-					</div>
-					<div className={styles["label"]}>
-						<label>Tipo de Óleo</label>
-						<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />
-					</div>
-					<div className={styles["label"]}>
-						<label>Volume</label>
-						<TextInput forwardedRef={amount} placeholder="Insira o volume..." />
-					</div>
-					<div className={styles["label"]}>
-						<label>Valor</label>
-						<TextInput forwardedRef={value} placeholder="Insira o valor..." />
-					</div>
-					{/* <label>Valor do litro do óleo virgem</label>
-					<TextInput
-						forwardedRef={textRef}
-						placeholder="Insira o valor do litro do óleo virgem..."
-					/>
-
-					<label>Valor do litro do óleo usado</label>
-					<TextInput
-						forwardedRef={textRef}
-						placeholder="Insira o valor do litro do óleo usado..."
-					/> */}
-
-					<Button label="Comprar" type="submit" />
-				</form>
+		<form onSubmit={handleSubmit} className={styles["transactionForm"]}>
+			<div className={styles["label"]}>
+				<label>Estabelecimentos</label>
+				<Dropdown options={userOptions} onSelect={handleSelectSeller} />
 			</div>
-		</div>
+			<div className={styles["label"]}>
+				<label>Tipo de Óleo</label>
+				<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />
+			</div>
+			<div className={styles["label"]}>
+				<label>Volume</label>
+				<TextInput forwardedRef={amount} placeholder="Insira o volume..." />
+			</div>
+			<div className={styles["label"]}>
+				<label>Valor</label>
+				<TextInput forwardedRef={value} placeholder="Insira o valor..." />
+			</div>
+			<Button label="Comprar" type="submit" />
+		</form>
 	);
 };
 

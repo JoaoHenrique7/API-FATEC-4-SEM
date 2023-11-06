@@ -3,7 +3,7 @@ import DataServiceAPI from "../DataServiceAPI";
 
 export default class RegistryService {
 	public static async getOneRegistry(id:number): Promise<RegistryResponse> {
-        const requestBody = {
+		const requestBody = {
 			id: id,
 		};
 		try {

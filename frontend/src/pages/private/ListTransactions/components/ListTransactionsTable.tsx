@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./ListTransactionsTable.module.css";
 import Table from "../../../../components/Table/Table";
-import { FaChevronLeft, FaChevronRight, FaMoneyBill, FaPlus, FaUser } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import TransactionService from "../../../../services/TransactionService/TransactionService";
 import { SessionContext, SessionContextType } from "../../../../context/Session/SessionContext";
-import IconWithText from "../../../../components/IconWithText/IconWithText";
-import { IconBaseProps } from "react-icons";
 import ReactPaginate from "react-paginate";
 import TextInput from "../../../../components/TextInput/TextInput";
 import UserService from "../../../../services/UserService/UserService";
 import RegistryService from "../../../../services/RegistryService/RegistryService";
+import Button from "../../../../components/Button/Button";
 
 interface Transactions {
 	id: number;
@@ -59,9 +58,9 @@ const ListTransactionsTable: React.FC = () => {
 				
 				if (element.idComprador == session?.user.id) {
 					const resultadoRegistry = (await RegistryService.getOneRegistry(element.idComprador))
-					.data;
+						.data;
 					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
-					.data;	
+						.data;	
 					const user = {
 						Tipo_Oleo: element.tipoOleo,
 						Volume: element.volume,
@@ -74,9 +73,9 @@ const ListTransactionsTable: React.FC = () => {
 					list.push(user);
 				} else if (element.idVendedor == session?.user.id) {
 					const resultadoRegistry = (await RegistryService.getOneRegistry(element.idComprador))
-					.data;
+						.data;
 					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
-					.data;
+						.data;
 					const user = {
 						Tipo_Oleo: element.tipoOleo,
 						Volume: element.volume,
@@ -129,64 +128,54 @@ const ListTransactionsTable: React.FC = () => {
 	};
 
 	return (
-		<>
-			<div className={styles["listTransactionsTable"]}>
-				<h1 className={styles["title"]}>Histórico</h1>
-				<p>
-					Saldo:{" "}
-					<IconWithText
-						icon={FaMoneyBill}
-						text={session && session.user.registro.saldo}
-					/>
-				</p>
-				<div className={styles["searchContainer"]}>
-					<select
-						value={selectedColumn}
-						onChange={(e) => setSelectedColumn(e.target.value)}
-					>
-						{columnOptions.map((option) => (
-							<option key={option.value} value={option.value}>
-								{option.label}
-							</option>
-						))}
-					</select>
-					<TextInput
-						placeholder={`Pesquisar por ${selectedColumn}`}
-						value={searchTerm}
-						onChange={(e) => handleSearch(e.target.value)}
-					/>
-					<button onClick={() => handleSearch(searchTerm)}>Pesquisar</button>
-				</div>
-				<Table
-					data={filteredData.slice(
-						currentPage * itemsPerPage,
-						(currentPage + 1) * itemsPerPage,
-					)}
-					omit={["id", "volume", "updatedAt", "idVendedor", "idComprador"]}
-					isLoading={table.isLoading}
+		<div className={styles["listTransactionsTable"]}>
+			<div className={styles["searchContainer"]}>
+				<select
+					value={selectedColumn}
+					onChange={(e) => setSelectedColumn(e.target.value)}
+				>
+					{columnOptions.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.label}
+						</option>
+					))}
+				</select>
+				<TextInput
+					placeholder={`Pesquisar por ${selectedColumn}`}
+					value={searchTerm}
+					onChange={(e) => handleSearch(e.target.value)}
 				/>
-				<ReactPaginate
-					pageCount={Math.ceil(table.data.length / itemsPerPage)}
-					pageRangeDisplayed={5}
-					marginPagesDisplayed={2}
-					onPageChange={handlePageChange}
-					containerClassName={styles["paginationContainer"]}
-					pageClassName={styles["paginationItem"]}
-					activeClassName={styles["paginationActive"]}
-					nextLabel={
-						<span className={styles["paginationNext"]}>
-							<FaChevronRight />
-						</span>
-					}
-					previousLabel={
-						<span className={styles["paginationPrevious"]}>
-							<FaChevronLeft />
-						</span>
-					}
-					breakLabel={"..."}
-				/>
+				<Button label="Pesquisar" variant="secondary" onClick={() => handleSearch(searchTerm)} />
 			</div>
-		</>
+			<Table
+				data={filteredData.slice(
+					currentPage * itemsPerPage,
+					(currentPage + 1) * itemsPerPage,
+				)}
+				omit={["id", "volume", "updatedAt", "idVendedor", "idComprador"]}
+				isLoading={table.isLoading}
+			/>
+			<ReactPaginate
+				pageCount={Math.ceil(table.data.length / itemsPerPage)}
+				pageRangeDisplayed={5}
+				marginPagesDisplayed={2}
+				onPageChange={handlePageChange}
+				containerClassName={styles["paginationContainer"]}
+				pageClassName={styles["paginationItem"]}
+				activeClassName={styles["paginationActive"]}
+				nextLabel={
+					<span className={styles["paginationNext"]}>
+						<FaChevronRight />
+					</span>
+				}
+				previousLabel={
+					<span className={styles["paginationPrevious"]}>
+						<FaChevronLeft />
+					</span>
+				}
+				breakLabel={"..."}
+			/>
+		</div>
 	);
 };
 
