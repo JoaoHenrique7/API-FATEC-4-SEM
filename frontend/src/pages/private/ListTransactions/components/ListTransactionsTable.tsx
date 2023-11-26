@@ -44,13 +44,13 @@ const ListTransactionsTable: React.FC = () => {
 				.data;
 
 			const list: {
-				Tipo_Oleo: string;
+				"Tipo do óleo": string;
 				Volume: number;
 				Valor: number;
-				Feito: Date;
+				"Horario da Transferência": Date;
 				idVendedor?: number;
 				idComprador?: number;
-				Compra_ou_Venda: string;
+				"Ação Efetuada": string;
 				Remetente: string;
 			}[] = [];
 
@@ -62,12 +62,12 @@ const ListTransactionsTable: React.FC = () => {
 					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
 						.data;	
 					const user = {
-						Tipo_Oleo: element.tipoOleo,
+						"Tipo do óleo": element.tipoOleo,
 						Volume: element.volume,
 						Valor: element.valorTransacaoOleo,
-						Feito: element.createdAt,
+						"Horario da Transferência": element.createdAt,
 						idVendedor: element.idVendedor,
-						Compra_ou_Venda: "Compra",
+						"Ação Efetuada": "Compra",
 						Remetente: resultadoUsuario.nomeUsuario
 					};
 					list.push(user);
@@ -77,12 +77,12 @@ const ListTransactionsTable: React.FC = () => {
 					const resultadoUsuario = (await UserService.getOneUser(resultadoRegistry.idUsuario))
 						.data;
 					const user = {
-						Tipo_Oleo: element.tipoOleo,
+						"Tipo do óleo": element.tipoOleo,
 						Volume: element.volume,
 						Valor: element.valorTransacaoOleo,
-						Feito: element.createdAt,
+						"Horario da Transferência": element.createdAt,
 						idComprador: element.idComprador,
-						Compra_ou_Venda: "Venda",
+						"Ação Efetuada": "Venda",
 						Remetente: resultadoUsuario.nomeUsuario
 					};
 					list.push(user);
@@ -101,10 +101,10 @@ const ListTransactionsTable: React.FC = () => {
 		getAllTransactions();
 	}, []);
 	const [filteredData, setFilteredData] = useState(table.data);
-	const [selectedColumn, setSelectedColumn] = useState<string>("Tipo_Oleo"); // Default to searching by "Tipo_Oleo"
+	const [selectedColumn, setSelectedColumn] = useState<string>("Volume");
 
 	const columnOptions = [
-		{ label: "Tipo de Óleo", value: "Tipo_Oleo" },
+		{ label: "Tipo de Óleo", value: "Tipo do óleo" },
 		{ label: "Volume", value: "Volume" },
 		{ label: "Valor", value: "Valor" },
 	];
@@ -145,7 +145,7 @@ const ListTransactionsTable: React.FC = () => {
 					value={searchTerm}
 					onChange={(e) => handleSearch(e.target.value)}
 				/>
-				<Button label="Pesquisar" variant="secondary" onClick={() => handleSearch(searchTerm)} />
+				
 			</div>
 			<Table
 				data={filteredData.slice(
