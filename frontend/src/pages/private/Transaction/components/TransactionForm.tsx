@@ -86,6 +86,7 @@ const TransactionForm: React.FC = () => {
 		if (createTransaction.Ok) {
 			alert(createTransaction.Message);
 			reload();
+			window.location.href = "/transaction/historic";
 		} else {
 			alert(createTransaction.Message);		
 		}

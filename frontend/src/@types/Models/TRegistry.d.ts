@@ -1,11 +1,13 @@
 type TRegistry = {
 	id: number;
-    saldo: number;
+	saldo: number;
+	cotacaoOleoUsado: number;
 	volumeOleoUsado: number;
+	cotacaoOleoVirgem: number;
 	volumeOleoVirgem: number;
 	idUsuario: number;
-    createdAt: string;
+	createdAt: string;
 	updatedAt: string;
-}
+};
 
 export default RegistryDTO;

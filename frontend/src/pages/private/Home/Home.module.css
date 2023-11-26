@@ -49,3 +49,18 @@
 	font-size: var(--extra-item-font-size);
 	font-weight: var(--extra-item-font-weight);
 }
+
+.accordion {
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.arrow-icon {
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+
+.update-text {
+  font-weight: bold;
+}

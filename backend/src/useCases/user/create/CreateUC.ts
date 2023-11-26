@@ -30,7 +30,16 @@ export default class CreateUC {
 		}
 
 		const user: Usuario = Usuario.build(
-			{ ...props, registro: { saldo: 0, volumeOleoUsado: 0, volumeOleoVirgem: 0 } },
+			{
+				...props,
+				registro: {
+					saldo: 0,
+					volumeOleoUsado: 0,
+					volumeOleoVirgem: 0,
+					cotacaoOleoUsado: 1,
+					cotacaoOleoVirgem: 1,
+				},
+			},
 			{ include: [Endereco, TipoUsuario, Registro] },
 		);
 		return await this.userRepository.create(user);
