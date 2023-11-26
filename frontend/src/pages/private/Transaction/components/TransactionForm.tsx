@@ -15,29 +15,45 @@ const userMap: { [key: string]: number } = {};
 const TransactionForm: React.FC = () => {
 	const { session, reload } = useContext(SessionContext) as SessionContextType;
 
-	const value = React.useRef<HTMLInputElement>(null);
 	const amount = React.useRef<HTMLInputElement>(null);
 	const [seller, setSeller] = useState<string | null>(null);
 	const [oilOption, setOilOption] = useState<string | null>(null);
 	const [userOptions, setUserOptions] = useState<string[]>([]);
-
+	const [filteredUsers, setFilteredUsers] = useState<string[]>([]);
 	const OilOptions = ["Virgem", "Usado"];
+	const userType = session!.user.tipoUsuario.tipoUsuario;
+	let userConfirm: string;
+	switch (userType) {
+		case "Parceiro":
+			userConfirm = "Estabelecimento";
+			break;
 
-	const fetchUsers = async () => {
+		default:
+			userConfirm = "Parceiro";
+			break;
+	}
+
+	const fetchUsers = async (selectedOilOption: string | null) => {
 		try {
 			const response: TGenericResponse<TUsuario[]> = await User.All();
 			if (response.Ok) {
 				const users = response.Data;
 				if (Array.isArray(users) && users.length > 0) {
 					const estabelecimentoUsers = users.filter(
-						(user) => user.tipoUsuario.tipoUsuario === "Estabelecimento",
+						(user) =>
+							user.tipoUsuario.tipoUsuario === userConfirm &&
+							((selectedOilOption === "Virgem" &&
+								user.registro.volumeOleoVirgem > 0) ||
+								(selectedOilOption === "Usado" &&
+									user.registro.volumeOleoUsado > 0)),
 					);
+
 					if (estabelecimentoUsers.length > 0) {
 						estabelecimentoUsers.forEach((user) => {
 							userMap[user.nomeUsuario] = user.registro.id;
 						});
 						const userNames = estabelecimentoUsers.map((user) => user.nomeUsuario);
-						setUserOptions(userNames);
+						setFilteredUsers(userNames);
 					} else {
 						console.error("Nenhum estabelecimento encontrado.");
 					}
@@ -53,8 +69,8 @@ const TransactionForm: React.FC = () => {
 	};
 
 	useEffect(() => {
-		fetchUsers();
-	}, []);
+		fetchUsers(oilOption);
+	}, [oilOption]);
 
 	const handleSelectSeller = (selectedSeller: string) => {
 		setSeller(selectedSeller);
@@ -62,6 +78,7 @@ const TransactionForm: React.FC = () => {
 
 	const handleSelectOilOption = (selectedMethod: string) => {
 		setOilOption(selectedMethod);
+		fetchUsers(selectedMethod);
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -71,30 +88,50 @@ const TransactionForm: React.FC = () => {
 		}
 
 		if (!amount.current?.value) return false;
-		if (!value.current?.value) return false;
 		if (!seller) return false;
 		if (!oilOption) return false;
 
-		const createTransaction: TGenericResponse<TTransaction> = await Transaction.Create({
-			tipoOleo: oilOption,
-			volume: parseFloat(amount.current.value.replace(",", ".")),
-			valorTransacaoOleo: parseFloat(value.current.value.replace(",", ".")),
-			idVendedor: userMap[seller],
-			idComprador: session!.user.registro.id,
-		});
+		if (oilOption == "Virgem") {
+			const createTransaction: TGenericResponse<TTransaction> = await Transaction.Create({
+				tipoOleo: oilOption,
+				volume: parseFloat(amount.current.value.replace(",", ".")),
+				valorTransacaoOleo:
+					parseFloat(amount.current.value.replace(",", ".")) *
+					session!.user.registro.cotacaoOleoVirgem,
+				idVendedor: userMap[seller],
+				idComprador: session!.user.registro.id,
+			});
 
-		if (createTransaction.Ok) {
-			alert(createTransaction.Message);
-			reload();
-			window.location.href = "/transaction/historic";
+			if (createTransaction.Ok) {
+				alert(createTransaction.Message);
+				reload();
+				window.location.href = "/transaction/historic";
+			} else {
+				alert(createTransaction.Message);
+			}
 		} else {
-			alert(createTransaction.Message);		
+			const createTransaction: TGenericResponse<TTransaction> = await Transaction.Create({
+				tipoOleo: oilOption,
+				volume: parseFloat(amount.current.value.replace(",", ".")),
+				valorTransacaoOleo:
+					parseFloat(amount.current.value.replace(",", ".")) *
+					session!.user.registro.cotacaoOleoUsado,
+				idVendedor: userMap[seller],
+				idComprador: session!.user.registro.id,
+			});
+
+			if (createTransaction.Ok) {
+				alert(createTransaction.Message);
+				reload();
+				window.location.href = "/transaction/historic";
+			} else {
+				alert(createTransaction.Message);
+			}
 		}
 	};
 
 	const checkRefs = (): boolean => {
 		if (!amount.current?.value) return false;
-		if (!value.current?.value) return false;
 		if (!seller) return false;
 		if (!oilOption) return false;
 
@@ -104,20 +141,16 @@ const TransactionForm: React.FC = () => {
 	return (
 		<form onSubmit={handleSubmit} className={styles["transactionForm"]}>
 			<div className={styles["label"]}>
-				<label>Estabelecimentos</label>
-				<Dropdown options={userOptions} onSelect={handleSelectSeller} />
-			</div>
-			<div className={styles["label"]}>
 				<label>Tipo de Óleo</label>
 				<Dropdown options={OilOptions} onSelect={handleSelectOilOption} />
 			</div>
 			<div className={styles["label"]}>
-				<label>Volume</label>
-				<TextInput forwardedRef={amount} placeholder="Insira o volume..." />
+				<label>Estabelecimentos</label>
+				<Dropdown options={filteredUsers} onSelect={handleSelectSeller} />
 			</div>
 			<div className={styles["label"]}>
-				<label>Valor</label>
-				<TextInput forwardedRef={value} placeholder="Insira o valor..." />
+				<label>Volume</label>
+				<TextInput forwardedRef={amount} placeholder="Insira o volume..." />
 			</div>
 			<Button label="Comprar" type="submit" />
 		</form>

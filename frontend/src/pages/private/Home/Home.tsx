@@ -28,13 +28,13 @@ function Home(): JSX.Element {
 				</span>
 				<span>1L : {session!.user.registro.cotacaoOleoUsado} moeda</span>
 			</p>
-
-			{/* Accordion para o formulário de atualização de cotação */}
-			<div className={styles["accordion"]} onClick={handleAccordionToggle}>
-				<span className={styles["arrow-icon"]}>{isAccordionOpen ? "↓" : "→"}</span>
-				<span className={styles["update-text"]}>Atualizar cotação</span>
-				{isAccordionOpen && <UpdateQuotationForm />}
-			</div>
+			{session!.user.tipoUsuario.tipoUsuario !== "Estabelecimento" && (
+				<div className={styles["accordion"]} onClick={handleAccordionToggle}>
+					<span className={styles["arrow-icon"]}>{isAccordionOpen ? "↓" : "→"}</span>
+					<span className={styles["update-text"]}>Atualizar cotação</span>
+					{isAccordionOpen && <UpdateQuotationForm />}
+				</div>
+			)}
 		</section>
 	);
 }
