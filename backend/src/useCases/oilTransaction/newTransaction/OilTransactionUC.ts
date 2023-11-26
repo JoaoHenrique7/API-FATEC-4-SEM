@@ -3,7 +3,6 @@ import IOiltransactionRepository from "../../../repositories/IOilTransactionRepo
 import IRegistryRepository from "../../../repositories/IRegistryRepository";
 import Transacao from "../../../database/models/TransacaoOleo.model";
 import Registro from "../../../database/models/Registro.model";
-import { UnprocessableEntityError } from "../../../utils/customError";
 
 export default class OilTransactionUC {
 	/**
@@ -35,7 +34,7 @@ export default class OilTransactionUC {
 					payer.saldo < props.valorTransacaoOleo ||
 					seller.volumeOleoVirgem < props.volume
 				) {
-					throw new UnprocessableEntityError("A transação não foi concluida.");
+					throw new Error("A transação não foi concluida.");
 				}
 				this.registryRepository.updateCreditById(
 					props.idVendedor,
@@ -64,7 +63,7 @@ export default class OilTransactionUC {
 					payer.saldo < props.valorTransacaoOleo ||
 					seller.volumeOleoUsado < props.volume
 				) {
-					throw new UnprocessableEntityError("A transação não foi concluida.");
+					throw new Error("A transação não foi concluida.");
 				}
 				this.registryRepository.updateCreditById(
 					props.idVendedor,
@@ -87,7 +86,7 @@ export default class OilTransactionUC {
 				break;
 
 			default:
-				throw new UnprocessableEntityError(
+				throw new Error(
 					"A transação não foi concluida. Tipo de óleo inválido.",
 				);
 		}
