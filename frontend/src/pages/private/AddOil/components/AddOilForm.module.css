@@ -1,0 +1,10 @@
+.addOilForm {
+	/* Variables */
+	--form-gap: var(--spacing-4);
+
+	/* Styles */
+	gap: var(--form-gap);
+
+	display: flex;
+	flex-direction: column;
+}
