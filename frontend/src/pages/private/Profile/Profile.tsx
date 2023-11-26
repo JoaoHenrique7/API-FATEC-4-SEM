@@ -7,6 +7,7 @@ import TUsuario from "../../../@types/Models/TUsuario";
 import Button from "../../../components/Button/Button";
 import { BiCoin } from "react-icons/bi";
 import { RiOilFill, RiOilLine } from "react-icons/ri";
+import UserService from "../../../services/UserService/UserService";
 
 function Profile(): JSX.Element {
 	const { session }: SessionContextType = useSession();
@@ -24,6 +25,40 @@ function Profile(): JSX.Element {
 	const numeroRef = useRef<HTMLInputElement>(null);
 	const complementoRef = useRef<HTMLInputElement>(null);
 
+	const handleSaveChanges = async (e: React.FormEvent) => {
+		e.preventDefault();
+	
+		const updatedUser = {
+			id: session!.user.id,
+		  	nomeUsuario: nomeRef.current!.value,
+			emailUsuario: emailRef.current!.value,
+			documentoUsuario: documentoRef.current!.value,
+			};
+	
+		const updatedEndereco = {
+			zip_code: cepRef.current!.value,
+			estado: estadoRef.current!.value,
+			cidade: cidadeRef.current!.value,
+			bairro: bairroRef.current!.value,
+			rua: ruaRef.current!.value,
+			numero: numeroRef.current!.value,
+			complemento: complementoRef.current!.value,
+		}
+
+		try {
+			const resultadoRegistry = (await UserService.update(updatedUser.id,updatedUser.nomeUsuario, updatedUser.emailUsuario, updatedUser.documentoUsuario))
+			const updateEndereco = (await UserService.updateEndereco(updatedUser.id,updatedEndereco.zip_code,updatedEndereco.numero,updatedEndereco.rua,updatedEndereco.bairro,updatedEndereco.cidade,updatedEndereco.estado,updatedEndereco.complemento))
+			if (resultadoRegistry.ok && updateEndereco.ok) {
+			// updateSession(updatedUser);
+			alert("Informações atualizadas com sucesso!");
+		  } else {
+			alert("Falha ao atualizar informações. Tente novamente.");
+		  }
+		} catch (error) {
+		  console.error("Erro ao fazer a solicitação de atualização:", error);
+		}
+	  };
+	
 	return (
 		<section className={styles["page"]}>
 			<h1 className={styles["title"]}>Perfil</h1>
@@ -57,7 +92,7 @@ function Profile(): JSX.Element {
 					</span>
 				</p>
 			</div>
-			<form className={styles["profile__form"]}>
+			<form className={styles["profile__form"]} onSubmit={handleSaveChanges}>
 				<fieldset className="__fieldset">
 					<legend>Informações pessoais</legend>
 					<TextInput
@@ -114,7 +149,7 @@ function Profile(): JSX.Element {
 						value={user?.endereco.complemento}
 					/>
 				</fieldset>
-				<Button label="Salvar alterações" onClick={(e) => e.preventDefault()} />
+				<Button label="Salvar alterações" type="submit" />
 			</form>
 		</section>
 	);

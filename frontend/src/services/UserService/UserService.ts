@@ -116,4 +116,67 @@ export default class UserService {
 			return response;
 		}
 	}
+	public static async update(id: number, nomeUsuario: string, emailUsuario: string, documentoUsuario: string): Promise<UserResponse> {
+		const requestBody = {
+			id: id,
+			nomeUsuario:nomeUsuario,
+			emailUsuario:emailUsuario,
+			documentoUsuario:documentoUsuario
+		};
+		try {
+			const response = await DataServiceAPI.post(
+				" http://localhost:3001/user/update", requestBody
+			);
+			const responseJson = await response.json();
+
+			const registryResponse = {
+				data: responseJson.Data,
+				message: responseJson.message,
+				ok: responseJson.Ok,
+			};
+
+			return registryResponse;
+		} catch (error) {
+			const response: UserResponse = {
+				data: [],
+				message: `${error}`,
+				ok: false,
+			};
+			return response;
+		}
+	}
+
+	public static async updateEndereco(id: number, zip_code: string, numero: string, rua: string, bairro: string, cidade:string, estado:string, complemento: string): Promise<UserResponse> {
+		const requestBody = {
+			id: id,
+			zip_code:zip_code,
+			numero:numero,
+			rua:rua,
+			bairro:bairro,
+			cidade:cidade,
+			estado:estado,
+			complemento:complemento
+		};
+		try {
+			const response = await DataServiceAPI.post(
+				" http://localhost:3001/user/update-endereco", requestBody
+			);
+			const responseJson = await response.json();
+
+			const registryResponse = {
+				data: responseJson.Data,
+				message: responseJson.message,
+				ok: responseJson.Ok,
+			};
+
+			return registryResponse;
+		} catch (error) {
+			const response: UserResponse = {
+				data: [],
+				message: `${error}`,
+				ok: false,
+			};
+			return response;
+		}
+	}
 }
