@@ -43,4 +43,38 @@ export default class UserRepository implements IUserRepository {
 	getOneUser(id: number): Promise<Usuario | null> {
 		return Usuario.findOne({ where: { id: id } });
 	}
+
+		/**
+	 * .
+	 *
+	 * @param {number} id 
+	 *
+	 * @return {Promise<boolean>}
+	 */
+	async update(id: number, nomeUsuario: string, emailUsuario: string,  documentoUsuario: string): Promise<boolean> {
+		try {
+			const [rowsAffected] = await Usuario.update({ id: id, nomeUsuario: nomeUsuario, emailUsuario: emailUsuario, documentoUsuario: documentoUsuario }, { where: { id: id } });
+			return rowsAffected > 0;
+		  } catch (error) {
+			console.error("Erro ao atualizar usuário:", error);
+			throw error;
+		  }
+		}
+	/**
+	 * .
+	 *
+	 * @param {number} id 
+	 * 
+	 * @return {Promise<boolean>}
+	 */
+	async updateEndereco(id: number, zip_code: string, numero: number, rua: string, bairro: string, cidade:string, estado:string, complemento: string): Promise<boolean> {
+		try {
+			const [rowsAffected] = await Endereco.update({ idUsuario: id, zip_code: zip_code, numero: numero, rua: rua, bairro: bairro, cidade:cidade, estado:estado, complemento:complemento }, { where: { idUsuario: id } });
+			return rowsAffected > 0;
+			} catch (error) {
+			console.error("Erro ao atualizar usuário:", error);
+			throw error;
+			}
+		}
+		
 }
