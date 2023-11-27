@@ -11,7 +11,13 @@ export default class Registro extends Model {
 	saldo!: number;
 
 	@Column({ type: DataType.NUMBER, allowNull: false })
+	cotacaoOleoUsado!: number;
+
+	@Column({ type: DataType.NUMBER, allowNull: false })
 	volumeOleoUsado!: number;
+
+	@Column({ type: DataType.NUMBER, allowNull: false })
+	cotacaoOleoVirgem!: number;
 
 	@Column({ type: DataType.NUMBER, allowNull: false })
 	volumeOleoVirgem!: number;

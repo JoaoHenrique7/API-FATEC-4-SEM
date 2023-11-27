@@ -29,10 +29,20 @@ export default class RegistryRepository implements IRegistryRepository {
 			);
 			return result[0];
 		} else {
+			const result = await Registro.update({ volumeOleoUsado: value }, { where: { id: id } });
+			return result[0];
+		}
+	}
+
+	async updateOilQuotationById(id: number, value: number, oilType: string): Promise<number> {
+		if (oilType === "Virgem") {
 			const result = await Registro.update(
-				{ volumeOleoUsado: value },
+				{ cotacaoOleoVirgem: value },
 				{ where: { id: id } },
 			);
+			return result[0];
+		} else {
+			const result = await Registro.update({ cotacaoOleoUsado: value }, { where: { id: id } });
 			return result[0];
 		}
 	}

@@ -36,6 +36,7 @@ const RegistryRoutes = Object.freeze(
 		All: "registry/get-all",
 		OneRegistry: "registry/get-one-registry",
 		UpdateOilById: "registry/update-oil-by-id",
+		UpdateQuotationById: "registry/update-quotation-by-id",
 	}),
 );
 

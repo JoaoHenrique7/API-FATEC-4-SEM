@@ -7,8 +7,8 @@ export default class UpdateOilValueByIdUC {
 	constructor(private RegistryRepository: RegistryRepository) {}
 
 	async execute(props: UpdateOilValueById): Promise<Registro> {
-		if (typeof props.volume !== "number")
-			throw new UnprocessableEntityError("Falha na atualização de volume.");
+		if (typeof props.volume !== "number" || typeof props.id !== "number")
+			throw new Error("Falha na atualização de volume.");
 
 		this.RegistryRepository.updateOilValueById(props.id, props.volume, props.tipoOleo);
 
