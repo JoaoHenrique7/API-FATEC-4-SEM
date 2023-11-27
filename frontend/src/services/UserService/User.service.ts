@@ -15,4 +15,8 @@ export default abstract class User {
 	public static async GetOneUser() {
 		return await API.Get<TGenericResponse<TUsuario[]>>(URLs.UserRoutes.OneUser);
 	}
+
+	public static async Edit(usuario: Omit<UsuarioDTO, "tipoUsuario" | "senhaUsuario"> & { id: string }) {
+		return await API.Patch<TGenericResponse<object>>(URLs.UserRoutes.Edit, JSON.stringify(usuario));
+	}
 }

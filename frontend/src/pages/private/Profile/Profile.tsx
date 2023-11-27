@@ -7,9 +7,10 @@ import TUsuario from "../../../@types/Models/TUsuario";
 import Button from "../../../components/Button/Button";
 import { BiCoin } from "react-icons/bi";
 import { RiOilFill, RiOilLine } from "react-icons/ri";
+import User from "../../../services/UserService/User.service";
 
 function Profile(): JSX.Element {
-	const { session }: SessionContextType = useSession();
+	const { session, reload }: SessionContextType = useSession();
 	const user: TUsuario | undefined = session?.user;
 
 	const nomeRef = useRef<HTMLInputElement>(null);
@@ -23,6 +24,29 @@ function Profile(): JSX.Element {
 	const ruaRef = useRef<HTMLInputElement>(null);
 	const numeroRef = useRef<HTMLInputElement>(null);
 	const complementoRef = useRef<HTMLInputElement>(null);
+
+	const update = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+
+		await User.Edit({
+			id: String(user?.id) ?? "0",
+			nomeUsuario: nomeRef.current?.value ?? "",
+			emailUsuario: emailRef.current?.value ?? "",
+			documentoUsuario: documentoRef.current?.value ?? "",
+			endereco: {
+				zip_code: cepRef.current?.value ?? "",
+				estado: estadoRef.current?.value ?? "",
+				bairro: bairroRef.current?.value ?? "",
+				cidade: cidadeRef.current?.value ?? "",
+				complemento: complementoRef.current?.value ?? "",
+				numero: numeroRef.current?.value ?? "",
+				rua: ruaRef.current?.value ?? ""
+			}
+		});
+
+		alert("Editado.");
+		reload();
+	};
 
 	return (
 		<section className={styles["page"]}>
@@ -114,7 +138,7 @@ function Profile(): JSX.Element {
 						value={user?.endereco.complemento}
 					/>
 				</fieldset>
-				<Button label="Salvar alterações" onClick={(e) => e.preventDefault()} />
+				<Button label="Salvar alterações" onClick={(e) => update(e)} />
 			</form>
 		</section>
 	);

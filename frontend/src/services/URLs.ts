@@ -14,7 +14,8 @@ const UserRoutes = Object.freeze(
 	router({
 		All: "user/get-all",
 		Create: "user/create",
-		OneUser: "user/get-one-user"
+		OneUser: "user/get-one-user",
+		Edit: "user/edit"
 	}),
 );
 

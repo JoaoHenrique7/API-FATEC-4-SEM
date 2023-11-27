@@ -118,3 +118,20 @@
   display: flex;
   justify-content: center;
 }
+
+
+@media only screen and (max-width: 1430px) {
+    .SignUpForm {
+        /* Styles */
+        width: 100%;
+        height: 100dvh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        z-index: var(--wrapper-layer);
+    }
+
+    .SignUpForm__status {
+        display: none;
+    }
+}
