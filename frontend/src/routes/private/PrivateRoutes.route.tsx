@@ -7,6 +7,7 @@ import ListTransactions from "../../pages/private/ListTransactions/ListTransacti
 import AppLayout from "../../layout/App/AppLayout";
 import Profile from "../../pages/private/Profile/Profile";
 import AddOil from "../../pages/private/AddOil/AddOil";
+import Dashboard from "../../pages/private/Dashboard/Dashboard";
 
 function PrivateRoutes(): JSX.Element {
 	return (
@@ -18,6 +19,7 @@ function PrivateRoutes(): JSX.Element {
 					<Route path="/transaction/new" element={<Transaction />} />
 					<Route path="/transaction/historic" element={<ListTransactions />} />
 					<Route path="/transaction/addoil" element={<AddOil />} />
+					<Route path="/Dashboard" element={<Dashboard />} />
 				</Route>
 			</Route>
 		</Routes>
