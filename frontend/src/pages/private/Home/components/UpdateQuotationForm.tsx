@@ -8,8 +8,6 @@ import styles from "./UpdateQuotationForm.module.css";
 import TUpdateQuotation from "../../../../@types/Models/TUpdateQuotation";
 import UpdateQuotation from "../../../../services/UpdateQuotationService/UpdateQuotation.service";
 
-const userMap: { [key: string]: number } = {};
-
 const UpdateQuotationForm: React.FC = () => {
 	const { session, reload } = useContext(SessionContext) as SessionContextType;
 

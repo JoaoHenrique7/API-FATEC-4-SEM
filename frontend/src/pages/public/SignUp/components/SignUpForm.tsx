@@ -192,7 +192,6 @@ function SignUpForm(props: SignUpFormProps) {
 		if (!senhaRef.current) return;
 		if (!confirmarSenhaRef.current) return;
 
-
 		const createUser: TGenericResponse<TUsuario> = await User.Create({
 			nomeUsuario: nomeRef.current.value,
 			emailUsuario: emailRef.current.value,
@@ -280,13 +279,13 @@ function SignUpForm(props: SignUpFormProps) {
 						<RadioInput
 							forwardRef={radioCnpjRef}
 							label="Cnpj"
-							name="typeRadios"
+							name="typeRadioDoc"
 							onChange={handleDocIdChange}
 						/>
 						<RadioInput
 							forwardRef={radioCpfRef}
 							label="Cpf"
-							name="typeRadios"
+							name="typeRadioDoc"
 							onChange={handleDocIdChange}
 						/>
 						<TextInput

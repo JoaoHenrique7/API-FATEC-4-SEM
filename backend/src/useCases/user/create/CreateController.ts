@@ -27,6 +27,8 @@ export default class CreatePartnerController {
 		const hashPassword = await bcrypt.hash(body.senhaUsuario, salt);
         body.senhaUsuario = hashPassword;
         
+        console.log(body);
+
         try {
             const createdUsuario: Usuario = await this.createUserUC.execute(body);
 
