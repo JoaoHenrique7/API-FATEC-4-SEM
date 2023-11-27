@@ -3,6 +3,7 @@ import TipoUsuario from "../../database/models/TipoUsuario.model";
 import Usuario from "../../database/models/Usuario.model";
 import IUserRepository from "../IUserRepository";
 import Registro from "../../database/models/Registro.model";
+import IEditDTO from "../../useCases/user/edit/IEditDTO";
 
 export default class UserRepository implements IUserRepository {
 	/**
@@ -42,5 +43,10 @@ export default class UserRepository implements IUserRepository {
 	 */
 	getOneUser(id: number): Promise<Usuario | null> {
 		return Usuario.findOne({ where: { id: id } });
+	}
+
+	edit(user: IEditDTO): Promise<any> {
+		const { id, ...userObj } = user;
+		return Usuario.update({ ...userObj }, { where: { id: user.id } });
 	}
 }
