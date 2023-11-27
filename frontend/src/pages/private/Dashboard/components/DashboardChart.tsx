@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import { BarChart, Bar, Rectangle } from 'recharts';
@@ -15,28 +15,17 @@ interface Registry {
     updatedAt: string;
 }
 
-const getAllRegistry = async () => {
-    try {
-        const resultadoRequest: any[] = (await RegistryService.getAllRegistry())
-            .data;
-        return resultadoRequest
-        } catch (error) {
-        console.log("Aqui");
-    } 
-};
+function DashboardChart() {
+    const [registro, setRegistro] = useState<any[]>([]);
 
-class DashboardChart extends Component<object> {
-
-    AmountUsedAndVirginOil = async () => {
-        const resultadoRequest = getAllRegistry()
-
+    const AmountUsedAndVirginOil = () => {
         const data: {
             "Volume óleo usado": number;
             "Volume óleo virgem": number;
             "Data": string;
         }[] = [];
 
-        resultadoRequest.forEach(async (element) => {
+        registro.forEach(async (element) => {
             const registry = {
                 "Volume óleo usado": element.volumeOleoUsado,
                 "Volume óleo virgem": element.volumeOleoVirgem,
@@ -55,7 +44,7 @@ class DashboardChart extends Component<object> {
         );
     };
 
-    QuotationVirginAndUsedOil = () => {
+    const QuotationVirginAndUsedOil = () => {
         const data = [
             {
                 name: 'Page A',
@@ -111,7 +100,7 @@ class DashboardChart extends Component<object> {
         );
     };
 
-    UserAmount = () => {
+    const UserAmount = () => {
         const data01 = [
             { name: 'Group A', value: 400 },
             { name: 'Group B', value: 300 },
@@ -148,7 +137,7 @@ class DashboardChart extends Component<object> {
         );
     };
 
-    VolumeOfVirginAndUsedOil = () => {
+    const VolumeOfVirginAndUsedOil = () => {
         const data = [
             {
                 name: 'Page A',
@@ -195,7 +184,6 @@ class DashboardChart extends Component<object> {
         ];
 
         return (
-
             <BarChart
                 width={500}
                 height={300}
@@ -219,58 +207,52 @@ class DashboardChart extends Component<object> {
         );
     }
 
-    async getAllRegistry(): Promise<void> {
-        const resultadoRequest: Registry[] = (await RegistryService.getAllRegistry()).data;
-        const list: { Saldo: number; volumeOleoUsado: number; volumeOleoVirgem: number }[] = [];
-        resultadoRequest.forEach((element) => {
-            const registry = {
+    useEffect((): void => {
+        const getAllRegistry = async () => {
+            const resultadoRequest: Registry[] = (await RegistryService.getAllRegistry()).data;
+            console.log(resultadoRequest);
+            const list: { Saldo: number; volumeOleoUsado: number; volumeOleoVirgem: number }[] = [];
+            resultadoRequest.forEach((element) => {
+                const registry = {
                 Saldo: element.saldo,
                 volumeOleoUsado: element.volumeOleoUsado,
                 volumeOleoVirgem: element.volumeOleoUsado,
             };
 
-            console.log(registry)
-            list.push(registry);
-        });
-        // this.setState({ table: { data: list, isLoading: false } });
-    }
+                console.log(registry)
+                list.push(registry);
+            });
 
-    componentDidMount(): void {
-        this.getAllRegistry();
-    }
+            setRegistro(list);
+        }
+        getAllRegistry();
+    }, [])
 
-    // const { table } = this.state;
-
-    render() {
-        // const { table } = this.state;
-
-        return (
-            <section className={styles["page"]}>
-                <div className={styles["amout_used_and_virgin_oil_chart"]}>
-                    <p>Quantidade de óleo virgem e usado</p>
-                    <this.AmountUsedAndVirginOil />
+    return (
+        <section className={styles["page"]}>
+            <div className={styles["amout_used_and_virgin_oil_chart"]}>
+                <p>Quantidade de óleo virgem e usado</p>
+                <AmountUsedAndVirginOil />
+            </div>
+            <div className={styles["quotation_virgin_and_used_oil_chart"]}>
+                <p>Cotação do óleo virgem e usado</p>
+                <QuotationVirginAndUsedOil />
+            </div>
+            <div className={styles["user_amount_chart"]}>
+                <p>Quantidade de usuários</p>
+                <div className={styles["chart"]}>
+                    <UserAmount />
                 </div>
-                <div className={styles["quotation_virgin_and_used_oil_chart"]}>
-                    <p>Cotação do óleo virgem e usado</p>
-                    <this.QuotationVirginAndUsedOil />
+            </div>
+            <div className={styles["volume_of_virgin_and_used_oil_chart"]}>
+                <p>Volume de óleo virgem e usado dos usuários</p>
+                <div className={styles["chart"]}>
+                    <VolumeOfVirginAndUsedOil />
                 </div>
-                <div className={styles["user_amount_chart"]}>
-                    <p>Quantidade de usuários</p>
-                    <div className={styles["chart"]}>
-                        <this.UserAmount />
-                    </div>
-                </div>
-                <div className={styles["volume_of_virgin_and_used_oil_chart"]}>
-                    <p>Volume de óleo virgem e usado dos usuários</p>
-                    <div className={styles["chart"]}>
-                        <this.VolumeOfVirginAndUsedOil />
-                    </div>
 
-                </div>
-            </section>
-        );
-    }
-
+            </div>
+        </section>
+    );
 }
 
 export default DashboardChart;
