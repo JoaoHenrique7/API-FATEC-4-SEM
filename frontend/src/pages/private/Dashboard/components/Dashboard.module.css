@@ -1,0 +1,35 @@
+.page {
+	display: grid;
+	gap: var(--spacing-4)
+}
+
+.amout_used_and_virgin_oil_chart {
+	grid-row: 1/2;
+	grid-column: 1/2;
+}
+
+.quotation_virgin_and_used_oil_chart {
+	grid-row: 1/2;
+	grid-column: 2/3;
+}
+
+.user_amount_chart {
+	grid-row: 2/3;
+	grid-column: 1/2;
+}
+
+.volume_of_virgin_and_used_oil_chart{
+	grid-row: 2/3;
+	grid-column: 2/3;
+}
+
+p{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chart{
+	display: flex;
+	justify-content: center;
+}

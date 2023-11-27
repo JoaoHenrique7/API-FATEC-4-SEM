@@ -1,4 +1,4 @@
-import RegisterRepository from "../../../repositories/implementation/RegistryRepository ";
+import RegisterRepository from "../../../repositories/implementation/RegistryRepository";
 import GetOneRegistryController from "./GetOneRegistryController";
 import GetOneRegistryUC from "./GetOneRegistryUC";
 

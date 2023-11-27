@@ -28,4 +28,28 @@ export default class RegistryService {
 			return response;
 		}
 	}
+
+	public static async getAllRegistry(): Promise<RegistryResponse> {
+		try {
+			const response = await DataServiceAPI.get("http://localhost:3001/registry/get-all");
+
+			const responseJson = await response.json();
+
+			const registryResponse = {
+				data: responseJson.Data,
+				message: responseJson.message,
+				ok: responseJson.Ok,
+			};
+
+			return registryResponse;
+		} catch (error) {
+			const response: RegistryResponse = {
+				data: [],
+				message: `${error}`,
+				ok: false,
+			};
+			return response;
+		}
+	}
+
 }
