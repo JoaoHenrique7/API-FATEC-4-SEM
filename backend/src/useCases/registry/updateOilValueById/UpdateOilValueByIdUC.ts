@@ -1,5 +1,5 @@
 import Registro from "../../../database/models/Registro.model";
-import RegistryRepository from "../../../repositories/implementation/RegistryRepository ";
+import RegistryRepository from "../../../repositories/implementation/RegistryRepository";
 import UpdateOilValueById from "./IUpdateOilValueByIdDTO";
 import { UnprocessableEntityError } from "../../../utils/customError";
 

@@ -1,8 +1,16 @@
-import Usuario from "../../database/models/Usuario.model";
 import Registro from "../../database/models/Registro.model";
 import IRegistryRepository from "../IRegistryRepository";
 
 export default class RegistryRepository implements IRegistryRepository {
+		/**
+	 * Retrieves all users.
+	 *
+	 * @return {Promise<Registro[]>} A promise that resolves to an array of Usuario objects.
+	 */
+	async all(): Promise<Registro[]> {
+		return Registro.findAll();
+	}
+	
 	async getRegistry(id: number): Promise<Registro | null> {
 		const result = await Registro.findOne({ where: { id: id } });
 		return result;

@@ -8,4 +8,9 @@ export default abstract class Registry {
 	public static async GetOneRegistry() {
 		return await API.Get<TGenericResponse<TRegistry[]>>(URLs.RegistryRoutes.OneRegistry);
 	}
+
+	public static async All() {
+		return await API.Get<TGenericResponse<TRegistry[]>>(URLs.RegistryRoutes.All);
+	}
+
 }

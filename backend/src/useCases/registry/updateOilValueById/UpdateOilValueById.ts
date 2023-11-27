@@ -1,4 +1,4 @@
-import RegisterRepository from "../../../repositories/implementation/RegistryRepository ";
+import RegisterRepository from "../../../repositories/implementation/RegistryRepository";
 import UpdateOilValueByIdController from "./UpdateOilValueByIdController";
 import UpdateOilValueByIdUC from "./UpdateOilValueByIdUC";
 
