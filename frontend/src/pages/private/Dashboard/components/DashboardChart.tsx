@@ -23,7 +23,9 @@ function DashboardChart() {
             "Volume óleo usado": number;
             "Volume óleo virgem": number;
             "Data": string;
-        }[] = [];
+        }[] = [
+            
+        ];
 
         registro.forEach(async (element) => {
             const registry = {
