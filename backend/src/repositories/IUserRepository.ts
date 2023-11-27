@@ -1,3 +1,4 @@
+import Endereco from "../database/models/Endereco.model"
 import Usuario from "../database/models/Usuario.model"
 import IEditDTO from "../useCases/user/edit/IEditDTO"
 
@@ -6,5 +7,6 @@ export default interface IUsuarioRepository {
     create(user: Usuario): Promise<Usuario>
     findByEmail(email: string): Promise<Usuario | null>
     getOneUser(id: number): Promise<Usuario | null>
-    edit(user: IEditDTO): Promise<any>
+    update(id: number, nomeUsuario: string, emailUsuario: string, documentoUsuario: string): Promise<boolean>
+    updateEndereco(id: number, zip_code: string, numero: number, rua: string, bairro: string, cidade:string, estado:string, complemento: string): Promise<boolean>
 }

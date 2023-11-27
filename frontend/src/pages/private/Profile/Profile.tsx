@@ -7,10 +7,10 @@ import TUsuario from "../../../@types/Models/TUsuario";
 import Button from "../../../components/Button/Button";
 import { BiCoin } from "react-icons/bi";
 import { RiOilFill, RiOilLine } from "react-icons/ri";
-import User from "../../../services/UserService/User.service";
+import UserService from "../../../services/UserService/UserService";
 
 function Profile(): JSX.Element {
-	const { session, reload }: SessionContextType = useSession();
+	const { session, reload}: SessionContextType = useSession();
 	const user: TUsuario | undefined = session?.user;
 
 	const nomeRef = useRef<HTMLInputElement>(null);
@@ -25,75 +25,91 @@ function Profile(): JSX.Element {
 	const numeroRef = useRef<HTMLInputElement>(null);
 	const complementoRef = useRef<HTMLInputElement>(null);
 
-	const update = async (e: React.MouseEvent<HTMLButtonElement>) => {
+	const handleSaveChanges = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		await User.Edit({
-			id: String(user?.id) ?? "0",
-			nomeUsuario: nomeRef.current?.value ?? "",
-			emailUsuario: emailRef.current?.value ?? "",
-			documentoUsuario: documentoRef.current?.value ?? "",
-			endereco: {
-				zip_code: cepRef.current?.value ?? "",
-				estado: estadoRef.current?.value ?? "",
-				bairro: bairroRef.current?.value ?? "",
-				cidade: cidadeRef.current?.value ?? "",
-				complemento: complementoRef.current?.value ?? "",
-				numero: numeroRef.current?.value ?? "",
-				rua: ruaRef.current?.value ?? ""
-			}
-		});
+		const updatedUser = {
+			id: session!.user.id,
+			nomeUsuario: nomeRef.current!.value,
+			emailUsuario: emailRef.current!.value,
+			documentoUsuario: documentoRef.current!.value,
+		};
 
-		alert("Editado.");
+		const updatedEndereco = {
+			zip_code: cepRef.current!.value,
+			estado: estadoRef.current!.value,
+			cidade: cidadeRef.current!.value,
+			bairro: bairroRef.current!.value,
+			rua: ruaRef.current!.value,
+			numero: numeroRef.current!.value,
+			complemento: complementoRef.current!.value,
+		};
+
+		try {
+			const resultadoRegistry = await UserService.update(
+				updatedUser.id,
+				updatedUser.nomeUsuario,
+				updatedUser.emailUsuario,
+				updatedUser.documentoUsuario,
+			);
+			const updateEndereco = await UserService.updateEndereco(
+				updatedUser.id,
+				updatedEndereco.zip_code,
+				updatedEndereco.numero,
+				updatedEndereco.rua,
+				updatedEndereco.bairro,
+				updatedEndereco.cidade,
+				updatedEndereco.estado,
+				updatedEndereco.complemento,
+			);
+			if (resultadoRegistry.ok && updateEndereco.ok) {
+				// updateSession(updatedUser);
+				alert("Informações atualizadas com sucesso!");
+				reload();
+			} else {
+				alert("Falha ao atualizar informações. Tente novamente.");
+			}
+		} catch (error) {
+			console.error("Erro ao fazer a solicitação de atualização:", error);
+		}
+
 		reload();
 	};
 
 	return (
 		<section className={styles["page"]}>
 			<h1 className={styles["title"]}>Perfil</h1>
-			<p className={styles["profile__tag"]}>{user?.tipoUsuario.tipoUsuario ?? "Tipo de conta não encontrado."}</p>
+			<p className={styles["profile__tag"]}>
+				{user?.tipoUsuario.tipoUsuario ?? "Tipo de conta não encontrado."}
+			</p>
 			<div className={styles["profile__extras"]}>
 				<p className={styles["profile__extra"]}>
 					<span>
 						<BiCoin />
 						Saldo:
 					</span>
-					<span>
-						{user?.registro.saldo ?? "N/A"}
-					</span>
+					<span>{user?.registro.saldo ?? "N/A"}</span>
 				</p>
 				<p className={styles["profile__extra"]}>
 					<span>
 						<RiOilLine />
 						Óleo virgem:
 					</span>
-					<span>
-						{user?.registro.volumeOleoVirgem ?? "N/A"}
-					</span>
+					<span>{user?.registro.volumeOleoVirgem ?? "N/A"}</span>
 				</p>
 				<p className={styles["profile__extra"]}>
 					<span>
 						<RiOilFill />
 						Óleo usado:
 					</span>
-					<span>
-						{user?.registro.volumeOleoUsado ?? "N/A"}
-					</span>
+					<span>{user?.registro.volumeOleoUsado ?? "N/A"}</span>
 				</p>
 			</div>
-			<form className={styles["profile__form"]}>
+			<form className={styles["profile__form"]} onSubmit={handleSaveChanges}>
 				<fieldset className="__fieldset">
 					<legend>Informações pessoais</legend>
-					<TextInput
-						forwardedRef={nomeRef}
-						label="Nome"
-						value={user?.nomeUsuario}
-					/>
-					<TextInput
-						forwardedRef={emailRef}
-						label="Email"
-						value={user?.emailUsuario}
-					/>
+					<TextInput forwardedRef={nomeRef} label="Nome" value={user?.nomeUsuario} />
+					<TextInput forwardedRef={emailRef} label="Email" value={user?.emailUsuario} />
 					<TextInput
 						forwardedRef={documentoRef}
 						label="Documento"
@@ -102,11 +118,7 @@ function Profile(): JSX.Element {
 				</fieldset>
 				<fieldset className="__fieldset">
 					<legend>Informações de endereço</legend>
-					<TextInput
-						forwardedRef={cepRef}
-						label="CEP"
-						value={user?.endereco.zip_code}
-					/>
+					<TextInput forwardedRef={cepRef} label="CEP" value={user?.endereco.zip_code} />
 					<TextInput
 						forwardedRef={estadoRef}
 						label="Estado"
@@ -122,11 +134,7 @@ function Profile(): JSX.Element {
 						label="Bairro"
 						value={user?.endereco.bairro}
 					/>
-					<TextInput
-						forwardedRef={ruaRef}
-						label="Rua"
-						value={user?.endereco.rua}
-					/>
+					<TextInput forwardedRef={ruaRef} label="Rua" value={user?.endereco.rua} />
 					<TextInput
 						forwardedRef={numeroRef}
 						label="Número"
@@ -138,7 +146,7 @@ function Profile(): JSX.Element {
 						value={user?.endereco.complemento}
 					/>
 				</fieldset>
-				<Button label="Salvar alterações" onClick={(e) => update(e)} />
+				<Button label="Salvar alterações" type="submit" />
 			</form>
 		</section>
 	);

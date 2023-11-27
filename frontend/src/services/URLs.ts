@@ -35,6 +35,8 @@ const TransactionRoutes = Object.freeze(
 const RegistryRoutes = Object.freeze(
 	router({
 		OneRegistry: "registry/get-one-registry",
+		UpdateOilById: "registry/update-oil-by-id",
+		UpdateQuotationById: "registry/update-quotation-by-id",
 	}),
 );
 

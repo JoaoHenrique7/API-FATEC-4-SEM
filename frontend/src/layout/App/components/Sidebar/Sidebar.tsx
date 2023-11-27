@@ -23,33 +23,41 @@ function Sidebar() {
 
 	return (
 		<aside className={styles["sidebar__wrapper"]}>
-			<div className={`${styles["sidebar"]} ${isClosed ? styles["--closed"] : styles["--open"]}`}>
+			<div
+				className={`${styles["sidebar"]} ${
+					isClosed ? styles["--closed"] : styles["--open"]
+				}`}
+			>
 				<button className={styles["sidebar__close"]} onClick={toggleSidebar}>
 					{isClosed ? <FaAngleRight /> : <FaAngleLeft />}
 				</button>
 				<section className={styles["sidebar__profile"]}>
 					<div className={styles["sidebar__profile__icon"]}>
-						<span>{user &&
-							user.nomeUsuario.split("")[0].toLocaleUpperCase()
-							+
-							user.nomeUsuario.split("")[1].toLocaleUpperCase()
-						}</span>
+						<span>
+							{user &&
+								user.nomeUsuario.split("")[0].toLocaleUpperCase() +
+									user.nomeUsuario.split("")[1].toLocaleUpperCase()}
+						</span>
 					</div>
-					{!isClosed &&
+					{!isClosed && (
 						<Link to={"/profile"} className={styles["sidebar__profile__info"]}>
 							<span>{user && user.nomeUsuario}</span>
 							<span>{user && user.emailUsuario}</span>
 						</Link>
-					}
+					)}
 				</section>
 				<nav className={styles["sidebar__navigation"]}>
 					<Link to={"/"}>
 						<FaWaveSquare />
 						{!isClosed && <p>Dashboard</p>}
 					</Link>
-					<Link to={
-						(user && user.tipoUsuario.tipoUsuario !== "Estabelecimento") ? "/transaction/new" : "/transaction/historic"
-					}>
+					<Link
+						to={
+							user && user.tipoUsuario.tipoUsuario !== "Estabelecimento"
+								? "/transaction/new"
+								: "/transaction/historic"
+						}
+					>
 						<BiTransfer />
 						{!isClosed && <p>Transações</p>}
 					</Link>
@@ -59,21 +67,26 @@ function Sidebar() {
 					</Link>
 				</nav>
 			</div>
-			{location.pathname.includes("/transaction") &&
+			{location.pathname.includes("/transaction") && (
 				<div className={styles["sidebar__sub"]}>
 					<h3>Transações</h3>
-					{(user && user.tipoUsuario.tipoUsuario !== "Estabelecimento") &&
+					{user && user.tipoUsuario.tipoUsuario !== "Estabelecimento" ? (
 						<Link to={"/transaction/new"}>
 							<AiOutlinePlus />
-						Nova transação
+							Nova transação
 						</Link>
-					}
+					) : (
+						<Link to={"/transaction/addoil"}>
+							<AiOutlinePlus />
+							Adicionar Oléo
+						</Link>
+					)}
 					<Link to={"/transaction/historic"}>
 						<GrHistory />
 						Historico
 					</Link>
 				</div>
-			}
+			)}
 		</aside>
 	);
 }

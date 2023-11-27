@@ -1,15 +1,24 @@
-.page {
-	display: flex;
-	gap: var(--spacing-4)
+.title {
+	/* Variables */
+	--title-padding: var(--spacing-3);
+	--title-margin: var(--spacing-6);
+	--title-border-color: var(--neutral-200);
+
+	/* Styles */
+	padding: var(--title-padding);
+	margin-bottom: var(--title-margin);
+	border-bottom: 1px solid var(--title-border-color);
 }
 
-.profile__extra {
+.addoil__balance {
 	/* Variables */
 	--extra-radius: var(--radius-1);
 	--extra-border-color: var(--neutral-200);
 	--extra-padding: var(--spacing-2);
+	--extra-margin: var(--spacing-4);
 
 	/* Styles */
+	margin-bottom: var(--extra-margin);
 	padding: var(--extra-padding);
 	border-radius: var(--extra-radius);
 	border: 1px solid var(--extra-border-color);
@@ -20,7 +29,7 @@
 	height: 100px;
 }
 
-.profile__extra span:first-child {
+.addoil__balance span:first-child {
 	/* Variables */
 	--extra-item-gap: var(--spacing-1);
 
@@ -30,7 +39,7 @@
 	gap: var(--extra-item-gap);
 }
 
-.profile__extra span:first-child :first-child {
+.addoil__balance span:first-child :first-child {
 	/* Variables */
 	--extra-item-font-size: var(--font-size-3);
 	--extra-item-font-weight: var(--font-weight-8);
@@ -40,27 +49,12 @@
 	font-weight: var(--extra-item-font-weight);
 }
 
-.profile__extra span:last-child {
+.addoil__balance span:last-child {
 	/* Variables */
-	--extra-item-font-size: var(--font-size-5);
-	--extra-item-font-weight: var(--font-weight-6);
+	--extra-item-font-size: var(--font-size-6);
+	--extra-item-font-weight: var(--font-weight-8);
 
 	/* Styles */
 	font-size: var(--extra-item-font-size);
 	font-weight: var(--extra-item-font-weight);
-}
-
-.accordion {
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.arrow-icon {
-  font-size: 1.2em;
-  margin-right: 8px;
-}
-
-.update-text {
-  font-weight: bold;
 }
