@@ -254,7 +254,7 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
     <img src="/readme/.gif" width="65%" />
   </p>
   <p align="justify">Demonstração da tela de dashboard dos perfils de parceiro e estabelecimento.</p>
-
+<details>
  
 <br>
 <h1 align="center"><samp>Product Backlog</samp></h1>
