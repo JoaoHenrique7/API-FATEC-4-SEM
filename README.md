@@ -29,18 +29,16 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 + - [x] Acessar o sistema por meio de login;
 + - [x] Cadastro de novos usuários;
 + - [x] Funcionalidade "esqueci minha senha".
-+ - [ ] Administrador editar e visualizar usuários já cadastrados em forma de lista;
-+ - [ ] Administrador visualizar as transações;
++ - [x] Administrador visualizar as transações;
 + - [x] Parceiros e Estabelecimentos efetuar transações de compra e venda;
 + - [x] Parceiros e Estabelecimentos possuirem acesso ao seu respectivo saldo de créditos;
 + - [x] Parceiros e Estabelecimentos possuirem acesso as suas respectivas transações;
-+ - [ ] Dashboard.
++ - [x] Dashboard.
 
 
 ### 🔖 Requisitos não funcionais
 + - [x] Documentação apresentada no Github
 + - [x] BPMN
-+ - [ ] Manual do usuário
 <br>
 
 <h1 align="center"><samp>TECNOLOGIAS</samp></h1>
@@ -102,6 +100,11 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 ![Equipe bytech](/readme/burndownSprint3.png)
 
 <br>
+<h2 align="center"><samp>QUARTA SPRINT</samp></h2>
+
+![Equipe bytech](/readme/burndownSprint4.png)
+
+<br>
 
 <br>
 <h1 align="center"><samp>MODELOS DO BANCOS DE DADOS AO LONGO DAS SPRINTS</samp></h1>
@@ -136,6 +139,16 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
 
 <p align="center">
     <img src="/readme/modeloLogicoSprint3.png"/>
+</p>
+
+<h2 align="center"><samp>QUARTA SPRINT</samp></h2>
+
+<p align="center">
+    <img src="/readme/modeloConceitualSprint4.png"/>
+</p>
+
+<p align="center">
+    <img src="/readme/modeloLogicoSprint4.png"/>
 </p>
 
 <br>
@@ -190,7 +203,7 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
   <summary>Detalhes</summary>
   <h3 align="center">Demonstração de usabilidade</h3>
    <br>
-  <h4 align="center">Cadastrando Usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Cadastrando Usuário<br><a href="https://youtu.be/WE1v3Dg2L7g">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
     <img src="/readme/.gif" width="65%" />
@@ -198,39 +211,55 @@ Os parceiros, em suas páginas, terão acesso ao seus históricos de transaçõe
   <p align="justify">Demonstração do processo de cadastro de um usuário.</p>
 
   <br>
-  <h4 align="center">Tela de Estabelecimento<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Tela de Estabelecimento<br><a href="https://youtu.be/qbMmenfmXgo">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
-    <img src="/readme/estabelecimento1.gif" width="65%" />
+    <img src="/readme/" width="65%" />
   </p>
   <p align="justify">Demonstração da Tela de Perfil dos Estabelecimentos. Esta interface contempla a tela de perfil do usuário do tipo estabelecimento assim como histórico de transações do usuário.</p>
 
   <br>
-  <h4 align="center">Transação entre Estabelecimento e Parceiro<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Transação entre Parceiro e Estabelecimento<br><a href="">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
     <img src="/readme/.gif" width="65%" />
   </p>
-  <p align="justify">Demonstração da transação entre estabelecimento e parceiro.</p>
+  <p align="justify">Demonstração da transação entre parceiro e estabelecimento.</p>
 
   <br>
-  <h4 align="center">Edição de usuário<br><a href="">Youtube (Qualidade melhor)</a></h4>
+  <h4 align="center">Edição de usuário<br><a href="https://youtu.be/XDC2Pnjm6cU">Youtube (Qualidade melhor)</a></h4>
   
   <p align="center">
     <img src="/readme/.gif" width="65%" />
   </p>
   <p align="justify">Demonstração do processo de edição de usuário.</p>
 </details>
+
+<h2>Sprint 4</h2>
+<details>
+  <summary>Detalhes</summary>
+  <h3 align="center">Demonstração de usabilidade</h3>
+   <br>
+  <h4 align="center">Telas do Administrador<br><a href="https://youtu.be/fSQFNg5X9Cs">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração das telas do perfil administrador.</p>
+
+  <br>
+  <h4 align="center">Dashboard<br><a href="https://youtu.be/fSQFNg5X9Cs">Youtube (Qualidade melhor)</a></h4>
+  
+  <p align="center">
+    <img src="/readme/.gif" width="65%" />
+  </p>
+  <p align="justify">Demonstração da tela de dashboard dos perfils de parceiro e estabelecimento.</p>
+<details>
  
 <br>
 <h1 align="center"><samp>Product Backlog</samp></h1>
 
 [Clique aqui para ter acesso ao fluxograma do sistema!](https://github.com/CamilaRedondo/API-FATEC-4-SEM/blob/main/readme/Product%20Backlog%20do%20Projeto_V01.xlsx)
-
-<br>
-<h1 align="center"><samp>Manual do Usuário</samp></h1>
-
-[Clique aqui para ter acesso ao manual do usuário!]()
 
 <br>
 <h1 align="center"><samp>EQUIPE</samp></h1>
